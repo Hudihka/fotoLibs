@@ -10,27 +10,44 @@ import UIKit
 
 class PhotoCollectionCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageCell: UIImageView!
+    var imgView: UIImageView? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        addViewIMG()
     }
 
 
     var ind: IndexPath?{
         didSet{
-            self.imageCell.image = UIImage(named: "b1e49d")
-            if let ind = ind {
-                update(index: ind)
-            }
+            update()
         }
     }
 
 
-    private func update(index: IndexPath){
-        ManagerPhotos.shared.getImageOne(indexPath: index) { (img) in
-            self.imageCell.image = img
+    private func update(){
+
+        guard let view = imgView else {
+            return
         }
+
+        view.image = UIImage(named: "imgCat")
+        if let ind = ind {
+            ManagerPhotos.shared.getImageOne(indexPath: ind) { (img) in
+                view.image = img
+            }
+        }
+    }
+
+    private func addViewIMG(){
+
+        imgView = UIImageView(frame: self.frame)
+        imgView?.contentMode = .scaleAspectFill
+        imgView?.image = UIImage(named: "imgCat")
+
+
+        self.addSubview(imgView ?? UIImageView())
+
     }
 
 }

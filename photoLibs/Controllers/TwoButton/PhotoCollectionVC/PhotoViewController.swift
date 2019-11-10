@@ -7,25 +7,25 @@
 //
 
 import UIKit
-import GSImageViewerController
-import SPPhotoViewer
+//import GSImageViewerController
+//import SPPhotoViewer
 
 class PhotoViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
     let manager = ManagerPhotos.shared
-
+    var openIsTwoButton = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         settingsCV()
-        bbCancel()
+//        bbCancel()
     }
 
     static func route() -> PhotoViewController? {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "TwoButton", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController")
 
         return viewController as? PhotoViewController
@@ -33,7 +33,9 @@ class PhotoViewController: UIViewController {
 
 
     deinit {
-        manager.imageCache.removeAllObjects()
+        if openIsTwoButton {
+            manager.imageCache.removeAllObjects()
+        }
     }
 
 }

@@ -123,11 +123,11 @@
             </objects>
             <point key="canvasLocation" x="1929" y="-1904"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo View Controller-->
         <scene sceneID="jxK-92-7U0">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-48-oUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="xAD-Qa-6pm" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" id="xAD-Qa-6pm" customClass="PhotoViewController" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bKa-ge-KLe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -14,7 +14,7 @@ class ManagerPhotos: NSObject{
     static let shared = ManagerPhotos()
     let imageCache = NSCache<NSString, UIImage>()
 
-    let height = (SupportClass.wDdevice / 3) - 1
+    let height = (SupportClass.Dimensions.wDdevice / 3) - 1
     private let imgManager = PHImageManager.default()
 
     private var option: PHFetchOptions {
