@@ -73,7 +73,7 @@ class TwoButtonVC: UIViewController {
             case .permitted, .pressTrue, .noValue:
                 if let vc = PhotoViewController.route() {
                     vc.openIsTwoButton = true
-                    self.present(controller: vc)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         })

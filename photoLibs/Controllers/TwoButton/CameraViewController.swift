@@ -39,7 +39,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     static func route() -> CameraViewController?{
-        let storubord = UIStoryboard(name: "Main", bundle: nil)
+        let storubord = UIStoryboard(name: "TwoButton", bundle: nil)
         let VC = storubord.instantiateViewController(withIdentifier: "CameraViewController")
         return VC as? CameraViewController
     }
@@ -51,7 +51,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
 
     @IBAction func reloadCamera(_ sender: Any) {
-        //        offFlash()
         switchCamera()
         rightBBItem(isON: false)
     }

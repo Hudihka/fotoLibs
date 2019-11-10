@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44CE35C5DA0FCE077A20EAC7 /* Pods_photoLibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBDBC8B54962CE124A8298A /* Pods_photoLibs.framework */; };
+		CE0D5C7D2377F734003C57B4 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */; };
+		CE0D5C7E2377F734003C57B4 /* PhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */; };
 		CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */; };
 		CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */; };
 		CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACF2377D91C00CFBFD4 /* LaunchScreen.storyboard */; };
@@ -24,7 +26,6 @@
 		CEEC0AF52377E0D000CFBFD4 /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0AF42377E0D000CFBFD4 /* Alert.storyboard */; };
 		CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */; };
 		CEEC0AF92377E19F00CFBFD4 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AF82377E19F00CFBFD4 /* AlertViewController.swift */; };
-		CEEC0AFF2377E23300CFBFD4 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AFC2377E23300CFBFD4 /* PhotoCollectionCell.swift */; };
 		CEEC0B002377E23300CFBFD4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AFD2377E23300CFBFD4 /* PhotoViewController.swift */; };
 		CEEC0B032377E77400CFBFD4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,8 @@
 /* Begin PBXFileReference section */
 		171DB45814FB3815FC442050 /* Pods-photoLibs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoLibs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-photoLibs/Pods-photoLibs.debug.xcconfig"; sourceTree = "<group>"; };
 		A73A78AB21CE2F5527D6FC52 /* Pods-photoLibs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoLibs.release.xcconfig"; path = "Pods/Target Support Files/Pods-photoLibs/Pods-photoLibs.release.xcconfig"; sourceTree = "<group>"; };
+		CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
+		CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionCell.xib; sourceTree = "<group>"; };
 		CEEC0AC32377D91A00CFBFD4 /* photoLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,7 +53,6 @@
 		CEEC0AF42377E0D000CFBFD4 /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
 		CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonVC.swift; sourceTree = "<group>"; };
 		CEEC0AF82377E19F00CFBFD4 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
-		CEEC0AFC2377E23300CFBFD4 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		CEEC0AFD2377E23300CFBFD4 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EFBDBC8B54962CE124A8298A /* Pods_photoLibs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photoLibs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,9 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */,
+				CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */,
 				CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */,
 				CEEC0AFB2377E23300CFBFD4 /* PhotoCollectionVC */,
-				CEEC0AFA2377E20700CFBFD4 /* TwoButtonVC */,
 			);
 			path = TwoButton;
 			sourceTree = "<group>";
@@ -193,19 +195,12 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		CEEC0AFA2377E20700CFBFD4 /* TwoButtonVC */ = {
-			isa = PBXGroup;
-			children = (
-				CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */,
-			);
-			path = TwoButtonVC;
-			sourceTree = "<group>";
-		};
 		CEEC0AFB2377E23300CFBFD4 /* PhotoCollectionVC */ = {
 			isa = PBXGroup;
 			children = (
 				CEEC0AFD2377E23300CFBFD4 /* PhotoViewController.swift */,
-				CEEC0AFC2377E23300CFBFD4 /* PhotoCollectionCell.swift */,
+				CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */,
+				CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */,
 			);
 			path = PhotoCollectionVC;
 			sourceTree = "<group>";
@@ -270,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0D5C7E2377F734003C57B4 /* PhotoCollectionCell.xib in Resources */,
 				CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */,
 				CEEC0AF52377E0D000CFBFD4 /* Alert.storyboard in Resources */,
 				CEEC0AF32377E0B600CFBFD4 /* TwoButton.storyboard in Resources */,
@@ -338,7 +334,7 @@
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
 				CEEC0AE32377DBE700CFBFD4 /* ManagerPhotos.swift in Sources */,
-				CEEC0AFF2377E23300CFBFD4 /* PhotoCollectionCell.swift in Sources */,
+				CE0D5C7D2377F734003C57B4 /* PhotoCollectionCell.swift in Sources */,
 				CEEC0AE02377DBE700CFBFD4 /* UIWindovs.swift in Sources */,
 				CEEC0AF92377E19F00CFBFD4 /* AlertViewController.swift in Sources */,
 				CEEC0AE22377DBE700CFBFD4 /* ApplicationOpportunities.swift in Sources */,
@@ -485,8 +481,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JKS99UDPG5;
-				INFOPLIST_FILE = photoLibs/Info.plist;
+				DEVELOPMENT_TEAM = LQJFLL24MV;
+				INFOPLIST_FILE = "$(SRCROOT)/photoLibs/Resorces/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,8 +501,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JKS99UDPG5;
-				INFOPLIST_FILE = photoLibs/Info.plist;
+				DEVELOPMENT_TEAM = LQJFLL24MV;
+				INFOPLIST_FILE = "$(SRCROOT)/photoLibs/Resorces/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

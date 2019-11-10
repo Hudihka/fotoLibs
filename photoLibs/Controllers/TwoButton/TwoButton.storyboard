@@ -13,7 +13,7 @@
         <!--Item 1-->
         <scene sceneID="gkT-pe-Lnl">
             <objects>
-                <viewController id="nDc-fx-qPx" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TwoButtonVC" id="nDc-fx-qPx" customClass="TwoButtonVC" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4uP-gK-9dk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                 </constraints>
                                 <state key="normal" title="Фото"/>
                                 <connections>
-                                    <action selector="photoButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="N75-lA-Z2L"/>
+                                    <action selector="photoButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="2u2-fY-INF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10m-v3-0lz">
@@ -43,7 +43,7 @@
                                 </constraints>
                                 <state key="normal" title="Галерея"/>
                                 <connections>
-                                    <action selector="galeruButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="8ER-Cn-D2d"/>
+                                    <action selector="galeruButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="rKx-Hm-vV1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,17 +64,17 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="NlB-df-7qn"/>
                     <navigationItem key="navigationItem" id="4Ns-cP-k02"/>
                     <connections>
-                        <outlet property="imageView" destination="Jkd-ZU-IXJ" id="rc8-bW-FFy"/>
+                        <outlet property="imageView" destination="Jkd-ZU-IXJ" id="Zqt-bf-UwO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aa1-Hj-FZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1929" y="-1146"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="0uj-P5-RSg">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" hidesBottomBarWhenPushed="YES" id="8uY-Y7-l9X" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" modalPresentationStyle="overFullScreen" hidesBottomBarWhenPushed="YES" id="8uY-Y7-l9X" customClass="CameraViewController" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="31T-Vj-aBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,8 +126,7 @@
         <!--Photo View Controller-->
         <scene sceneID="jxK-92-7U0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-48-oUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="PhotoViewController" id="xAD-Qa-6pm" customClass="PhotoViewController" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" modalPresentationStyle="overFullScreen" hidesBottomBarWhenPushed="YES" id="xAD-Qa-6pm" customClass="PhotoViewController" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bKa-ge-KLe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,6 +165,7 @@
                         <outlet property="collectionView" destination="T8h-f2-yPl" id="tG7-Qv-07Q"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-48-oUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1929" y="-355"/>
         </scene>

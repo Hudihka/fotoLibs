@@ -50,6 +50,7 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
         self.collectionView.register(UINib(nibName: "PhotoCollectionCell", bundle: nil),
                                      forCellWithReuseIdentifier: "PhotoCollectionCell")
+
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
