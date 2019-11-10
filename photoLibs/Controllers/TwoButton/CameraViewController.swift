@@ -63,7 +63,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         self.clearNavigationBar()
         self.bbCancel()
 
-        settingsRightBBitem(text: "Вспышка Вкл", alpha: 1)
+        settingsRightBBitem(text: "Фонарик Вкл", alpha: 1)
     }
 
     private func settingsRightBBitem(text: String, alpha: CGFloat){
@@ -80,7 +80,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
     private func rightBBItem(isON: Bool) { //если тру то включаем
 
-        let text = isON ? "Вспышка Выкл" : "Вспышка Вкл"
+        let text = isON ? "Фонарик Выкл" : "Фонарик Вкл"
         let alpha: CGFloat = !isON && currentCamera == .front ? 0.5 : 1
 
         settingsRightBBitem(text: text, alpha: alpha)
@@ -146,7 +146,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     deinit {
-        ManagerPhotos.shared.imageCache.removeAllObjects()
+//        ManagerPhotos.shared.imageCache.removeAllObjects()
     }
 
 }

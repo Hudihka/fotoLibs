@@ -87,6 +87,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CE0D5C7F2377FC28003C57B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CEEC0ABA2377D91A00CFBFD4 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +119,7 @@
 				CEEC0AD82377DB9200CFBFD4 /* Support */,
 				CEEC0AE52377DC1600CFBFD4 /* Resorces */,
 				CEEC0AE62377DE3200CFBFD4 /* Controllers */,
+				CE0D5C7F2377FC28003C57B4 /* View */,
 			);
 			path = photoLibs;
 			sourceTree = "<group>";

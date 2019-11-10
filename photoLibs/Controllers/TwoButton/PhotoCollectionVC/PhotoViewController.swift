@@ -15,10 +15,14 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     let manager = ManagerPhotos.shared
-    var openIsTwoButton = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appExitBacground(notfication:)),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
 
         settingsCV()
 //        bbCancel()
@@ -31,11 +35,14 @@ class PhotoViewController: UIViewController {
         return viewController as? PhotoViewController
     }
 
+    @objc func appExitBacground(notfication: Notification) {
+        ManagerPhotos.shared.imageCache.removeAllObjects()
+        self.collectionView.reloadData()
+    }
+
 
     deinit {
-        if openIsTwoButton {
-            manager.imageCache.removeAllObjects()
-        }
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
