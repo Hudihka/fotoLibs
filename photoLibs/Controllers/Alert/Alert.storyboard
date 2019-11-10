@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4hw-mA-QOt">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 2-->
+        <scene sceneID="HnL-kb-39d">
+            <objects>
+                <viewController storyboardIdentifier="AlertViewController" id="4hw-mA-QOt" customClass="AlertViewController" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KTQ-G5-AbU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="de0-6t-YwL">
+                                <rect key="frame" x="99" y="308.5" width="177" height="70"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="177" id="f9l-OB-ICz"/>
+                                    <constraint firstAttribute="height" constant="70" id="mFU-vZ-gtq"/>
+                                </constraints>
+                                <state key="normal" title="Алерт"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="de0-6t-YwL" firstAttribute="centerY" secondItem="S9f-3W-Tby" secondAttribute="centerY" id="ciS-TN-jgD"/>
+                            <constraint firstItem="de0-6t-YwL" firstAttribute="centerX" secondItem="S9f-3W-Tby" secondAttribute="centerX" id="xwf-Gq-OWa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S9f-3W-Tby"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="3Py-BU-oJe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Xc-ww-OhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5999999999999" y="-377.36131934032989"/>
+        </scene>
+    </scenes>
+</document>

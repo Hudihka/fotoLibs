@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AlertVC.swift
 //  photoLibs
 //
 //  Created by Username on 10.11.2019.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AlertViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
 
 }
-
