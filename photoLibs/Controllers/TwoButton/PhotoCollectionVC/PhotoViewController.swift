@@ -74,7 +74,22 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        
+
+        //        ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
+        //            //изображение использовать для анимационного перехода
+        //        }
+
+        if let vc = ImageZoomVC.route(index: indexPath.row){
+            self.present(vc, animated: true, completion: nil)
+        }
+
+
+        //        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionCell {
+        //        }
+
+        //        if let vc = ImageVC.route(array: manager.fetchResult, index: indexPath.row){
+        //            self.present(vc, animated: true, completion: nil)
+        //        }
 
     }
 

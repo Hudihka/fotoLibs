@@ -10,6 +10,13 @@
 		44CE35C5DA0FCE077A20EAC7 /* Pods_photoLibs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBDBC8B54962CE124A8298A /* Pods_photoLibs.framework */; };
 		CE0D5C7D2377F734003C57B4 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */; };
 		CE0D5C7E2377F734003C57B4 /* PhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */; };
+		CE0D5C8A23780267003C57B4 /* NavigBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5C8123780267003C57B4 /* NavigBarView.xib */; };
+		CE0D5C8B23780267003C57B4 /* ImageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5C8223780267003C57B4 /* ImageStoryboard.storyboard */; };
+		CE0D5C8C23780267003C57B4 /* CellZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8423780267003C57B4 /* CellZoom.swift */; };
+		CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8523780267003C57B4 /* ImageZoomVC.swift */; };
+		CE0D5C8E23780267003C57B4 /* CellZoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5C8623780267003C57B4 /* CellZoom.xib */; };
+		CE0D5C8F23780267003C57B4 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8823780267003C57B4 /* ImageScrollView.swift */; };
+		CE0D5C9023780267003C57B4 /* NavigBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8923780267003C57B4 /* NavigBarView.swift */; };
 		CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */; };
 		CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */; };
 		CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACF2377D91C00CFBFD4 /* LaunchScreen.storyboard */; };
@@ -35,6 +42,13 @@
 		A73A78AB21CE2F5527D6FC52 /* Pods-photoLibs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoLibs.release.xcconfig"; path = "Pods/Target Support Files/Pods-photoLibs/Pods-photoLibs.release.xcconfig"; sourceTree = "<group>"; };
 		CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionCell.xib; sourceTree = "<group>"; };
+		CE0D5C8123780267003C57B4 /* NavigBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigBarView.xib; sourceTree = "<group>"; };
+		CE0D5C8223780267003C57B4 /* ImageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageStoryboard.storyboard; sourceTree = "<group>"; };
+		CE0D5C8423780267003C57B4 /* CellZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellZoom.swift; sourceTree = "<group>"; };
+		CE0D5C8523780267003C57B4 /* ImageZoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageZoomVC.swift; sourceTree = "<group>"; };
+		CE0D5C8623780267003C57B4 /* CellZoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellZoom.xib; sourceTree = "<group>"; };
+		CE0D5C8823780267003C57B4 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		CE0D5C8923780267003C57B4 /* NavigBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigBarView.swift; sourceTree = "<group>"; };
 		CEEC0AC32377D91A00CFBFD4 /* photoLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,8 +104,38 @@
 		CE0D5C7F2377FC28003C57B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE0D5C8823780267003C57B4 /* ImageScrollView.swift */,
+				CE0D5C91237802FF003C57B4 /* NavigBarView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CE0D5C8023780267003C57B4 /* ViewImageVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D5C8223780267003C57B4 /* ImageStoryboard.storyboard */,
+				CE0D5C8323780267003C57B4 /* VC */,
+			);
+			path = ViewImageVC;
+			sourceTree = "<group>";
+		};
+		CE0D5C8323780267003C57B4 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D5C8523780267003C57B4 /* ImageZoomVC.swift */,
+				CE0D5C8423780267003C57B4 /* CellZoom.swift */,
+				CE0D5C8623780267003C57B4 /* CellZoom.xib */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		CE0D5C91237802FF003C57B4 /* NavigBarView */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D5C8123780267003C57B4 /* NavigBarView.xib */,
+				CE0D5C8923780267003C57B4 /* NavigBarView.swift */,
+			);
+			path = NavigBarView;
 			sourceTree = "<group>";
 		};
 		CEEC0ABA2377D91A00CFBFD4 = {
@@ -152,6 +196,7 @@
 				CEEC0AED2377DF4600CFBFD4 /* Alert */,
 				CEEC0AEC2377DF2500CFBFD4 /* TwoButton */,
 				CEEC0AE72377DE8D00CFBFD4 /* TabBar */,
+				CE0D5C8023780267003C57B4 /* ViewImageVC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +322,9 @@
 				CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */,
 				CEEC0AF52377E0D000CFBFD4 /* Alert.storyboard in Resources */,
 				CEEC0AF32377E0B600CFBFD4 /* TwoButton.storyboard in Resources */,
+				CE0D5C8A23780267003C57B4 /* NavigBarView.xib in Resources */,
+				CE0D5C8B23780267003C57B4 /* ImageStoryboard.storyboard in Resources */,
+				CE0D5C8E23780267003C57B4 /* CellZoom.xib in Resources */,
 				CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */,
 				CEEC0AE92377DEE400CFBFD4 /* TabBarStoryboard.storyboard in Resources */,
 			);
@@ -340,10 +388,14 @@
 				CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */,
 				CEEC0AE12377DBE700CFBFD4 /* Utils.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
+				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
 				CEEC0AE32377DBE700CFBFD4 /* ManagerPhotos.swift in Sources */,
+				CE0D5C8C23780267003C57B4 /* CellZoom.swift in Sources */,
+				CE0D5C9023780267003C57B4 /* NavigBarView.swift in Sources */,
 				CE0D5C7D2377F734003C57B4 /* PhotoCollectionCell.swift in Sources */,
 				CEEC0AE02377DBE700CFBFD4 /* UIWindovs.swift in Sources */,
+				CE0D5C8F23780267003C57B4 /* ImageScrollView.swift in Sources */,
 				CEEC0AF92377E19F00CFBFD4 /* AlertViewController.swift in Sources */,
 				CEEC0AE22377DBE700CFBFD4 /* ApplicationOpportunities.swift in Sources */,
 				CEEC0AEB2377DF1D00CFBFD4 /* TabBarVC.swift in Sources */,

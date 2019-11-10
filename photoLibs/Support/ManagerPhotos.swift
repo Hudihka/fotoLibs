@@ -37,21 +37,21 @@ class ManagerPhotos: NSObject{
     }
 
 
-    func getImageBig(indexPath: IndexPath, completion: @escaping (UIImage) -> Void){
+//    func getImageBig(indexPath: IndexPath, completion: @escaping (UIImage) -> Void){
+//
+//        let size = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+//
+//        imgManager.requestImage(for: fetchResult.object(at: indexPath.row),
+//                                targetSize: size,
+//                                contentMode: .aspectFill,
+//                                options: requestOption) { (image, _) in
+//                                    if let img = image {
+//                                        completion(img)
+//                                    }
+//        }
+//    }
 
-        let size = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-
-        imgManager.requestImage(for: fetchResult.object(at: indexPath.row),
-                                targetSize: size,
-                                contentMode: .aspectFill,
-                                options: requestOption) { (image, _) in
-                                    if let img = image {
-                                        completion(img)
-                                    }
-        }
-    }
-
-    func getImageOne(indexPath: IndexPath, completion: @escaping (UIImage) -> Void){
+    func getImageOne(indexPath: IndexPath, sizeBig: Bool = false, completion: @escaping (UIImage) -> Void){
 
         let key = indexPath.keyCashIndex
 
@@ -60,7 +60,10 @@ class ManagerPhotos: NSObject{
             return
         }
 
-        let size = CGSize(width: height, height: height)
+
+        let heig = sizeBig ? SupportClass.Dimensions.hDdevice : height
+        let widh = sizeBig ? SupportClass.Dimensions.wDdevice : height
+        let size = CGSize(width: widh, height: heig)
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
