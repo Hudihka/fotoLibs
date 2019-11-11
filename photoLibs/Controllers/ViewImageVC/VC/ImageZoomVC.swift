@@ -31,6 +31,12 @@ class ImageZoomVC: UIViewController {
     }()
 
 
+    //TIMER
+
+    var timer = Timer()
+    var time = 0
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsCV()
@@ -47,6 +53,8 @@ class ImageZoomVC: UIViewController {
         self.swipeGesture.cancelsTouchesInView = false
 
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+
+        startTimer()
 
     }
 
@@ -100,13 +108,6 @@ class ImageZoomVC: UIViewController {
     }
 
 
-//    private func blockCell(_ enabled: Bool){
-//
-//        if let cell = self.collectionView.cellForItem(at: IndexPath(row: counter, section: 0)) as? CellZoom{
-//            cell.imageScrollView.isScrollEnabled = enabled
-//        }
-//    }
-
     private func originalPosition(){
         finishAnimate = false
         UIView.animate(withDuration: 0.3, animations: {
@@ -143,9 +144,7 @@ class ImageZoomVC: UIViewController {
 
     private func dismiss(value: CGFloat){
         if value > 100{
-            UIApplication.shared.setStatusBarStyle(.default, animated: true)
-            UIApplication.shared.updateStatusBar(false)
-            self.dismiss(animated: true, completion: nil)
+            self.killVC()
         } else {
             originalPosition()
         }
@@ -164,9 +163,22 @@ class ImageZoomVC: UIViewController {
             if comp {
                 self.navigBarView.isUserInteractionEnabled = !clear
                 self.flagNavigBarUpdate = true
+
+                if !clear {
+                    self.startTimer()
+                }
             }
         }
     }
+
+    private func killVC(){
+        UIApplication.shared.setStatusBarStyle(.default, animated: true)
+        UIApplication.shared.updateStatusBar(false)
+        timer.invalidate()
+        self.dismiss(animated: true, completion: nil)
+    }
+
+
 
 
 }
@@ -220,16 +232,23 @@ extension ImageZoomVC: UIScrollViewDelegate {
         reloadCounter(velocity)
         targetContentOffset.pointee.x = UIScreen.main.bounds.size.width * CGFloat(counter)
         textTitle()
-        print("end scroll")
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         flagAnimateCollection = false
         print("start scroll")
+
+        if activeNB {
+            self.timer.invalidate()
+        }
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
         flagAnimateCollection = true
+
+        if activeNB {
+            self.startTimer()
+        }
     }
 
 
@@ -245,7 +264,43 @@ extension ImageZoomVC: UIScrollViewDelegate {
         }
     }
 
+    var activeNB: Bool{
+        return self.navigBarView.isUserInteractionEnabled
+    }
+
 }
+
+
+// MARK: timer
+extension ImageZoomVC {
+
+    func startTimer() {
+
+        time = 5
+
+        self.timer = Timer.scheduledTimer(timeInterval: 1,
+                                          target: self,
+                                          selector: #selector(ImageZoomVC.actionTimer),
+                                          userInfo: nil,
+                                          repeats: true)
+    }
+
+    @objc func actionTimer() {
+        self.time -= 1
+
+        print(time)
+
+        if self.time == 0, activeNB {
+            self.animateHeder(true)
+            self.timer.invalidate()
+        }
+    }
+
+
+}
+
+
+
 
 
 extension ImageZoomVC: UIGestureRecognizerDelegate {
