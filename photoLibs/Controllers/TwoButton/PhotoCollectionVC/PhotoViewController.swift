@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import GSImageViewerController
-//import SPPhotoViewer
 
 class PhotoViewController: UIViewController {
 
@@ -16,6 +14,7 @@ class PhotoViewController: UIViewController {
 
     let manager = ManagerPhotos.shared
     var counterSpecifiedCell = 0
+    var bigUIImage: UIImage? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,13 +79,15 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
 
-        //        ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
-        //            //изображение использовать для анимационного перехода
-        //        }
+                ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
+                    self.bigUIImage = img
 
-        if let vc = ImageZoomVC.route(index: indexPath.row){
-            self.present(vc, animated: true, completion: nil)
-        }
+                    if let vc = ImageZoomVC.route(index: indexPath.row){
+                        vc.transitioningDelegate = self
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                }
+
 
 
         //        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionCell {
@@ -109,4 +110,57 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0
     }
+}
+
+
+extension PhotoViewController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let img = self.bigUIImage {
+            let tupls = getFrameImageView()
+            self.clearImageCell(ind: tupls.1, clear: true)
+            return PresentStockAnimation(originFrame: tupls.0, image: img)
+        }
+        
+        return nil
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+        let tupls = getFrameImageView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
+            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
+            self.clearImageCell(index: tupls.1, image: image)
+        }
+
+        return DismissStockAnimation(originFrame: tupls.0, index: tupls.1)
+    }
+
+    private func clearImageCell(ind: IndexPath, clear: Bool){
+
+
+        if let cell = self.collectionView.cellForItem(at: ind) as? PhotoCollectionCell {
+            if clear {
+                cell.imageCell.image = nil
+            } else {
+                cell.ind = ind
+            }
+        }
+    }
+
+    private func getFrameImageView() -> (CGRect, IndexPath) {
+
+        if let index = collectionView.indexPathsForSelectedItems?.first, let attributes: UICollectionViewLayoutAttributes = self.collectionView.layoutAttributesForItem(at: index) {
+            let rect = attributes.frame
+            let cellFrameInSuperview = collectionView.convert(rect, to: collectionView.superview)
+
+            return (cellFrameInSuperview, index)
+
+        }
+
+        return (CGRect(), IndexPath())
+
+    }
+
+
 }

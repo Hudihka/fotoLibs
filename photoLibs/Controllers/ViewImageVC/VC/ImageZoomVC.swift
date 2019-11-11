@@ -290,8 +290,10 @@ extension ImageZoomVC {
 
         print(time)
 
-        if self.time == 0, activeNB {
-            self.animateHeder(true)
+        if self.time == 0 {
+            if activeNB {
+                self.animateHeder(true)
+            }
             self.timer.invalidate()
         }
     }
