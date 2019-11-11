@@ -154,6 +154,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
 
         print(currectScale)
 
+        ImageScrollView.originalFrame = !value
         let finalScale = value ? toScale : minScale
         let zoomRect = self.zoomRect(scale: finalScale, center: point)
         self.zoom(to: zoomRect, animated: animated)
@@ -177,10 +178,12 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
     // MARK: - UIScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        print("start zoom")
         return self.imageZoomView
     }
-    
+
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        print("finish zoom")
         self.centerImage()
     }
 
