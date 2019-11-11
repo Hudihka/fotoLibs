@@ -25,6 +25,7 @@ class CellZoom: UICollectionViewCell {
 
     var ind: IndexPath?{
         didSet{
+            self.imageScrollView.set(image: nil)
             if let ind = ind {
                 ManagerPhotos.shared.getImageOne(indexPath: ind, sizeBig: true) { (img) in
                     self.spiner.stopAnimating()

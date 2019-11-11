@@ -74,7 +74,6 @@ class ImageZoomVC: UIViewController {
 
     @objc func swipeSelector(sender: UIPanGestureRecognizer) {
         if ImageScrollView.originalFrame && self.finishAnimate && flagAnimateCollection{
-            print("анимация в верх/низ")
 
             collectionView.isScrollEnabled = false
 
@@ -107,7 +106,8 @@ class ImageZoomVC: UIViewController {
                                                height: self.collectionView.frame.height)
 
             self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-            self.navigBarView.alpha = 0.5
+            self.alphaBacground(value: 1)
+
         }) { (comp) in
             if comp {
                 self.finishAnimate = true
@@ -124,16 +124,11 @@ class ImageZoomVC: UIViewController {
                                             green: 0,
                                             blue: 0,
                                             alpha: alpha)
-        alphaBacgroundNavView(value: alpha/2)
+
+        self.navigBarView.colorNB(value: alpha)
 
     }
 
-
-    private func alphaBacgroundNavView(value: CGFloat){
-        if navigBarView.leftButton.isEnabled{
-            navigBarView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: value)
-        }
-    }
 
     private func dismiss(value: CGFloat){
         if value > 100{

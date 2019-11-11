@@ -46,16 +46,22 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(image: UIImage) {
+    func set(image: UIImage?) {
         
         imageZoomView?.removeFromSuperview()
         imageZoomView = nil
         imageZoomView = UIImageView(image: image)
         imageZoomView.contentMode = .scaleAspectFill
         self.addSubview(imageZoomView)
-        self.isScrollEnabled = true
-        
-        configurateFor(imageSize: image.size)
+
+        if let img = image{
+            configurateFor(imageSize: img.size)
+            self.isScrollEnabled = true
+        } else {
+            configurateFor(imageSize: CGSize(width: SupportClass.Dimensions.wDdevice,
+                                             height: SupportClass.Dimensions.wDdevice))
+        }
+
     }
     
     func configurateFor(imageSize: CGSize) {
@@ -145,8 +151,10 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         
         let toScale = maxScale
         let value = currectScale == minScale
+
+        print(currectScale)
+
         let finalScale = value ? toScale : minScale
-        ImageScrollView.originalFrame = !value
         let zoomRect = self.zoomRect(scale: finalScale, center: point)
         self.zoom(to: zoomRect, animated: animated)
         self.delegateGesture?.doubleTabGesture()
@@ -162,6 +170,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         
         zoomRect.origin.x = center.x - (zoomRect.size.width / 2)
         zoomRect.origin.y = center.y - (zoomRect.size.height / 2)
+        print(zoomRect)
         return zoomRect
     }
     
@@ -174,5 +183,13 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.centerImage()
     }
-    
+
+
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?){
+        ImageScrollView.originalFrame = false
+    }
+
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat){
+        ImageScrollView.originalFrame = true
+    }
 }

@@ -33,7 +33,7 @@ class NavigBarView: UIView {
         self.conteinerView.backgroundColor = UIColor.clear
 
         desingButton()
-        clearView(false)
+        colorNB(value: 1)
     }
 
     func xibSetup() {
@@ -44,16 +44,30 @@ class NavigBarView: UIView {
     }
 
 
-    func clearView( _ clear: Bool) {
+    private func clearView( _ clear: Bool) {
 
         self.rightButton.isHidden = clear
         self.leftButton.isHidden = clear
         self.labelTitle.isHidden = clear
 
-        let alpha: CGFloat = clear ? 0 : 0.5
+    }
+
+    func colorNB(value: CGFloat){
+
+        let colorWhite = UIColor(red: 1, green: 1, blue: 1, alpha: value)
+
+        let alpha = value >= 0.3 ? value - 0.3 : 0
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha)
 
+        self.rightButton.alpha = value
+        self.leftButton.alpha = value
+
+        self.labelTitle.textColor = colorWhite
+
+        self.clearView(value == 0.0)
     }
+
+
 
 
     private func desingButton(){
