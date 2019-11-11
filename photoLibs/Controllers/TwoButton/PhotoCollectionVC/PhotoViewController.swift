@@ -23,7 +23,9 @@ class PhotoViewController: UIViewController {
 
         settingsCV()
 //        bbCancel()
+
     }
+
 
     static func route() -> PhotoViewController? {
         let storyboard = UIStoryboard(name: "TwoButton", bundle: nil)
@@ -31,6 +33,7 @@ class PhotoViewController: UIViewController {
 
         return viewController as? PhotoViewController
     }
+
 
 
     deinit {

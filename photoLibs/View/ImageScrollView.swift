@@ -7,7 +7,6 @@ import UIKit
 protocol GestureDelegate: class {
     func tabGesture()
     func doubleTabGesture()
-    func zoomGesters()
 }
 
 class ImageScrollView: UIScrollView, UIScrollViewDelegate {
@@ -187,12 +186,12 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
 
 
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?){
-        print("start")
+        self.delegateGesture?.doubleTabGesture()
         ImageScrollView.originalFrame = false
     }
 
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat){
-    
+
         if let width = view?.frame.width, width + 0.1 > SupportClass.Dimensions.wDdevice, width - 1 < SupportClass.Dimensions.wDdevice {
             ImageScrollView.originalFrame = true
         } else {

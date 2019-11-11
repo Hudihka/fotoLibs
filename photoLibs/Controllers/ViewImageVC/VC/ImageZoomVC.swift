@@ -21,6 +21,7 @@ class ImageZoomVC: UIViewController {
 
     private var finishAnimate = true
     private var flagAnimateCollection = true
+    var flagNavigBarUpdate = true
 
 
     lazy var swipeGesture: UIPanGestureRecognizer = {
@@ -45,13 +46,13 @@ class ImageZoomVC: UIViewController {
 
         self.swipeGesture.cancelsTouchesInView = false
 
-
-
-        ///добавить перезагрузку таблицы
-        //и хедера
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 
     private func scrolling(){
@@ -142,6 +143,7 @@ class ImageZoomVC: UIViewController {
 
     private func dismiss(value: CGFloat){
         if value > 100{
+            UIApplication.shared.setStatusBarStyle(.default, animated: true)
             self.dismiss(animated: true, completion: nil)
         } else {
             originalPosition()
@@ -149,13 +151,19 @@ class ImageZoomVC: UIViewController {
     }
 
 
-    func animateHeder(){
+    func animateHeder(_ clear: Bool){
 
+        self.flagNavigBarUpdate = false
+        let alpha: CGFloat = clear ? 0 : 1
 
-
-
-
-
+        UIView.animate(withDuration: 0.25, animations: {
+            self.navigBarView.colorNB(value: alpha)
+        }) { (comp) in
+            if comp {
+                self.navigBarView.isUserInteractionEnabled = !clear
+                self.flagNavigBarUpdate = true
+            }
+        }
     }
 
 
