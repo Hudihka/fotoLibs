@@ -76,7 +76,7 @@ class ImageZoomVC: UIViewController {
         if ImageScrollView.originalFrame && self.finishAnimate && flagAnimateCollection{
 
             collectionView.isScrollEnabled = false
-            self.blockCell(false)
+//            self.blockCell(false)
 
             let translatedPoint = sender.translation(in: self.view)
 
@@ -91,7 +91,7 @@ class ImageZoomVC: UIViewController {
 
             case .ended:
                 dismiss(value: value)
-                self.blockCell(true)
+//                self.blockCell(true)
             default:
                 break
             }
@@ -99,12 +99,12 @@ class ImageZoomVC: UIViewController {
     }
 
 
-    private func blockCell(_ enabled: Bool){
-
-        if let cell = self.collectionView.cellForItem(at: IndexPath(row: counter, section: 0)) as? CellZoom{
-            cell.imageScrollView.isScrollEnabled = enabled
-        }
-    }
+//    private func blockCell(_ enabled: Bool){
+//
+//        if let cell = self.collectionView.cellForItem(at: IndexPath(row: counter, section: 0)) as? CellZoom{
+//            cell.imageScrollView.isScrollEnabled = enabled
+//        }
+//    }
 
     private func originalPosition(){
         finishAnimate = false

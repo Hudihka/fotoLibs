@@ -178,21 +178,25 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
     // MARK: - UIScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        print("start zoom")
         return self.imageZoomView
     }
 
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        print("finish zoom")
         self.centerImage()
     }
 
 
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?){
+        print("start")
         ImageScrollView.originalFrame = false
     }
 
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat){
-        ImageScrollView.originalFrame = true
+    
+        if let width = view?.frame.width, width + 0.1 > SupportClass.Dimensions.wDdevice, width - 1 < SupportClass.Dimensions.wDdevice {
+            ImageScrollView.originalFrame = true
+        } else {
+            ImageScrollView.originalFrame = false
+        }
     }
 }
