@@ -144,6 +144,7 @@ class ImageZoomVC: UIViewController {
     private func dismiss(value: CGFloat){
         if value > 100{
             UIApplication.shared.setStatusBarStyle(.default, animated: true)
+            UIApplication.shared.updateStatusBar(false)
             self.dismiss(animated: true, completion: nil)
         } else {
             originalPosition()
@@ -158,6 +159,7 @@ class ImageZoomVC: UIViewController {
 
         UIView.animate(withDuration: 0.25, animations: {
             self.navigBarView.colorNB(value: alpha)
+            UIApplication.shared.updateStatusBar(clear)
         }) { (comp) in
             if comp {
                 self.navigBarView.isUserInteractionEnabled = !clear
@@ -255,3 +257,11 @@ extension ImageZoomVC: UIGestureRecognizerDelegate {
     }
 
 }
+
+extension UIApplication {
+    func updateStatusBar(_ clear: Bool){
+        let value = clear ? UIWindow.Level.statusBar : UIWindow.Level.normal
+        self.keyWindow?.windowLevel = value
+    }
+}
+
