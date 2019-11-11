@@ -53,7 +53,7 @@ class ManagerPhotos: NSObject{
 
     func getImageOne(indexPath: IndexPath, sizeBig: Bool = false, completion: @escaping (UIImage) -> Void){
 
-        let key = indexPath.keyCashIndex
+        let key = indexPath.keyCashIndex(sizeBig)
 
         if let imgCash = imageCache.object(forKey: key){
             completion(imgCash)
@@ -84,8 +84,10 @@ class ManagerPhotos: NSObject{
 
 extension IndexPath {
 
-    var keyCashIndex: NSString {
-        return "Это_ключ_кэш_памяти_\(self.section)-\(self.row)" as NSString
+    func keyCashIndex( _ isBig: Bool) -> NSString {
+        let value = isBig ? "Большая" : "Маленька"
+
+        return "Это_ключ_кэш_памяти_\(value)_\(self.section)-\(self.row)" as NSString
     }
 
 }

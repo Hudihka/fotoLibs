@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-
 import UIKit
 import SwiftyCam
 import AVFoundation
@@ -146,7 +144,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     deinit {
-//        ManagerPhotos.shared.imageCache.removeAllObjects()
+        ManagerPhotos.shared.imageCache.removeAllObjects()
     }
 
 }

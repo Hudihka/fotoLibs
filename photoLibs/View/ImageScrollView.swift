@@ -7,6 +7,7 @@ import UIKit
 protocol GestureDelegate: class {
     func tabGesture()
     func doubleTabGesture()
+    func zoomGesters()
 }
 
 class ImageScrollView: UIScrollView, UIScrollViewDelegate {
@@ -148,6 +149,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         ImageScrollView.originalFrame = !value
         let zoomRect = self.zoomRect(scale: finalScale, center: point)
         self.zoom(to: zoomRect, animated: animated)
+        self.delegateGesture?.doubleTabGesture()
     }
     
     func zoomRect(scale: CGFloat, center: CGPoint) -> CGRect {

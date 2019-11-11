@@ -15,14 +15,11 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     let manager = ManagerPhotos.shared
+    var counterSpecifiedCell = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(appExitBacground(notfication:)),
-                                               name: UIApplication.willEnterForegroundNotification,
-                                               object: nil)
 
         settingsCV()
 //        bbCancel()
@@ -35,13 +32,9 @@ class PhotoViewController: UIViewController {
         return viewController as? PhotoViewController
     }
 
-    @objc func appExitBacground(notfication: Notification) {
-        ManagerPhotos.shared.imageCache.removeAllObjects()
-        self.collectionView.reloadData()
-    }
-
 
     deinit {
+        ManagerPhotos.shared.imageCache.removeAllObjects()
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -66,6 +59,15 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotoCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as! PhotoCollectionCell
+
+        if indexPath.row > counterSpecifiedCell {
+            counterSpecifiedCell = indexPath.row
+            cell.alpha = 0
+
+            UIView.animate(withDuration: 0.5) {
+                cell.alpha = 1
+            }
+        }
 
         cell.ind = indexPath
 

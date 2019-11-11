@@ -19,7 +19,6 @@ class PhotoCollectionCell: UICollectionViewCell {
 
     var ind: IndexPath?{
         didSet{
-            self.imageCell.image = UIImage(named: "imgCat")
             if let ind = ind {
                 update(index: ind)
             }

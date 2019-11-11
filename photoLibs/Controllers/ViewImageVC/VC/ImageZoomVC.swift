@@ -107,12 +107,11 @@ class ImageZoomVC: UIViewController {
                                                height: self.collectionView.frame.height)
 
             self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-            self.navigBarView.alpha = 1
+            self.navigBarView.alpha = 0.5
         }) { (comp) in
             if comp {
                 self.finishAnimate = true
                 self.collectionView.isScrollEnabled = true
-                print("конец анимации где возвращаем на место")
             }
         }
     }
@@ -125,8 +124,15 @@ class ImageZoomVC: UIViewController {
                                             green: 0,
                                             blue: 0,
                                             alpha: alpha)
-        navigBarView.alpha = alpha
+        alphaBacgroundNavView(value: alpha/2)
 
+    }
+
+
+    private func alphaBacgroundNavView(value: CGFloat){
+        if navigBarView.leftButton.isEnabled{
+            navigBarView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: value)
+        }
     }
 
     private func dismiss(value: CGFloat){
@@ -135,6 +141,16 @@ class ImageZoomVC: UIViewController {
         } else {
             originalPosition()
         }
+    }
+
+
+    func animateHeder(){
+
+
+
+
+
+
     }
 
 
