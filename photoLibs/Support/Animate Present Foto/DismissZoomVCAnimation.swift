@@ -36,33 +36,42 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                                 width: SupportClass.Dimensions.wDdevice,
                                 height: SupportClass.Dimensions.hDdevice )
 
-
-        let startAlpha = ImageZoomVC.alphaContent(value: abs(ImageZoomVC.positionY))
         let snaphot = UIImageView(frame: startFrame)
-
-        snaphot.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: startAlpha)
-        snaphot.contentMode = .scaleAspectFit
 
         let counterIndex = IndexPath(row: vcImageZoom.counter, section: 0)
 
-        if let cell = vcImageZoom.collectionView.cellForItem(at: counterIndex) as? CellZoom, let img = cell.imgBackAnimation {
+        if let cell = vcImageZoom.collectionView.cellForItem(at: counterIndex) as? CellZoom, let img = cell.imageScrollView.imageZoomView.image {
             snaphot.image = img
         }
 
 
-        containerView.addSubview(photoCollectionVC.view)
+        snaphot.backgroundColor = UIColor.clear
+        snaphot.contentMode = .scaleAspectFit
+        snaphot.clipsToBounds = true
+
+        let startAlpha = ImageZoomVC.alphaContent(value: abs(ImageZoomVC.positionY))
+
+        vcImageZoom.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: startAlpha)
+        vcImageZoom.collectionView.isHidden = true
+
+
+        containerView.addSubview(vcImageZoom.view)
         containerView.addSubview(snaphot)
 
 
         UIView.animate(withDuration: animationTimeInterval + 0.02,
                        animations: {
                         snaphot.frame = self.finalFrame
+                        vcImageZoom.view.backgroundColor = UIColor.clear
 
         }) { (comp) in
             if comp {
                 snaphot.removeFromSuperview()
-//                photoCollectionVC.view.removeFromSuperview()
-//                vcImage.view.removeFromSuperview()
+                vcImageZoom.view.removeFromSuperview()
+
+                UIApplication.shared.updateStatusBar(false)
+                UIApplication.shared.setStatusBarStyle(.default, animated: true)
+
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }

@@ -12,26 +12,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CellZoom" customModule="testCollection" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="278" height="306"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CellZoom" customModule="photoLibs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="456"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="278" height="306"/>
+                <rect key="frame" x="0.0" y="0.0" width="311" height="456"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qwZ-fO-flE">
-                        <rect key="frame" x="120" y="134" width="37" height="37"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </activityIndicatorView>
-                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="278" height="306"/>
-            <connections>
-                <outlet property="spiner" destination="qwZ-fO-flE" id="I5U-8i-FBP"/>
-            </connections>
-            <point key="canvasLocation" x="36.799999999999997" y="53.073463268365821"/>
+            <size key="customSize" width="311" height="456"/>
+            <point key="canvasLocation" x="63.200000000000003" y="120.53973013493254"/>
         </collectionViewCell>
     </objects>
 </document>

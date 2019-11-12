@@ -10,10 +10,8 @@ import UIKit
 
 class CellZoom: UICollectionViewCell {
 
-    @IBOutlet weak var spiner: UIActivityIndicatorView!
     var imageScrollView: ImageScrollView!
 
-    var imgBackAnimation: UIImage? = nil //нужно для анимации назад
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,9 +27,7 @@ class CellZoom: UICollectionViewCell {
             self.imageScrollView.set(image: nil)
             if let ind = ind {
                 ManagerPhotos.shared.getImageOne(indexPath: ind, sizeBig: true) { (img) in
-                    self.spiner.stopAnimating()
                     self.imageScrollView.set(image: img)
-                    self.imgBackAnimation = img
                 }
             }
         }
@@ -65,7 +61,7 @@ extension CellZoom: GestureDelegate{
     private func updateNBar(_ update: Bool){
         if let VC = UIApplication.shared.getWorkVC() as? ImageZoomVC, VC.flagNavigBarUpdate{
             if update {
-                VC.animateHeder(true)
+                VC.animateHeder(VC.activeNB)
             } else {
                 let value = VC.navigBarView.isUserInteractionEnabled
                 VC.animateHeder(value)

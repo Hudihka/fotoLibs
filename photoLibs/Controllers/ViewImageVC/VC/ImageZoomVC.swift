@@ -185,8 +185,6 @@ class ImageZoomVC: UIViewController {
     }
 
     func killVC(){
-        UIApplication.shared.setStatusBarStyle(.default, animated: true)
-        UIApplication.shared.updateStatusBar(false)
         timer.invalidate()
         self.dismiss(animated: true, completion: nil)
     }

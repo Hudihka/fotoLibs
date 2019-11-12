@@ -3,7 +3,7 @@
 
 import UIKit
 
-let animationTimeInterval: TimeInterval = 0.3
+let animationTimeInterval: TimeInterval = 3//0.3
 
 class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
@@ -40,7 +40,8 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
         let snaphot = UIImageView(frame: originFrame)
         snaphot.image = self.image
-        snaphot.contentMode = .scaleAspectFit
+        snaphot.contentMode = .scaleAspectFill
+        snaphot.clipsToBounds = true
 
         toVC.collectionView.isHidden = true
         toVC.view.alpha = 0
