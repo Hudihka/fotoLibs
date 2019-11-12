@@ -18,6 +18,7 @@ class ImageZoomVC: UIViewController {
     @IBOutlet weak var navigBarView: NavigBarView!
 
     var counter = 0
+    static var positionY: CGFloat = 0
 
     var countCell: Int{
         return ManagerPhotos.shared.fetchResult.count
@@ -97,6 +98,8 @@ class ImageZoomVC: UIViewController {
 
             let newTranslatedPoint = CGPoint(x: 0, y: translatedPoint.y)
 
+            ImageZoomVC.positionY = translatedPoint.y
+
             let value = abs(newTranslatedPoint.y)
 
             switch sender.state {
@@ -137,7 +140,7 @@ class ImageZoomVC: UIViewController {
 
     private func alphaBacground(value: CGFloat){
 
-        let alpha: CGFloat = value >= 100 ? 0 : (100 - value)/100
+        let alpha = ImageZoomVC.alphaContent(value: value)
         self.view.backgroundColor = UIColor(red: 0,
                                             green: 0,
                                             blue: 0,
@@ -145,6 +148,10 @@ class ImageZoomVC: UIViewController {
 
         self.navigBarView.colorNB(value: alpha)
 
+    }
+
+    static func alphaContent(value: CGFloat) -> CGFloat{
+        return value >= 100 ? 0 : (100 - value)/100
     }
 
 

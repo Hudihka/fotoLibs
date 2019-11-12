@@ -13,6 +13,7 @@ class CellZoom: UICollectionViewCell {
     @IBOutlet weak var spiner: UIActivityIndicatorView!
     var imageScrollView: ImageScrollView!
 
+    var imgBackAnimation: UIImage? = nil //нужно для анимации назад
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,7 @@ class CellZoom: UICollectionViewCell {
                 ManagerPhotos.shared.getImageOne(indexPath: ind, sizeBig: true) { (img) in
                     self.spiner.stopAnimating()
                     self.imageScrollView.set(image: img)
+                    self.imgBackAnimation = img
                 }
             }
         }

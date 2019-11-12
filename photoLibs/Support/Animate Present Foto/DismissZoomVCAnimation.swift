@@ -8,73 +8,64 @@
 
 import UIKit
 
+class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+
+    private let finalFrame: CGRect
+
+    init(finalFrame: CGRect) {
+        self.finalFrame = finalFrame
+    }
+
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return animationTimeInterval
+    }
+
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+
+        guard let vcImageZoom = transitionContext.viewController(forKey: .from) as? ImageZoomVC, // до, вью контроллер с Изображением
+              let photoCollectionVC = transitionContext.viewController(forKey: .to)               //вью контроллер с коллекцией фото
+            else {
+                return
+        }
+
+        let containerView = transitionContext.containerView
+        containerView.backgroundColor = UIColor.clear
+
+        let startFrame = CGRect(x: 0,
+                                y: ImageZoomVC.positionY,
+                                width: SupportClass.Dimensions.wDdevice,
+                                height: SupportClass.Dimensions.hDdevice )
 
 
-//class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+        let startAlpha = ImageZoomVC.alphaContent(value: abs(ImageZoomVC.positionY))
+        let snaphot = UIImageView(frame: startFrame)
 
-//    private let originFrame: CGRect
-//    private let index: IndexPath
-//
-//    init(finalFrame: CGRect, index: IndexPath) {
-//        self.originFrame = originFrame
-//        self.index = index
-//    }
-//
-//    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-//        return animationTimeInterval
-//    }
-//
-//    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-//
-//        guard let vcImage = transitionContext.viewController(forKey: .from) as? TwoViewController, // до, вью контроллер с Изображением
-//              let stockVC = transitionContext.viewController(forKey: .to)       //вью контроллер с ufkkthttq
-//
-//            else {
-//                return
-//        }
-//
-//        let containerView = transitionContext.containerView
-//        let startFrame = CGRect(x: 0, y: 0, width: Dimensions.wDdevice, height: Dimensions.wDdevice * 87/125 )
-//
-//        let snaphot = UIImageView(frame: startFrame)
-//        snaphot.clipsToBounds = true
-//        snaphot.contentMode = .scaleAspectFill
-//        snaphot.layer.masksToBounds = true
-//
-//        let imageTranslation = vcImage.imageV.image
-//
-//        snaphot.image = imageTranslation
-//        vcImage.imageV.image = nil
-//        vcImage.view.alpha = 1
-//
-//        containerView.addSubview(stockVC.view)     //в начале в контейнер добавляем конечный
-//        containerView.addSubview(vcImage.view)
-//        containerView.addSubview(snaphot)          //а сверху кладем снимок экрана с табл, тк потом экран с таблицей анимац расстворится
-//
-//
-//        UIView.animateKeyframes(
-//            withDuration: animationTimeInterval + 0.02,
-//            delay: 0,
-//            options: .calculationModeCubic,
-//            animations: {
-//                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 41/42) {
-//                    snaphot.addRadius(number: 8)
-//                    vcImage.view.alpha = 0
-//                    snaphot.frame = self.originFrame
-//                }
-//
-//                UIView.addKeyframe(withRelativeStartTime: 41/42, relativeDuration: 1/42) {
-//                    snaphot.alpha = 0
-//                }
-//        },
-//            completion: { (compl) in
-//                if compl == true{
-////                    snaphot.alpha = 0
-//                    snaphot.removeFromSuperview()
-//                    vcImage.view.removeFromSuperview()
-//                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//                }
-//        })
-//
-//    }
-//}
+        snaphot.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: startAlpha)
+        snaphot.contentMode = .scaleAspectFit
+
+        let counterIndex = IndexPath(row: vcImageZoom.counter, section: 0)
+
+        if let cell = vcImageZoom.collectionView.cellForItem(at: counterIndex) as? CellZoom, let img = cell.imgBackAnimation {
+            snaphot.image = img
+        }
+
+
+        containerView.addSubview(photoCollectionVC.view)
+        containerView.addSubview(snaphot)
+
+
+        UIView.animate(withDuration: animationTimeInterval + 0.02,
+                       animations: {
+                        snaphot.frame = self.finalFrame
+
+        }) { (comp) in
+            if comp {
+                snaphot.removeFromSuperview()
+//                photoCollectionVC.view.removeFromSuperview()
+//                vcImage.view.removeFromSuperview()
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            }
+        }
+
+    }
+}

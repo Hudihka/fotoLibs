@@ -146,14 +146,11 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-//        let tupls = getFrameImageView()
-////        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
-////            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
-////            self.clearImageCell(index: tupls.1, image: image)
-////        }
-//
-//        return DismissZoomVCAnimation(originFrame: tupls.0, index: tupls.1)
-        return nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
+            self.clearImageCell(clear: false)
+        }
+
+        return DismissZoomVCAnimation(finalFrame: frameImageView)
     }
 
     private func clearImageCell(clear: Bool){
