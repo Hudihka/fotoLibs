@@ -39,6 +39,10 @@ class PhotoViewController: UIViewController {
     }
 
 
+    func dismis(){
+
+    }
+
 
     deinit {
         ManagerPhotos.shared.imageCache.removeAllObjects()
@@ -99,8 +103,6 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
                         self.flagEnabledCell = true
                     }
                 }
-
-
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

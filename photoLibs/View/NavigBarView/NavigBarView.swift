@@ -85,6 +85,16 @@ class NavigBarView: UIView {
     }
 
     @IBAction func rightButtonAction(_ sender: Any) {
+        if let vc = UIApplication.shared.getWorkVC() as? ImageZoomVC, let img = vc.imageActive {
+            SupportNotification.notificImage(img)
+
+
+            vc.dismiss(animated: true) {
+                //добавить ситуацию когда презентим навигейшен бар
+                UIApplication.shared.getWorkVC().navigationController?.popViewController(animated: true)
+            }
+
+        }
     }
 
 

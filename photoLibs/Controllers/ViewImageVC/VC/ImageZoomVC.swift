@@ -76,7 +76,8 @@ class ImageZoomVC: UIViewController {
     }
 
     private func textTitle(){
-        self.navigBarView.labelTitle.text = "\(counter + 1) из \(countCell)"
+        let text = countCell == 0 ? "" : "\(counter + 1) из \(countCell)"
+        self.navigBarView.labelTitle.text = text
     }
 
     static func route(index: Int) -> ImageZoomVC? {
@@ -231,6 +232,16 @@ extension ImageZoomVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
+    }
+
+    var imageActive: UIImage? {
+
+        let index = IndexPath(row: counter, section: 0)
+        if let cell = collectionView.cellForItem(at: index) as? CellZoom, let img = cell.imageScrollView.imageZoomView.image{
+            return img
+        }
+
+        return nil
     }
 }
 

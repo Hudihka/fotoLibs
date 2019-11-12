@@ -36,7 +36,7 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
         var image = UIImage()
         var startFrame = CGRect()
-        if let cell = vcImageZoom.collectionView.cellForItem(at: counterIndex) as? CellZoom, let img = cell.imageScrollView.imageZoomView.image {
+        if let img = vcImageZoom.imageActive {
             image = img
 
             let frameIMG = img.positionCentrWindovsScaleAspectFill

@@ -47,6 +47,10 @@ class CellZoom: UICollectionViewCell {
 }
 
 extension CellZoom: GestureDelegate{
+    func zoomGestures() {
+        updateNBar(nil)
+    }
+
 
     func doubleTabGesture() {
         updateNBar(true)
@@ -58,10 +62,17 @@ extension CellZoom: GestureDelegate{
     }
 
 
-    private func updateNBar(_ update: Bool){
+    private func updateNBar(_ update: Bool?){
         if let VC = UIApplication.shared.getWorkVC() as? ImageZoomVC, VC.flagNavigBarUpdate{
+
+            guard let update = update else {
+                VC.animateHeder(false)
+                return
+            }
+
+
             if update {
-                VC.animateHeder(VC.activeNB)
+                VC.animateHeder(true)
             } else {
                 let value = VC.navigBarView.isUserInteractionEnabled
                 VC.animateHeder(value)
