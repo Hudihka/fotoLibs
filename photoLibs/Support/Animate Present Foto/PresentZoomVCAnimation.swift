@@ -3,7 +3,7 @@
 
 import UIKit
 
-let animationTimeInterval: TimeInterval = 3//0.3
+let animationTimeInterval: TimeInterval = 0.25
 
 class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
@@ -32,11 +32,6 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.clear
 
-        let finalFrame = CGRect(x: 0,
-                                y: 0,
-                                width: SupportClass.Dimensions.wDdevice,
-                                height: SupportClass.Dimensions.hDdevice )
-
 
         let snaphot = UIImageView(frame: originFrame)
         snaphot.image = self.image
@@ -54,7 +49,7 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: animationTimeInterval, animations: {
             navBar.alpha = 1
             containerView.backgroundColor = UIColor.black
-            snaphot.frame = finalFrame
+            snaphot.frame = self.image.positionCentrWindovsScaleAspectFill
         }) { (compl) in
             if compl == true{
 
@@ -68,3 +63,21 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     }
 }
 
+
+extension UIImage{
+    //анимация открытия изображения работает немного криво
+    //этим свойством мы получаем финальную позицию изображения
+    //относительно его габаритов
+
+    var positionCentrWindovsScaleAspectFill: CGRect {
+
+        let height = SupportClass.Dimensions.wDdevice * self.size.height / self.size.width
+
+        let yPoint = (SupportClass.Dimensions.hDdevice - height) / 2
+
+        return CGRect(x: 0,
+                      y: yPoint,
+                      width: SupportClass.Dimensions.wDdevice,
+                      height: height)
+    }
+}

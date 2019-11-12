@@ -22,8 +22,7 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
-        guard let vcImageZoom = transitionContext.viewController(forKey: .from) as? ImageZoomVC, // до, вью контроллер с Изображением
-              let photoCollectionVC = transitionContext.viewController(forKey: .to)               //вью контроллер с коллекцией фото
+        guard let vcImageZoom = transitionContext.viewController(forKey: .from) as? ImageZoomVC // до, вью контроллер с Изображением
             else {
                 return
         }
@@ -31,22 +30,28 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.clear
 
-        let startFrame = CGRect(x: 0,
-                                y: ImageZoomVC.positionY,
-                                width: SupportClass.Dimensions.wDdevice,
-                                height: SupportClass.Dimensions.hDdevice )
 
-        let snaphot = UIImageView(frame: startFrame)
 
         let counterIndex = IndexPath(row: vcImageZoom.counter, section: 0)
 
+        var image = UIImage()
+        var startFrame = CGRect()
         if let cell = vcImageZoom.collectionView.cellForItem(at: counterIndex) as? CellZoom, let img = cell.imageScrollView.imageZoomView.image {
-            snaphot.image = img
+            image = img
+
+            let frameIMG = img.positionCentrWindovsScaleAspectFill
+
+            startFrame = CGRect(x: 0,
+                                y: ImageZoomVC.positionY + frameIMG.origin.y,
+                                width: SupportClass.Dimensions.wDdevice,
+                                height: frameIMG.height )
         }
 
+        let snaphot = UIImageView(frame: startFrame)
 
+        snaphot.image = image
         snaphot.backgroundColor = UIColor.clear
-        snaphot.contentMode = .scaleAspectFit
+        snaphot.contentMode = .scaleAspectFill
         snaphot.clipsToBounds = true
 
         let startAlpha = ImageZoomVC.alphaContent(value: abs(ImageZoomVC.positionY))

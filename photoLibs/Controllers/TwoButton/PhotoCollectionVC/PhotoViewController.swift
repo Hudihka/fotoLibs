@@ -17,6 +17,7 @@ class PhotoViewController: UIViewController {
     var bigUIImage: UIImage? = nil
 
     var selectedIndex = IndexPath(row: 0, section: 0)
+    private var flagEnabledCell = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +83,10 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+        if !flagEnabledCell{
+            return
+        }
+        flagEnabledCell = false
 
                 ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
                     self.bigUIImage = img
@@ -91,17 +96,10 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
                         vc.transitioningDelegate = self
                         vc.delegate = self
                         self.present(vc, animated: true, completion: nil)
+                        self.flagEnabledCell = true
                     }
                 }
 
-
-
-        //        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionCell {
-        //        }
-
-        //        if let vc = ImageVC.route(array: manager.fetchResult, index: indexPath.row){
-        //            self.present(vc, animated: true, completion: nil)
-        //        }
 
     }
 
@@ -146,7 +144,7 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.02) {
             self.clearImageCell(clear: false)
         }
 
