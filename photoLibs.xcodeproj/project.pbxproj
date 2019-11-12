@@ -17,7 +17,7 @@
 		CE0D5C8E23780267003C57B4 /* CellZoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5C8623780267003C57B4 /* CellZoom.xib */; };
 		CE0D5C8F23780267003C57B4 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8823780267003C57B4 /* ImageScrollView.swift */; };
 		CE0D5C9023780267003C57B4 /* NavigBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8923780267003C57B4 /* NavigBarView.swift */; };
-		CE0D5C9823799718003C57B4 /* PresentStockAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C9623799718003C57B4 /* PresentStockAnimation.swift */; };
+		CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */; };
 		CE0D5C9923799718003C57B4 /* DismissStockAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C9723799718003C57B4 /* DismissStockAnimation.swift */; };
 		CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */; };
 		CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */; };
@@ -51,7 +51,7 @@
 		CE0D5C8623780267003C57B4 /* CellZoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellZoom.xib; sourceTree = "<group>"; };
 		CE0D5C8823780267003C57B4 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		CE0D5C8923780267003C57B4 /* NavigBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigBarView.swift; sourceTree = "<group>"; };
-		CE0D5C9623799718003C57B4 /* PresentStockAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentStockAnimation.swift; sourceTree = "<group>"; };
+		CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentZoomVCAnimation.swift; sourceTree = "<group>"; };
 		CE0D5C9723799718003C57B4 /* DismissStockAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissStockAnimation.swift; sourceTree = "<group>"; };
 		CEEC0AC32377D91A00CFBFD4 /* photoLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0D5C9723799718003C57B4 /* DismissStockAnimation.swift */,
-				CE0D5C9623799718003C57B4 /* PresentStockAnimation.swift */,
+				CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */,
 			);
 			path = "Animate Present Foto";
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 				CEEC0AE42377DBE700CFBFD4 /* SupportClass.swift in Sources */,
 				CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */,
 				CEEC0AE12377DBE700CFBFD4 /* Utils.swift in Sources */,
-				CE0D5C9823799718003C57B4 /* PresentStockAnimation.swift in Sources */,
+				CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,

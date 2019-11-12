@@ -119,25 +119,24 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
         if let img = self.bigUIImage {
             let tupls = getFrameImageView()
             self.clearImageCell(ind: tupls.1, clear: true)
-            return PresentStockAnimation(originFrame: tupls.0, image: img)
+            return PresentZoomVCAnimation(originFrame: tupls.0, image: img)
         }
-        
+
         return nil
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         let tupls = getFrameImageView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
-            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
-            self.clearImageCell(index: tupls.1, image: image)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
+//            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
+//            self.clearImageCell(index: tupls.1, image: image)
+//        }
 
         return DismissStockAnimation(originFrame: tupls.0, index: tupls.1)
     }
 
     private func clearImageCell(ind: IndexPath, clear: Bool){
-
 
         if let cell = self.collectionView.cellForItem(at: ind) as? PhotoCollectionCell {
             if clear {
