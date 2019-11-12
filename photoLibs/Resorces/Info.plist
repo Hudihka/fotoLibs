@@ -23,7 +23,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>ОТКРЫВАЙ</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>ОТКРЫВАЙ</string>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Нужны фотоснимки</string>
 	<key>UILaunchStoryboardName</key>

@@ -29,9 +29,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
         cameraDelegate = self
         doubleTapCameraSwitch =  false
-        flashEnabled = true
 
-        flashMode = .on
 
         self.customNavigationBar()
     }
@@ -78,7 +76,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
     private func rightBBItem(isON: Bool) { //если тру то включаем
 
-        let text = isON ? "Фонарик Выкл" : "Фонарик Вкл"
+        let text = isON ? "вспышка Выкл" : "вспышка Вкл"
+        flashMode = isON ? .on : .off
         let alpha: CGFloat = !isON && currentCamera == .front ? 0.5 : 1
 
         settingsRightBBitem(text: text, alpha: alpha)

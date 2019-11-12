@@ -65,6 +65,20 @@ class ManagerPhotos: NSObject{
         let widh = sizeBig ? SupportClass.Dimensions.wDdevice : height
         let size = CGSize(width: widh, height: heig)
 
+
+//            self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
+//                                         targetSize: size,
+//                                         contentMode: .aspectFill,
+//                                         options: self.requestOption) { (image, _) in
+//                                            if let img = image {
+//                                                self.imageCache.setObject(img, forKey: key)
+//                                                    completion(img)
+//
+//                                            }
+//            }
+
+
+
         DispatchQueue.global(qos: .userInitiated).async {
             self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
                                          targetSize: size,
