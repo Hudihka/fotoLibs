@@ -63,7 +63,7 @@ class TwoButtonVC: UIViewController {
     @IBAction func galeruButton(_ sender: Any) {
 
         ApplicationOpportunities.checkPhotoLibraryPermission(completion: { (value) in
-            switch value {
+            switch value {//permitted
             case .pressBan:
                 break
 
@@ -71,12 +71,27 @@ class TwoButtonVC: UIViewController {
                 self.alertNoAccess(camera: false)
 
             case .permitted, .pressTrue, .noValue:
-                if let vc = PhotoViewController.route() {
-                    self.navigationController?.pushViewController(vc, animated: true)
+                if !KeysUDef.openPhotoLibs.getBool() {
+                    KeysUDef.openPhotoLibs.saveBool(true)
+                    self.openPhotoCamera(false)
+                } else {
+                    self.openPhotoCamera(true)
                 }
             }
         })
 
+    }
+
+    private func openPhotoCamera(_ openImmediately: Bool){
+
+        let time: Double = openImmediately ? 0 : 0.05
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + time) { //может быть противный баг если открыть в первый раз сразу
+                                                                 //поэтому делаем небольшую задержку
+            if let vc = PhotoViewController.route() {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 
 
@@ -100,3 +115,18 @@ class TwoButtonVC: UIViewController {
     }
 }
 
+
+enum KeysUDef: String {
+
+
+    case openPhotoLibs          = "разрешить_даступ_к_фотокамере"
+
+    func getBool() -> Bool {
+        return UserDefaults.standard.bool(forKey: self.rawValue)
+    }
+
+    func saveBool( _ value: Bool) {
+        UserDefaults.standard.set(value, forKey: self.rawValue)
+    }
+
+}

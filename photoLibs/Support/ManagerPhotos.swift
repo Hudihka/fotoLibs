@@ -79,7 +79,7 @@ class ManagerPhotos: NSObject{
 
 
 
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
                                          targetSize: size,
                                          contentMode: .aspectFill,
