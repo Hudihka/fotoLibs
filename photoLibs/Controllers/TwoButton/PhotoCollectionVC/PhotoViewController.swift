@@ -23,10 +23,9 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
 
 
-
-
         settingsCV()
-//        bbCancel()
+        albomButton()
+
 
     }
 
@@ -38,11 +37,23 @@ class PhotoViewController: UIViewController {
         return viewController as? PhotoViewController
     }
 
-
-    func dismis(){
-
+   private func albomButton(){
+        let button = UIBarButtonItem(title: "Альбомы", style: .plain, target: self, action: #selector(albomButtonSelector))
+        button.setTitleTextAttributes([.foregroundColor: UIColor.orange], for: .normal)
+        button.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .highlighted)
+        navigationItem.rightBarButtonItem = button
     }
 
+    @objc func albomButtonSelector(){
+
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+
+        self.present(picker, animated: true, completion: nil)
+
+    }
 
     deinit {
         ManagerPhotos.shared.imageCache.removeAllObjects()
@@ -50,6 +61,25 @@ class PhotoViewController: UIViewController {
     }
 
 }
+
+
+extension PhotoViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("----------------")
+
+
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            SupportNotification.notificImage(image)
+            picker.dismiss(animated: true) {
+                ///
+            }
+        }
+    }
+
+}
+
+
 
 extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -125,10 +155,6 @@ extension PhotoViewController: DelegateReloadSelectedCell {
         self.clearImageCell(clear: isSclear)
 
     }
-
-
-
-
 
 }
 

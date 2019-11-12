@@ -32,6 +32,15 @@ class CellZoom: UICollectionViewCell {
             }
         }
     }
+
+    var imageCellOne: UIImage? {
+        didSet{
+            self.imageScrollView.set(image: nil)
+            if let img = imageCellOne {
+                    self.imageScrollView.set(image: img)
+                }
+        }
+    }
     
 
     private func setupImageScrollView() {

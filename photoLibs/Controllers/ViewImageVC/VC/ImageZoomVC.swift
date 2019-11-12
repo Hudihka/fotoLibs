@@ -18,6 +18,8 @@ class ImageZoomVC: UIViewController {
     @IBOutlet weak var navigBarView: NavigBarView!
 
     var counter = 0
+    var imageCellOne: UIImage? = nil
+
     static var positionY: CGFloat = 0
 
     var countCell: Int{
@@ -76,14 +78,15 @@ class ImageZoomVC: UIViewController {
     }
 
     private func textTitle(){
-        let text = countCell == 0 ? "" : "\(counter + 1) из \(countCell)"
+        let text = imageCellOne != nil ? "" : "\(counter + 1) из \(countCell)"
         self.navigBarView.labelTitle.text = text
     }
 
-    static func route(index: Int) -> ImageZoomVC? {
+    static func route(index: Int, image: UIImage? = nil) -> ImageZoomVC? {
         let VC = UIStoryboard(name: "ImageStoryboard", bundle: nil).instantiateInitialViewController() as? ImageZoomVC
 
         VC?.counter = index
+        VC?.imageCellOne = image
         return VC
     }
 
@@ -210,13 +213,17 @@ extension ImageZoomVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return countCell
+        return imageCellOne == nil ? countCell : 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CellZoom = collectionView.dequeueReusableCell(withReuseIdentifier: "CellZoom", for: indexPath) as! CellZoom
 
-        cell.ind = indexPath
+        if imageCellOne == nil {
+            cell.ind = indexPath
+        } else {
+            cell.imageCellOne = imageCellOne
+        }
 
         return cell
     }

@@ -134,13 +134,10 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     private func presentPhoto(image: UIImage){
-//        let imageInfo = GSImageInfo(image: image, imageMode: .aspectFit)
-//        let transitionInfo = GSTransitionInfo(fromView: view)
-//        let imageViewer = GSImageViewerController(imageInfo: imageInfo, transitionInfo: transitionInfo)
-//
-//        imageViewer.addBBItem()
-//
-//        self.present(imageViewer, animated: true, completion: nil)
+
+        if let vc = ImageZoomVC.route(index: 0, image: image){
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 
     deinit {
