@@ -31,6 +31,7 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.clear
+
         let finalFrame = CGRect(x: 0,
                                 y: 0,
                                 width: SupportClass.Dimensions.wDdevice,
@@ -57,6 +58,7 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             if compl == true{
 
                 toVC.view.alpha = 1
+                containerView.backgroundColor = UIColor.clear
                 toVC.collectionView.isHidden = false
                 snaphot.removeFromSuperview()
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

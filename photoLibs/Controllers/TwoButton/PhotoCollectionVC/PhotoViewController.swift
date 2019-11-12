@@ -16,8 +16,12 @@ class PhotoViewController: UIViewController {
     var counterSpecifiedCell = 0
     var bigUIImage: UIImage? = nil
 
+    var selectedIndex = IndexPath(row: 0, section: 0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
 
 
         settingsCV()
@@ -81,9 +85,11 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
                 ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
                     self.bigUIImage = img
+                    self.selectedIndex = indexPath
 
                     if let vc = ImageZoomVC.route(index: indexPath.row){
                         vc.transitioningDelegate = self
+                        vc.delegate = self
                         self.present(vc, animated: true, completion: nil)
                     }
                 }
@@ -112,14 +118,27 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     }
 }
 
+extension PhotoViewController: DelegateReloadSelectedCell {
+    func reloadCell(index: IndexPath, isSclear: Bool) {
+
+        self.selectedIndex = index
+        self.clearImageCell(clear: isSclear)
+
+    }
+
+
+
+
+
+}
+
 
 extension PhotoViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let img = self.bigUIImage {
-            let tupls = getFrameImageView()
-            self.clearImageCell(ind: tupls.1, clear: true)
-            return PresentZoomVCAnimation(originFrame: tupls.0, image: img)
+            self.clearImageCell(clear: true)
+            return PresentZoomVCAnimation(originFrame: frameImageView, image: img)
         }
 
         return nil
@@ -127,39 +146,40 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let tupls = getFrameImageView()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
-//            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
-//            self.clearImageCell(index: tupls.1, image: image)
-//        }
-
-        return DismissStockAnimation(originFrame: tupls.0, index: tupls.1)
+//        let tupls = getFrameImageView()
+////        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
+////            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
+////            self.clearImageCell(index: tupls.1, image: image)
+////        }
+//
+//        return DismissZoomVCAnimation(originFrame: tupls.0, index: tupls.1)
+        return nil
     }
 
-    private func clearImageCell(ind: IndexPath, clear: Bool){
+    private func clearImageCell(clear: Bool){
 
-        if let cell = self.collectionView.cellForItem(at: ind) as? PhotoCollectionCell {
+        if let cell = self.collectionView.cellForItem(at: selectedIndex) as? PhotoCollectionCell {
             if clear {
                 cell.imageCell.image = nil
             } else {
-                cell.ind = ind
+                cell.ind = selectedIndex
             }
         }
     }
 
-    private func getFrameImageView() -> (CGRect, IndexPath) {
+    private var frameImageView: CGRect {
 
-        if let index = collectionView.indexPathsForSelectedItems?.first, let attributes: UICollectionViewLayoutAttributes = self.collectionView.layoutAttributesForItem(at: index) {
+
+        if let attributes: UICollectionViewLayoutAttributes = self.collectionView.layoutAttributesForItem(at: selectedIndex) {
             let rect = attributes.frame
             let cellFrameInSuperview = collectionView.convert(rect, to: collectionView.superview)
 
-            return (cellFrameInSuperview, index)
+            return cellFrameInSuperview
 
         }
 
-        return (CGRect(), IndexPath())
+        return CGRect()
 
     }
-
 
 }

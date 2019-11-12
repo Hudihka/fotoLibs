@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DelegateReloadSelectedCell: class {
+    func reloadCell(index: IndexPath, isSclear: Bool)
+}
+
 class ImageZoomVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,6 +26,8 @@ class ImageZoomVC: UIViewController {
     private var finishAnimate = true
     private var flagAnimateCollection = true
     var flagNavigBarUpdate = true
+
+    var delegate: DelegateReloadSelectedCell?
 
 
     lazy var swipeGesture: UIPanGestureRecognizer = {
@@ -171,13 +177,12 @@ class ImageZoomVC: UIViewController {
         }
     }
 
-    private func killVC(){
+    func killVC(){
         UIApplication.shared.setStatusBarStyle(.default, animated: true)
         UIApplication.shared.updateStatusBar(false)
         timer.invalidate()
         self.dismiss(animated: true, completion: nil)
     }
-
 
 
 
@@ -253,6 +258,9 @@ extension ImageZoomVC: UIScrollViewDelegate {
 
 
     private func reloadCounter(_ velocity: CGPoint) {
+
+        self.delegate?.reloadCell(index: IndexPath(row: counter, section: 0), isSclear: false)
+        
         if velocity.x < 0 {
             if counter != 0 {
                 counter -= 1
@@ -262,6 +270,8 @@ extension ImageZoomVC: UIScrollViewDelegate {
                 counter += 1
             }
         }
+
+        self.delegate?.reloadCell(index: IndexPath(row: counter, section: 0), isSclear: true)
     }
 
     var activeNB: Bool{

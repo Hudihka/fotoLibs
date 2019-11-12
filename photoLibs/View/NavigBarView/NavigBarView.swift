@@ -73,12 +73,15 @@ class NavigBarView: UIView {
     private func desingButton(){
 
         leftButton.setTitle("Отмена", for: .normal)
-        leftButton.setTitle("Выбрать", for: .normal)
+        rightButton.setTitle("Выбрать", for: .normal)
     }
 
     //MARK: - ACTION
 
     @IBAction func leftButtonAction(_ sender: Any) {
+        if let vc = UIApplication.shared.getWorkVC() as? ImageZoomVC {
+            vc.killVC()
+        }
     }
 
     @IBAction func rightButtonAction(_ sender: Any) {

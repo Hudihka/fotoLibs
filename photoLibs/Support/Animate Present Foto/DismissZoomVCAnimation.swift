@@ -10,24 +10,24 @@ import UIKit
 
 
 
-class DismissStockAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+//class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
-    private let originFrame: CGRect
-    private let index: IndexPath
-
-    init(originFrame: CGRect, index: IndexPath) {
-        self.originFrame = originFrame
-        self.index = index
-    }
-
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return animationTimeInterval
-    }
-
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-
+//    private let originFrame: CGRect
+//    private let index: IndexPath
+//
+//    init(finalFrame: CGRect, index: IndexPath) {
+//        self.originFrame = originFrame
+//        self.index = index
+//    }
+//
+//    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+//        return animationTimeInterval
+//    }
+//
+//    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+//
 //        guard let vcImage = transitionContext.viewController(forKey: .from) as? TwoViewController, // до, вью контроллер с Изображением
-//              let stockVC = transitionContext.viewController(forKey: .to)       //вью контроллер с КОЛЛЕКЦИЕЙ
+//              let stockVC = transitionContext.viewController(forKey: .to)       //вью контроллер с ufkkthttq
 //
 //            else {
 //                return
@@ -75,6 +75,6 @@ class DismissStockAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 //                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
 //                }
 //        })
-
-    }
-}
+//
+//    }
+//}
