@@ -31,7 +31,7 @@ enum CellHeightEnum: String{
     }
 
     var height: CGFloat{
-        return self.size.height + 25
+        return self.size.height
     }
 
 }
@@ -46,10 +46,12 @@ class ViewPhotoCollection: UIView {
     private var counterSpecifiedCell = 0
     private let manager = ManagerPhotos.shared
 
-    var valueEnums = CellHeightEnum.midl
+    var valueEnums: CellHeightEnum? {
+        didSet{
+            updateCollection()
+        }
+    }
 
-
-    @IBOutlet weak var imageGestures: UIImageView!
     @IBOutlet weak var imageFront: UIImageView!
 
     override init (frame: CGRect) {
@@ -68,7 +70,6 @@ class ViewPhotoCollection: UIView {
         self.contentView.backgroundColor = UIColor.clear
         desingCollectionView()
 
-        self.imageGestures.image = valueEnums.image
     }
 
     func xibSetup() {
@@ -124,7 +125,7 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return valueEnums.size
+        return valueEnums?.size ?? CellHeightEnum.midl.size
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -138,16 +139,15 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     //в начале
 
     func startUpdateCollection(){
+        self.imageFront.image = self.contentView.screenshot()
         self.imageFront.isUserInteractionEnabled = true
-        
     }
 
     //вызываем сразу после свайпов
 
-    func updateCollection(_ value: CellHeightEnum){
+    func updateCollection(){
+        self.imageFront.image = nil
         self.imageFront.isUserInteractionEnabled = false
-        self.valueEnums = value
-        self.imageGestures.image = valueEnums.image
         self.collectionView.reloadData()
     }
 

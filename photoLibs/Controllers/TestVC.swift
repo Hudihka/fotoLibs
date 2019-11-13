@@ -11,7 +11,10 @@ import UIKit
 class TestVC: UIViewController {
 
     @IBOutlet weak var buttonSnaphot: UIButton!
-    var viewCollection: ViewPhotoCollection? = nil
+
+    @IBOutlet weak var collectionView: ViewPhotoCollection!
+    @IBOutlet weak var imagePan: UIImageView!
+    @IBOutlet weak var heightConstreint: NSLayoutConstraint!
 
     lazy var swipeGesture: UIPanGestureRecognizer = {
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(swipeSelector))
@@ -38,26 +41,61 @@ extension TestVC{
 
     func addCollection(){
 
-        if KeysUDef.openPhotoLibs.getBool() {
-            ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
-                if status == .permitted{
+        if !KeysUDef.openPhotoLibs.getBool() {
+            self.imagePan.removeFromSuperview()
+            self.collectionView.removeFromSuperview()
+            return
+        }
 
-                    let frame = self.frameCollection(CellHeightEnum.midl.height)
-                    let collection = ViewPhotoCollection(frame: frame)
-                    self.viewCollection = collection
-                    self.view.addSubview(collection)
-                    self.addGesters()
-                }
+        ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
+            if status == .permitted{
+                self.heightConstreint.constant = CellHeightEnum.midl.height
+                self.addGesters()
+            } else {
+                self.collectionView.removeFromSuperview()
             }
         }
     }
 
-    func addGesters(){
-        self.viewCollection?.addGestureRecognizer(self.swipeGesture)
-//        self.swipeGesture.delegate = self
+    private func addGesters(){
+        self.imagePan.addGestureRecognizer(self.swipeGesture)
+//        self.collectionView.addGestureRecognizer(self.swipeGesture)
 
         self.swipeGesture.cancelsTouchesInView = false
     }
+
+    private func finalValueEnums(_ value: CGFloat) -> CellHeightEnum {
+
+        let finishZeroValue = CellHeightEnum.midl.height / 2
+        let delta = (CellHeightEnum.big.height - CellHeightEnum.midl.height) / 2
+        let finishMidlValue = CellHeightEnum.midl.height + delta
+
+        if value <= finishZeroValue {
+            return CellHeightEnum.zero
+        } else if finishZeroValue < value && value <= finishMidlValue {
+            return CellHeightEnum.midl
+        } else {
+            return CellHeightEnum.big
+        }
+    }
+
+    private func updateView(_ value: CGFloat){
+
+        let enumValue = finalValueEnums(value)
+        self.heightConstreint.constant = enumValue.height
+        self.imagePan.image = enumValue.image
+
+        UIView.animate(withDuration: 0.15, animations: {
+            self.loadViewIfNeeded()
+        }) { [weak self](comp) in
+            if comp{
+                self?.collectionView.valueEnums = enumValue
+            }
+        }
+
+
+    }
+
 
 
     func frameCollection(_ heightCollection: CGFloat) -> CGRect {
@@ -75,40 +113,46 @@ extension TestVC{
 
     @objc func swipeSelector(sender: UIPanGestureRecognizer) {
 
-
-        guard let collectionHeight = self.viewCollection?.frame.height else {
-            return
-        }
-
-        let translatedPoint = sender.translation(in: self.view)
-
-        let newHeight = collectionHeight + translatedPoint.y
-
-        print("translatedPoint.y \(translatedPoint.y)")
-        print("newHeight \(newHeight)")
+        var delta = sender.translation(in: self.view).y
+        sender.view?.frame.origin.y = delta
 
 
-        if newHeight > CellHeightEnum.zero.height && newHeight < CellHeightEnum.big.height{
-            switch sender.state {
-            case .began, .changed:
-                self.viewCollection?.frame = frameCollection(newHeight)
-            case .ended:
-                print("закончили")
-            default:
-                break
-            }
+//        delta = CGPoint(x: 100, y: self.frame.size.height / 2)
+        print("delta \(delta)")
+
+
+//        self.view.bringSubviewToFront(imagePan)
+//        let translation = sender.translation(in: self.view)
+//        imagePan.center = CGPoint(x: imagePan.center.x,
+//                                  y: imagePan.center.y + translation.y)
+//        sender.setTranslation(CGPoint.zero, in: self.view)
+
+//        let translatedPoint = sender.translation(in: self.view)
+//        let x = imagePan.frame.origin.x
+//        let newTranslatedPoint = CGPoint(x: x, y: translatedPoint.y)
+
+//        let newHeight = collectionHeight + translatedPoint.y
+
+//        print("translatedPoint.y \(translatedPoint.y)")
+//        print("newHeight \(newHeight)")
+//
+////
+//        if newHeight >= 0 && newHeight <= CellHeightEnum.big.height{
+
+//            switch sender.state {
+//            case .began, .changed:
+//                sender.view?.frame.origin.y = newTranslatedPoint.y
+//            case .ended:
+//                print("закончили")
+//            default:
+//                break
+//            }
 
 
 
 
             //            self.viewCollection?.frame = frameCollection(newHeight)
         }
-
-
-    }
-
-
-
 
 }
 
