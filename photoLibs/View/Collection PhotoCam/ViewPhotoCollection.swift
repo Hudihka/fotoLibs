@@ -20,9 +20,18 @@ enum CellHeightEnum: String{
     }
 
     var size: CGSize {
+
+        if self == .zero{
+            return CGSize(width: 0, height: 0)
+        }
+
         let koef: CGFloat = self == .big ? 5 : 9
         let size = SupportClass.Dimensions.wDdevice * 2 / koef
         return CGSize(width: size, height: size)
+    }
+
+    var height: CGFloat{
+        return self.size.height + 25
     }
 
 }
@@ -97,6 +106,9 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotoCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as! PhotoCollectionCell
 
+        cell.contentView.addRadius(number: 8)
+
+
         if indexPath.row > counterSpecifiedCell {
             counterSpecifiedCell = indexPath.row
             cell.alpha = 0
@@ -116,27 +128,49 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        return 5.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3.0
+        return 0
     }
 
     //в начале
 
     func startUpdateCollection(){
-        self.imageFront.isUserInteractionEnabled = false
-
+        self.imageFront.isUserInteractionEnabled = true
+        
     }
 
     //вызываем сразу после свайпов
 
     func updateCollection(_ value: CellHeightEnum){
-        self.imageFront.isUserInteractionEnabled = true
+        self.imageFront.isUserInteractionEnabled = false
         self.valueEnums = value
         self.imageGestures.image = valueEnums.image
         self.collectionView.reloadData()
     }
 
+}
+
+
+extension UIView {
+    func screenshot() -> UIImage {
+        if #available(iOS 10.0, *) {
+            return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+                drawHierarchy(in: CGRect(origin: .zero, size: bounds.size), afterScreenUpdates: true)
+            }
+        } else {
+            UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+            drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+            let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+            UIGraphicsEndImageContext()
+            return image
+        }
+    }
+
+    func addRadius(number: CGFloat) {
+        self.layer.cornerRadius = number
+        self.layer.masksToBounds = true
+    }
 }

@@ -14,6 +14,7 @@ import AVFoundation
 class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
 
     @IBOutlet weak var cameraButton: SwiftyCamButton!
+    var viewCollection: ViewPhotoCollection? = nil
 
 
     override func viewDidLoad() {
@@ -32,6 +33,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
 
         self.customNavigationBar()
+        self.addCollection()
     }
 
     static func route() -> CameraViewController?{
@@ -142,6 +144,44 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     deinit {
         ManagerPhotos.shared.imageCache.removeAllObjects()
     }
+
+}
+
+
+//MARK: - CollectionView
+
+extension CameraViewController{
+
+    func addCollection(){
+
+        if KeysUDef.openPhotoLibs.getBool() {
+            ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
+                if status == .permitted{
+
+                    let frame = self.frameCollection(CellHeightEnum.midl.height)
+                    let collection = ViewPhotoCollection(frame: frame)
+                    self.viewCollection = collection
+                    self.view.addSubview(collection)
+
+                }
+            }
+        }
+    }
+
+
+    func frameCollection(_ heightCollection: CGFloat) -> CGRect {
+        return CGRect(x: 0,
+                      y: yPosition(heightCollection),
+                      width: SupportClass.Dimensions.wDdevice,
+                      height: heightCollection)
+    }
+
+    private func yPosition(_ heightCollection: CGFloat) -> CGFloat{
+        let y = self.cameraButton.frame.origin.y
+        return y - heightCollection
+    }
+
+
 
 }
 
