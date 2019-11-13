@@ -11,6 +11,7 @@ import UIKit
 class CellZoom: UICollectionViewCell {
 
     var imageScrollView: ImageScrollView!
+    @IBOutlet weak var spiner: UIActivityIndicatorView!
 
 
     override func awakeFromNib() {
@@ -25,9 +26,11 @@ class CellZoom: UICollectionViewCell {
     var ind: IndexPath?{
         didSet{
             self.imageScrollView.set(image: nil)
+            spiner.startAnimating()
             if let ind = ind {
                 ManagerPhotos.shared.getImageOne(indexPath: ind, sizeBig: true) { (img) in
                     self.imageScrollView.set(image: img)
+                    self.spiner.stopAnimating()
                 }
             }
         }

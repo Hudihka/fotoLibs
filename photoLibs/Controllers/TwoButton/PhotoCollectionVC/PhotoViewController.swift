@@ -17,7 +17,6 @@ class PhotoViewController: UIViewController {
     var bigUIImage: UIImage? = nil
 
     var selectedIndex = IndexPath(row: 0, section: 0)
-    private var flagEnabledCell = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,11 +116,6 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        if !flagEnabledCell{
-            return
-        }
-        flagEnabledCell = false
-
                 ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
                     self.bigUIImage = img
                     self.selectedIndex = indexPath
@@ -130,7 +124,6 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout, UICollectionV
                         vc.transitioningDelegate = self
                         vc.delegate = self
                         self.present(vc, animated: true, completion: nil)
-                        self.flagEnabledCell = true
                     }
                 }
     }

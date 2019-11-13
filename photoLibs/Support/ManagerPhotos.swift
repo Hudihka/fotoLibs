@@ -60,24 +60,54 @@ class ManagerPhotos: NSObject{
             return
         }
 
-
         let heig = sizeBig ? SupportClass.Dimensions.hDdevice : height
         let widh = sizeBig ? SupportClass.Dimensions.wDdevice : height
         let size = CGSize(width: widh, height: heig)
 
+        var receiptFlag = true
 
-//            self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
-//                                         targetSize: size,
-//                                         contentMode: .aspectFill,
-//                                         options: self.requestOption) { (image, _) in
-//                                            if let img = image {
-//                                                self.imageCache.setObject(img, forKey: key)
-//                                                    completion(img)
-//
-//                                            }
-//            }
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
+                                         targetSize: size,
+                                         contentMode: .aspectFill,
+                                         options: self.requestOption) { (image, _) in
+                                            if let img = image {
+                                                self.imageCache.setObject(img, forKey: key)
+                                                DispatchQueue.main.async {
+                                                    if receiptFlag {
+                                                        completion(img)
+                                                        receiptFlag = false
+                                                    }
+                                                }
+                                            }
+            }
+        }
+
+        if sizeBig {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                if receiptFlag {
+                    self.getImageOne(indexPath: indexPath, completion: { (img) in
+                        if receiptFlag {
+                            completion(img)
+                            receiptFlag = false
+                        }
+                    })
+                }
+            }
+        }
+    }
 
 
+    private func getImageTimeSmall(indexPath: IndexPath, completion: @escaping (UIImage) -> Void){
+
+        let key = indexPath.keyCashIndex(false)
+
+        if let imgCash = imageCache.object(forKey: key){
+            completion(imgCash)
+            return
+        }
+
+        let size = CGSize(width: height, height: height)
 
         DispatchQueue.global(qos: .userInteractive).async {
             self.imgManager.requestImage(for: self.fetchResult.object(at: indexPath.row),
@@ -92,6 +122,8 @@ class ManagerPhotos: NSObject{
                                             }
             }
         }
+
+
     }
 
 }
