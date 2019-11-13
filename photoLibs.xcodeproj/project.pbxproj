@@ -19,6 +19,8 @@
 		CE0D5C9023780267003C57B4 /* NavigBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C8923780267003C57B4 /* NavigBarView.swift */; };
 		CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */; };
 		CE0D5C9923799718003C57B4 /* DismissZoomVCAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5C9723799718003C57B4 /* DismissZoomVCAnimation.swift */; };
+		CE0D5CA3237BC38B003C57B4 /* ViewPhotoCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */; };
+		CE0D5CA5237BC3AC003C57B4 /* ViewPhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */; };
 		CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */; };
 		CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */; };
 		CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACF2377D91C00CFBFD4 /* LaunchScreen.storyboard */; };
@@ -53,6 +55,8 @@
 		CE0D5C8923780267003C57B4 /* NavigBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigBarView.swift; sourceTree = "<group>"; };
 		CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentZoomVCAnimation.swift; sourceTree = "<group>"; };
 		CE0D5C9723799718003C57B4 /* DismissZoomVCAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissZoomVCAnimation.swift; sourceTree = "<group>"; };
+		CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPhotoCollection.xib; sourceTree = "<group>"; };
+		CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPhotoCollection.swift; sourceTree = "<group>"; };
 		CEEC0AC32377D91A00CFBFD4 /* photoLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0D5C8823780267003C57B4 /* ImageScrollView.swift */,
+				CE0D5CA1237BC302003C57B4 /* Collection PhotoCam */,
 				CE0D5C91237802FF003C57B4 /* NavigBarView */,
 			);
 			path = View;
@@ -149,6 +154,15 @@
 				CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */,
 			);
 			path = "Animate Present Foto";
+			sourceTree = "<group>";
+		};
+		CE0D5CA1237BC302003C57B4 /* Collection PhotoCam */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */,
+				CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */,
+			);
+			path = "Collection PhotoCam";
 			sourceTree = "<group>";
 		};
 		CEEC0ABA2377D91A00CFBFD4 = {
@@ -341,6 +355,7 @@
 				CE0D5C8E23780267003C57B4 /* CellZoom.xib in Resources */,
 				CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */,
 				CEEC0AE92377DEE400CFBFD4 /* TabBarStoryboard.storyboard in Resources */,
+				CE0D5CA3237BC38B003C57B4 /* ViewPhotoCollection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +431,7 @@
 				CEEC0AE22377DBE700CFBFD4 /* ApplicationOpportunities.swift in Sources */,
 				CEEC0AEB2377DF1D00CFBFD4 /* TabBarVC.swift in Sources */,
 				CEEC0B032377E77400CFBFD4 /* CameraViewController.swift in Sources */,
+				CE0D5CA5237BC3AC003C57B4 /* ViewPhotoCollection.swift in Sources */,
 				CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */,
 				CEEC0B002377E23300CFBFD4 /* PhotoViewController.swift in Sources */,
 			);

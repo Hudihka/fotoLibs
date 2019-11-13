@@ -33,7 +33,7 @@
             <connections>
                 <outlet property="spiner" destination="Pfc-Fa-uYO" id="gAp-3X-GWs"/>
             </connections>
-            <point key="canvasLocation" x="63.200000000000003" y="42.728635682158924"/>
+            <point key="canvasLocation" x="86" y="13"/>
         </collectionViewCell>
     </objects>
 </document>
