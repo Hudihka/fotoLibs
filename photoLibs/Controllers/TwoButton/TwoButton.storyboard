@@ -208,30 +208,21 @@
                                     <action selector="snaphotButton:" destination="Knn-YN-DMf" eventType="touchUpInside" id="pew-mV-xup"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQX-mG-nbL" customClass="ViewPhotoCollection" customModule="photoLibs" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="464" width="375" height="74"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="kaF-dQ-B2U"/>
-                                </constraints>
-                            </view>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="midl" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-t6-MJs">
-                                <rect key="frame" x="159.5" y="444" width="56" height="20"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="midl" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-t6-MJs">
+                                <rect key="frame" x="159.5" y="444" width="60" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="otv-Wm-qCs"/>
-                                </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQX-mG-nbL" customClass="ViewPhotoCollection" customModule="photoLibs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="464" width="375" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.83529411760000005" green="0.35294117650000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="22q-vM-rkj" firstAttribute="top" secondItem="iQX-mG-nbL" secondAttribute="bottom" constant="25" id="0w0-Ln-tp5"/>
                             <constraint firstItem="yA6-V9-HlJ" firstAttribute="bottom" secondItem="22q-vM-rkj" secondAttribute="bottom" constant="20" id="L7N-hd-8UC"/>
                             <constraint firstItem="22q-vM-rkj" firstAttribute="centerX" secondItem="yA6-V9-HlJ" secondAttribute="centerX" id="OBS-p6-B5a"/>
-                            <constraint firstItem="iQX-mG-nbL" firstAttribute="top" secondItem="LBA-t6-MJs" secondAttribute="bottom" id="OiB-69-lKR"/>
-                            <constraint firstItem="iQX-mG-nbL" firstAttribute="leading" secondItem="yA6-V9-HlJ" secondAttribute="leading" id="PMs-jG-944"/>
-                            <constraint firstItem="LBA-t6-MJs" firstAttribute="centerX" secondItem="yA6-V9-HlJ" secondAttribute="centerX" id="RHN-6c-khn"/>
-                            <constraint firstItem="iQX-mG-nbL" firstAttribute="trailing" secondItem="yA6-V9-HlJ" secondAttribute="trailing" id="qhh-ja-JSl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yA6-V9-HlJ"/>
                     </view>
@@ -239,7 +230,6 @@
                     <connections>
                         <outlet property="buttonSnaphot" destination="22q-vM-rkj" id="exx-gz-hgR"/>
                         <outlet property="collectionView" destination="iQX-mG-nbL" id="R2n-XS-aRU"/>
-                        <outlet property="heightConstreint" destination="kaF-dQ-B2U" id="Iat-Gj-WlE"/>
                         <outlet property="imagePan" destination="LBA-t6-MJs" id="OUH-4O-gf0"/>
                     </connections>
                 </viewController>

@@ -14,18 +14,20 @@ class TestVC: UIViewController {
 
     @IBOutlet weak var collectionView: ViewPhotoCollection!
     @IBOutlet weak var imagePan: UIImageView!
-    @IBOutlet weak var heightConstreint: NSLayoutConstraint!
 
-    lazy var swipeGesture: UIPanGestureRecognizer = {
-        let swipe = UIPanGestureRecognizer(target: self, action: #selector(swipeSelector))
-        swipe.minimumNumberOfTouches = 1
-        return swipe
-    }()
+    var openCollectionView = true
+    var animateUpdate = false
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addCollection()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       addCollection()
+
     }
 
 
@@ -42,117 +44,159 @@ extension TestVC{
     func addCollection(){
 
         if !KeysUDef.openPhotoLibs.getBool() {
-            self.imagePan.removeFromSuperview()
-            self.collectionView.removeFromSuperview()
+            removeObject()
             return
         }
 
         ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
             if status == .permitted{
-                self.heightConstreint.constant = CellHeightEnum.midl.height
-                self.addGesters()
+                self.positionView(0)
+                self.addGestures()
             } else {
-                self.collectionView.removeFromSuperview()
+                self.removeObject()
             }
         }
     }
 
-    private func addGesters(){
-        self.imagePan.addGestureRecognizer(self.swipeGesture)
-//        self.collectionView.addGestureRecognizer(self.swipeGesture)
-
-        self.swipeGesture.cancelsTouchesInView = false
+    private func removeObject(){
+        self.imagePan.removeFromSuperview()
+        self.collectionView.removeFromSuperview()
     }
 
-    private func finalValueEnums(_ value: CGFloat) -> CellHeightEnum {
 
-        let finishZeroValue = CellHeightEnum.midl.height / 2
-        let delta = (CellHeightEnum.big.height - CellHeightEnum.midl.height) / 2
-        let finishMidlValue = CellHeightEnum.midl.height + delta
+    private func addGestures(){
+        let swipeOne = UIPanGestureRecognizer(target: self, action: #selector(swipeOneSelector))
+        let swipeTwo = UIPanGestureRecognizer(target: self, action: #selector(swipeTwoSelector))
+        swipeOne.minimumNumberOfTouches = 1
+        swipeTwo.minimumNumberOfTouches = 1
 
-        if value <= finishZeroValue {
-            return CellHeightEnum.zero
-        } else if finishZeroValue < value && value <= finishMidlValue {
-            return CellHeightEnum.midl
-        } else {
-            return CellHeightEnum.big
-        }
-    }
-
-    private func updateView(_ value: CGFloat){
-
-        let enumValue = finalValueEnums(value)
-        self.heightConstreint.constant = enumValue.height
-        self.imagePan.image = enumValue.image
-
-        UIView.animate(withDuration: 0.15, animations: {
-            self.loadViewIfNeeded()
-        }) { [weak self](comp) in
-            if comp{
-                self?.collectionView.valueEnums = enumValue
-            }
-        }
-
-
+        self.collectionView.addGestureRecognizer(swipeOne)
+        self.imagePan.addGestureRecognizer(swipeTwo)
     }
 
 
 
-    func frameCollection(_ heightCollection: CGFloat) -> CGRect {
-        return CGRect(x: 0,
-                      y: yPosition(heightCollection),
-                      width: SupportClass.Dimensions.wDdevice,
-                      height: heightCollection)
-    }
-
-    private func yPosition(_ heightCollection: CGFloat) -> CGFloat{
-        let y = self.buttonSnaphot.frame.origin.y
-        return y - heightCollection - 30
-    }
+    private func positionView(_ value: CGFloat){
 
 
-    @objc func swipeSelector(sender: UIPanGestureRecognizer) {
+        let heightCollection = collectionHeight - value
 
-        var delta = sender.translation(in: self.view).y
-        sender.view?.frame.origin.y = delta
+        /*какого то хрена позиция кнопки менялась на 20 пунктов, поэтому был добавлен
+         такой код что бы вычислить нижнее положение коллекции
+         вообще его можно заменить на let downPositionCollection = buttonView.frame.origin.y - 30 */
 
-
-//        delta = CGPoint(x: 100, y: self.frame.size.height / 2)
-        print("delta \(delta)")
-
-
-//        self.view.bringSubviewToFront(imagePan)
-//        let translation = sender.translation(in: self.view)
-//        imagePan.center = CGPoint(x: imagePan.center.x,
-//                                  y: imagePan.center.y + translation.y)
-//        sender.setTranslation(CGPoint.zero, in: self.view)
-
-//        let translatedPoint = sender.translation(in: self.view)
-//        let x = imagePan.frame.origin.x
-//        let newTranslatedPoint = CGPoint(x: x, y: translatedPoint.y)
-
-//        let newHeight = collectionHeight + translatedPoint.y
-
-//        print("translatedPoint.y \(translatedPoint.y)")
-//        print("newHeight \(newHeight)")
+//        let upButtonConstr:CGFloat = 25 //25 расстояние от кнопки до коллекции
+//        let downButtonConstr:CGFloat = 20 //20 расстояние c низу от кнопки
+//        let heightButton:CGFloat = buttonSnaphot.frame.height
 //
-////
-//        if newHeight >= 0 && newHeight <= CellHeightEnum.big.height{
+//        let buttonAllHeight = upButtonConstr + downButtonConstr + heightButton
+//
+//        let downPositionCollection = SupportClass.Dimensions.hDdevice - buttonAllHeight - SupportClass.heightTabBar
 
-//            switch sender.state {
-//            case .began, .changed:
-//                sender.view?.frame.origin.y = newTranslatedPoint.y
-//            case .ended:
-//                print("закончили")
-//            default:
-//                break
-//            }
+        //////////
+
+        let downPositionCollection = SupportClass.Dimensions.hDdevice - 200
 
 
+        let originYPositionCollection = downPositionCollection - heightCollection
+
+        let frameCollection = CGRect(x: 0,
+                                     y: originYPositionCollection,
+                                     width: SupportClass.Dimensions.wDdevice,
+                                     height: heightCollection)
+
+        //заменить 30 на высоту имаге, 60 на ширину
+
+        let widthImage:CGFloat = 60
+        let heightImage:CGFloat = 20
 
 
-            //            self.viewCollection?.frame = frameCollection(newHeight)
+        let xPositionImagePan = (SupportClass.Dimensions.wDdevice - widthImage) / 2
+        let yPositionImagePan = originYPositionCollection - heightImage
+
+        let frameImage = CGRect(x: xPositionImagePan,
+                                y: yPositionImagePan,
+                                width: widthImage,
+                                height: heightImage)
+
+        self.collectionView.frame = frameCollection
+        self.imagePan.frame = frameImage
+
+    }
+
+
+
+    private var collectionHeight: CGFloat {
+        return openCollectionView ? CellHeightEnum.midl.height : 0
+    }
+
+    private func finish(_ value: CGFloat){
+
+        let boolValue = value < 0 ? value : abs(value)
+        openCollectionView = boolValue < CellHeightEnum.midl.height/2
+
+//
+//        if value < 0 {
+//            openCollectionView = value < CellHeightEnum.midl.height/2
+//        } else {
+//            openCollectionView = abs(value) < CellHeightEnum.midl.height/2
+//        }
+
+
+    }
+
+
+
+    @objc func swipeOneSelector(sender: UIPanGestureRecognizer) {
+        gestersFunc(sender: sender)
+    }
+
+    @objc func swipeTwoSelector(sender: UIPanGestureRecognizer) {
+        gestersFunc(sender: sender)
+    }
+
+    private func gestersFunc(sender: UIPanGestureRecognizer){
+
+        if animateUpdate {
+            return
         }
+
+        let delta = sender.translation(in: self.view).y
+
+
+        switch sender.state {
+        case .began, .changed:
+            if delta <= 0, openCollectionView {
+                self.positionView(0)
+            } else if delta > 0, delta < CellHeightEnum.midl.height, openCollectionView {
+                self.positionView(delta)
+            } else if delta <= 0, delta >= -1 * CellHeightEnum.midl.height, !openCollectionView{
+                self.positionView(delta)
+            }
+
+
+        case .ended:
+            print(delta)
+            updateAnimateView(delta)
+
+
+        default:
+            break
+        }
+    }
+
+    func updateAnimateView(_ valuePosition: CGFloat) {
+        animateUpdate = true
+        self.finish(valuePosition)
+
+        UIView.animate(withDuration: 0.2, animations: {
+            self.positionView(0)
+        }) { [weak self](comp) in
+            if comp {
+                self?.animateUpdate = false
+            }
+        }
+    }
 
 }
 
