@@ -145,8 +145,7 @@ extension PhotoViewController: DelegateReloadSelectedCell {
     func reloadCell(index: IndexPath, isSclear: Bool) {
 
         self.selectedIndex = index
-        self.clearImageCell(clear: isSclear)
-
+        self.collectionView.clearImageCell(clear: false, index: selectedIndex)
     }
 
 }
@@ -156,7 +155,7 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let img = self.bigUIImage {
-            self.clearImageCell(clear: true)
+            self.collectionView.clearImageCell(clear: true, index: selectedIndex)
             return PresentZoomVCAnimation(originFrame: frameImageView, image: img)
         }
 
@@ -166,22 +165,12 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.02) {
-            self.clearImageCell(clear: false)
+            self.collectionView.clearImageCell(clear: false, index: self.selectedIndex)
         }
 
         return DismissZoomVCAnimation(finalFrame: frameImageView)
     }
 
-    private func clearImageCell(clear: Bool){
-
-        if let cell = self.collectionView.cellForItem(at: selectedIndex) as? PhotoCollectionCell {
-            if clear {
-                cell.imageCell.image = nil
-            } else {
-                cell.ind = selectedIndex
-            }
-        }
-    }
 
     private var frameImageView: CGRect {
 
@@ -197,5 +186,23 @@ extension PhotoViewController: UIViewControllerTransitioningDelegate {
         return CGRect()
 
     }
+
+}
+
+
+extension UICollectionView{
+
+    func clearImageCell(clear: Bool, index: IndexPath){
+
+        if let cell = self.cellForItem(at: index) as? PhotoCollectionCell {
+            if clear {
+                cell.imageCell.image = nil
+            } else {
+                cell.ind = index
+            }
+        }
+    }
+
+
 
 }

@@ -21,12 +21,7 @@ enum CellHeightEnum: String{
 
     var size: CGSize {
 
-        if self == .zero{
-            return CGSize(width: 0, height: 0)
-        }
-
-        let koef: CGFloat = self == .big ? 5 : 9
-        let size = SupportClass.Dimensions.wDdevice * 2 / koef
+        let size = SupportClass.Dimensions.wDdevice * 2 / 9
         return CGSize(width: size, height: size)
     }
 
@@ -46,11 +41,6 @@ class ViewPhotoCollection: UIView {
     private var counterSpecifiedCell = 0
     private let manager = ManagerPhotos.shared
 
-    var valueEnums: CellHeightEnum? {
-        didSet{
-            updateCollection()
-        }
-    }
 
     @IBOutlet weak var imageFront: UIImageView!
 
@@ -125,7 +115,7 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return valueEnums?.size ?? CellHeightEnum.midl.size
+        return CellHeightEnum.midl.size
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -139,16 +129,24 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     //в начале
 
     func startUpdateCollection(){
-        self.imageFront.image = self.contentView.screenshot()
-        self.imageFront.isUserInteractionEnabled = true
+        if self.imageFront.image == nil {
+            self.imageFront.image = self.contentView.screenshot()
+            self.imageFront.isUserInteractionEnabled = true
+            for obj in self.collectionView.visibleCells {
+                obj.contentView.alpha = 0
+            }
+        }
     }
 
     //вызываем сразу после свайпов
 
-    func updateCollection(){
+    func finishUpdateCollection(){
         self.imageFront.image = nil
         self.imageFront.isUserInteractionEnabled = false
-        self.collectionView.reloadData()
+
+        for obj in self.collectionView.visibleCells {
+            obj.contentView.alpha = 1
+        }
     }
 
 }

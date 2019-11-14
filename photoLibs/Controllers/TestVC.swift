@@ -52,6 +52,7 @@ extension TestVC{
             if status == .permitted{
                 self.positionView(0)
                 self.addGestures()
+                self.imagePan.image = CellHeightEnum.big.image
             } else {
                 self.removeObject()
             }
@@ -135,14 +136,6 @@ extension TestVC{
         let boolValue = value < 0 ? value : abs(value)
         openCollectionView = boolValue < CellHeightEnum.midl.height/2
 
-//
-//        if value < 0 {
-//            openCollectionView = value < CellHeightEnum.midl.height/2
-//        } else {
-//            openCollectionView = abs(value) < CellHeightEnum.midl.height/2
-//        }
-
-
     }
 
 
@@ -162,7 +155,8 @@ extension TestVC{
         }
 
         let delta = sender.translation(in: self.view).y
-
+        self.imagePan.image = CellHeightEnum.midl.image
+        self.collectionView.startUpdateCollection()
 
         switch sender.state {
         case .began, .changed:
@@ -189,11 +183,18 @@ extension TestVC{
         animateUpdate = true
         self.finish(valuePosition)
 
+        let finishImage = openCollectionView ? CellHeightEnum.big.image : CellHeightEnum.zero.image
+
         UIView.animate(withDuration: 0.2, animations: {
             self.positionView(0)
         }) { [weak self](comp) in
             if comp {
+
+                self?.imagePan.image = finishImage
                 self?.animateUpdate = false
+                if self?.openCollectionView ?? true {
+                    self?.collectionView.finishUpdateCollection()
+                }
             }
         }
     }

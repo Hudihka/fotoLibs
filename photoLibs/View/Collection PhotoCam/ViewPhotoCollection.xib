@@ -32,7 +32,7 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VhU-WL-3NQ">
+                <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image=" " translatesAutoresizingMaskIntoConstraints="NO" id="VhU-WL-3NQ">
                     <rect key="frame" x="0.0" y="0.0" width="422" height="104"/>
                 </imageView>
             </subviews>
@@ -52,4 +52,7 @@
             <point key="canvasLocation" x="150" y="-156"/>
         </view>
     </objects>
+    <resources>
+        <image name=" " width="16" height="16"/>
+    </resources>
 </document>
