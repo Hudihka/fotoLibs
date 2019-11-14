@@ -24,6 +24,7 @@ extension CameraViewController{
                 self.positionView(0)
                 self.addGestures()
                 self.imagePan.image = CellHeightEnum.big.image
+                self.albButton.addRadius(number: 2)
             } else {
                 self.removeObject()
             }
@@ -33,6 +34,7 @@ extension CameraViewController{
     private func removeObject(){
         self.imagePan.removeFromSuperview()
         self.viewPhotoCollection.removeFromSuperview()
+        self.albButton.removeFromSuperview()
     }
 
 

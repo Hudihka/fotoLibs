@@ -59,6 +59,7 @@ class PhotoViewController: UIViewController {
 
     }
 
+
     @objc func clearIndex(_ notification: Notification) {
 
 

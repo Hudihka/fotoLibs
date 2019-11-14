@@ -17,7 +17,7 @@ extension PhotoViewController: UIImagePickerControllerDelegate & UINavigationCon
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             SupportNotification.notificImage(image)
             picker.dismiss(animated: true) {
-                ///
+                UIApplication.shared.getWorkVC.navigationController?.popViewController(animated: true)
             }
         }
     }

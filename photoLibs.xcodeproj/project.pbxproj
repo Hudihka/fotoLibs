@@ -27,6 +27,8 @@
 		CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */; };
 		CE94D5FF237D5EF300314322 /* PhotoVCExtensionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FE237D5EF300314322 /* PhotoVCExtensionCollection.swift */; };
 		CE94D601237D5F3100314322 /* PhotoVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D600237D5F3100314322 /* PhotoVCExtension.swift */; };
+		CE94D608237D79BC00314322 /* AlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE94D607237D79BC00314322 /* AlbumView.xib */; };
+		CE94D60A237D79E000314322 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D609237D79E000314322 /* AlbumView.swift */; };
 		CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */; };
 		CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */; };
 		CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACF2377D91C00CFBFD4 /* LaunchScreen.storyboard */; };
@@ -69,6 +71,8 @@
 		CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCPresentCollectionAnimate.swift; sourceTree = "<group>"; };
 		CE94D5FE237D5EF300314322 /* PhotoVCExtensionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVCExtensionCollection.swift; sourceTree = "<group>"; };
 		CE94D600237D5F3100314322 /* PhotoVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVCExtension.swift; sourceTree = "<group>"; };
+		CE94D607237D79BC00314322 /* AlbumView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumView.xib; sourceTree = "<group>"; };
+		CE94D609237D79E000314322 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		CEEC0AC32377D91A00CFBFD4 /* photoLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,8 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				CE0D5C8823780267003C57B4 /* ImageScrollView.swift */,
-				CE0D5CA1237BC302003C57B4 /* Collection PhotoCam */,
 				CE0D5C91237802FF003C57B4 /* NavigBarView */,
+				CE0D5CA1237BC302003C57B4 /* Collection PhotoCam */,
+				CE94D604237D797900314322 /* AlbumButton */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,6 +199,15 @@
 				CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */,
 			);
 			path = PhotoCell;
+			sourceTree = "<group>";
+		};
+		CE94D604237D797900314322 /* AlbumButton */ = {
+			isa = PBXGroup;
+			children = (
+				CE94D607237D79BC00314322 /* AlbumView.xib */,
+				CE94D609237D79E000314322 /* AlbumView.swift */,
+			);
+			path = AlbumButton;
 			sourceTree = "<group>";
 		};
 		CEEC0ABA2377D91A00CFBFD4 = {
@@ -381,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0D5C7E2377F734003C57B4 /* PhotoCollectionCell.xib in Resources */,
+				CE94D608237D79BC00314322 /* AlbumView.xib in Resources */,
 				CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */,
 				CEEC0AF52377E0D000CFBFD4 /* Alert.storyboard in Resources */,
 				CEEC0AF32377E0B600CFBFD4 /* TwoButton.storyboard in Resources */,
@@ -456,6 +471,7 @@
 				CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
+				CE94D60A237D79E000314322 /* AlbumView.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
 				CEEC0AE32377DBE700CFBFD4 /* ManagerPhotos.swift in Sources */,
 				CE0D5C8C23780267003C57B4 /* CellZoom.swift in Sources */,

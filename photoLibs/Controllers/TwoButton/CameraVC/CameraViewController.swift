@@ -17,9 +17,11 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
     @IBOutlet weak var viewPhotoCollection: ViewPhotoCollection!
     @IBOutlet weak var imagePan: UIImageView!
+    @IBOutlet weak var albButton: AlbumView!
 
     var openCollectionView = true
     var animateUpdate = false
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
