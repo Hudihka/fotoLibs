@@ -14,8 +14,12 @@ import AVFoundation
 class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
 
     @IBOutlet weak var cameraButton: SwiftyCamButton!
-    var viewCollection: ViewPhotoCollection? = nil
 
+    @IBOutlet weak var collectionView: ViewPhotoCollection!
+    @IBOutlet weak var imagePan: UIImageView!
+
+    var openCollectionView = true
+    var animateUpdate = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
 
         self.customNavigationBar()
+        
         self.addCollection()
     }
 
@@ -152,34 +157,165 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
 extension CameraViewController{
 
+
     func addCollection(){
 
-        if KeysUDef.openPhotoLibs.getBool() {
-            ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
-                if status == .permitted{
+        if !KeysUDef.openPhotoLibs.getBool() {
+            removeObject()
+            return
+        }
 
-                    let frame = self.frameCollection(CellHeightEnum.midl.height)
-                    let collection = ViewPhotoCollection(frame: frame)
-                    self.viewCollection = collection
-                    self.view.addSubview(collection)
+        ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
+            if status == .permitted{
+                self.positionView(0)
+                self.addGestures()
+                self.imagePan.image = CellHeightEnum.big.image
+            } else {
+                self.removeObject()
+            }
+        }
+    }
 
+    private func removeObject(){
+        self.imagePan.removeFromSuperview()
+        self.collectionView.removeFromSuperview()
+    }
+
+
+    private func addGestures(){
+        let swipeOne = UIPanGestureRecognizer(target: self, action: #selector(swipeOneSelector))
+        let swipeTwo = UIPanGestureRecognizer(target: self, action: #selector(swipeTwoSelector))
+        swipeOne.minimumNumberOfTouches = 1
+        swipeTwo.minimumNumberOfTouches = 1
+
+        self.collectionView.addGestureRecognizer(swipeOne)
+        self.imagePan.addGestureRecognizer(swipeTwo)
+    }
+
+
+
+    private func positionView(_ value: CGFloat){
+
+
+        let heightCollection = collectionHeight - value
+
+        /*какого то хрена позиция кнопки менялась на 20 пунктов, поэтому был добавлен
+         такой код что бы вычислить нижнее положение коллекции
+         вообще его можно заменить на let downPositionCollection = buttonView.frame.origin.y - 30 */
+
+        //        let upButtonConstr:CGFloat = 25 //25 расстояние от кнопки до коллекции
+        //        let downButtonConstr:CGFloat = 20 //20 расстояние c низу от кнопки
+        //        let heightButton:CGFloat = buttonSnaphot.frame.height
+        //
+        //        let buttonAllHeight = upButtonConstr + downButtonConstr + heightButton
+        //
+        //        let downPositionCollection = SupportClass.Dimensions.hDdevice - buttonAllHeight - SupportClass.heightTabBar
+
+        //////////
+
+        let downPositionCollection = SupportClass.Dimensions.hDdevice - 130
+
+
+        let originYPositionCollection = downPositionCollection - heightCollection
+
+        let frameCollection = CGRect(x: 0,
+                                     y: originYPositionCollection,
+                                     width: SupportClass.Dimensions.wDdevice,
+                                     height: heightCollection)
+
+        //заменить 30 на высоту имаге, 60 на ширину
+
+        let widthImage:CGFloat = 60
+        let heightImage:CGFloat = 20
+
+
+        let xPositionImagePan = (SupportClass.Dimensions.wDdevice - widthImage) / 2
+        let yPositionImagePan = originYPositionCollection - heightImage
+
+        let frameImage = CGRect(x: xPositionImagePan,
+                                y: yPositionImagePan,
+                                width: widthImage,
+                                height: heightImage)
+
+        self.collectionView.frame = frameCollection
+        self.imagePan.frame = frameImage
+
+    }
+
+
+
+    private var collectionHeight: CGFloat {
+        return openCollectionView ? CellHeightEnum.midl.height : 0
+    }
+
+    private func finish(_ value: CGFloat){
+
+        let boolValue = value < 0 ? value : abs(value)
+        openCollectionView = boolValue < CellHeightEnum.midl.height/2
+
+    }
+
+
+
+    @objc func swipeOneSelector(sender: UIPanGestureRecognizer) {
+        gestersFunc(sender: sender)
+    }
+
+    @objc func swipeTwoSelector(sender: UIPanGestureRecognizer) {
+        gestersFunc(sender: sender)
+    }
+
+    private func gestersFunc(sender: UIPanGestureRecognizer){
+
+        if animateUpdate {
+            return
+        }
+
+        let delta = sender.translation(in: self.view).y
+        self.imagePan.image = CellHeightEnum.midl.image
+        self.collectionView.startUpdateCollection()
+
+        switch sender.state {
+        case .began, .changed:
+            if delta <= 0, openCollectionView {
+                self.positionView(0)
+            } else if delta > 0, delta < CellHeightEnum.midl.height, openCollectionView {
+                self.positionView(delta)
+            } else if delta <= 0, delta >= -1 * CellHeightEnum.midl.height, !openCollectionView{
+                self.positionView(delta)
+            }
+
+
+        case .ended:
+            print(delta)
+            updateAnimateView(delta)
+
+
+        default:
+            break
+        }
+    }
+
+    func updateAnimateView(_ valuePosition: CGFloat) {
+        animateUpdate = true
+        self.finish(valuePosition)
+
+        let finishImage = openCollectionView ? CellHeightEnum.big.image : CellHeightEnum.zero.image
+
+        UIView.animate(withDuration: 0.2, animations: {
+            self.positionView(0)
+        }) { [weak self](comp) in
+            if comp {
+
+                self?.imagePan.image = finishImage
+                self?.animateUpdate = false
+                if self?.openCollectionView ?? true {
+                    self?.collectionView.finishUpdateCollection()
                 }
             }
         }
     }
 
-
-    func frameCollection(_ heightCollection: CGFloat) -> CGRect {
-        return CGRect(x: 0,
-                      y: yPosition(heightCollection),
-                      width: SupportClass.Dimensions.wDdevice,
-                      height: heightCollection)
-    }
-
-    private func yPosition(_ heightCollection: CGFloat) -> CGFloat{
-        let y = self.cameraButton.frame.origin.y
-        return y - heightCollection
-    }
 
 
 

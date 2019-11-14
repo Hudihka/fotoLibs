@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgCat" translatesAutoresizingMaskIntoConstraints="NO" id="Jkd-ZU-IXJ">
-                                <rect key="frame" x="67" y="54" width="240" height="204"/>
+                                <rect key="frame" x="67" y="98" width="240" height="204"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Jkd-ZU-IXJ" secondAttribute="height" multiplier="20:17" id="Wsh-dh-a2b"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31b-Ps-oUR">
-                                <rect key="frame" x="67.5" y="328" width="240" height="53"/>
+                                <rect key="frame" x="67.5" y="372" width="240" height="53"/>
                                 <color key="backgroundColor" red="1" green="0.94622291160000005" blue="0.039997223300000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="tzk-VE-fEA"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10m-v3-0lz">
-                                <rect key="frame" x="67.5" y="413" width="240" height="53"/>
+                                <rect key="frame" x="67.5" y="457" width="240" height="53"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="WzY-xL-xaQ"/>
@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aa1-Hj-FZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1929" y="-1146"/>
+            <point key="canvasLocation" x="921" y="-1146"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="0uj-P5-RSg">
@@ -104,6 +104,16 @@
                                     <action selector="reloadCamera:" destination="8uY-Y7-l9X" eventType="touchUpInside" id="9s0-z0-7I7"/>
                                 </connections>
                             </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idT-9L-Nss" customClass="ViewPhotoCollection" customModule="photoLibs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="458" width="375" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="midl" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-lS-rbx">
+                                <rect key="frame" x="160" y="438" width="60" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -117,6 +127,8 @@
                     </view>
                     <connections>
                         <outlet property="cameraButton" destination="OVe-NX-lY3" id="Ak2-BE-Vov"/>
+                        <outlet property="collectionView" destination="idT-9L-Nss" id="E7N-qJ-NLu"/>
+                        <outlet property="imagePan" destination="1fA-lS-rbx" id="woG-mt-LYh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hB2-Ex-07j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +192,7 @@
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Knn-YN-DMf" kind="relationship" relationship="rootViewController" id="bJY-Ak-XSa"/>
+                        <segue destination="nDc-fx-qPx" kind="relationship" relationship="rootViewController" id="bWX-8Z-Mck"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbS-7h-MCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -236,7 +248,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8X-oO-SCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="o9A-t3-gvJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="780" y="-1146.4767616191905"/>
+            <point key="canvasLocation" x="865" y="-1905"/>
         </scene>
     </scenes>
     <resources>
