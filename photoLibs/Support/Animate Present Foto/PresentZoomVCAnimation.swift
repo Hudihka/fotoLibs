@@ -63,21 +63,3 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     }
 }
 
-
-extension UIImage{
-    //анимация открытия изображения работает немного криво
-    //этим свойством мы получаем финальную позицию изображения
-    //относительно его габаритов
-
-    var positionCentrWindovsScaleAspectFill: CGRect {
-
-        let height = SupportClass.Dimensions.wDdevice * self.size.height / self.size.width
-
-        let yPoint = (SupportClass.Dimensions.hDdevice - height) / 2
-
-        return CGRect(x: 0,
-                      y: yPoint,
-                      width: SupportClass.Dimensions.wDdevice,
-                      height: height)
-    }
-}

@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol DelegateReloadSelectedCell: class {
-    func reloadCell(index: IndexPath, isSclear: Bool)
-}
+//protocol DelegateReloadSelectedCell: class {
+//    func reloadCell(index: IndexPath, isSclear: Bool)
+//}
 
 class ImageZoomVC: UIViewController {
 
@@ -29,8 +29,6 @@ class ImageZoomVC: UIViewController {
     private var finishAnimate = true
     private var flagAnimateCollection = true
     var flagNavigBarUpdate = true
-
-    var delegate: DelegateReloadSelectedCell?
 
 
     lazy var swipeGesture: UIPanGestureRecognizer = {
@@ -281,8 +279,8 @@ extension ImageZoomVC: UIScrollViewDelegate {
 
 
     private func reloadCounter(_ velocity: CGPoint) {
-
-        self.delegate?.reloadCell(index: IndexPath(row: counter, section: 0), isSclear: false)
+        
+        SupportNotification.notificClearImage(index: IndexPath(row: counter, section: 0), isClear: false)
         
         if velocity.x < 0 {
             if counter != 0 {
@@ -293,8 +291,8 @@ extension ImageZoomVC: UIScrollViewDelegate {
                 counter += 1
             }
         }
+        SupportNotification.notificClearImage(index: IndexPath(row: counter, section: 0), isClear: true)
 
-        self.delegate?.reloadCell(index: IndexPath(row: counter, section: 0), isSclear: true)
     }
 
     var activeNB: Bool{
@@ -348,10 +346,4 @@ extension ImageZoomVC: UIGestureRecognizerDelegate {
 
 }
 
-extension UIApplication {
-    func updateStatusBar(_ clear: Bool){
-        let value = clear ? UIWindow.Level.statusBar : UIWindow.Level.normal
-        self.keyWindow?.windowLevel = value
-    }
-}
 

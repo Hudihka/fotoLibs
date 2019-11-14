@@ -103,14 +103,4 @@ class NavigBarView: UIView {
     }
 }
 
-extension UIView {
-    @objc func loadViewFromNib(_ name: String) -> UIView { //добавление вью созданной в ксиб файле
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: name, bundle: bundle)
-        if let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView {
-            return view
-        } else {
-            return UIView()
-        }
-    }
-}
+

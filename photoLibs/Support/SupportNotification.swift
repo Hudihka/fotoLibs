@@ -22,6 +22,12 @@ class SupportNotification: NSObject {
     static func notificImage(_ image: UIImage){
         NotificationCenter.default.post(name: NSNotification.Name.reloadSelectedImage, object: nil, userInfo: ["image": image])
     }
+
+    static func notificClearImage(index: IndexPath, isClear: Bool){
+        let userInfo: [AnyHashable : Any]? = ["index": index, "isClear": isClear]
+
+        NotificationCenter.default.post(name: NSNotification.Name.clearIndex, object: nil, userInfo: userInfo)
+    }
 }
 
 
@@ -29,5 +35,7 @@ class SupportNotification: NSObject {
 extension Notification.Name {
 
     static let reloadSelectedImage = Notification.Name("reloadSelectedImage")
+
+    static let clearIndex = Notification.Name("clearIndex")
 
 }

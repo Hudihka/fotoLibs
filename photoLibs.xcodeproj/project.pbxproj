@@ -22,6 +22,11 @@
 		CE0D5CA3237BC38B003C57B4 /* ViewPhotoCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */; };
 		CE0D5CA5237BC3AC003C57B4 /* ViewPhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */; };
 		CE0D5CA7237BD4BF003C57B4 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5CA6237BD4BF003C57B4 /* TestVC.swift */; };
+		CE94D5F7237D593A00314322 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F6237D593A00314322 /* Extension.swift */; };
+		CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */; };
+		CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */; };
+		CE94D5FF237D5EF300314322 /* PhotoVCExtensionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FE237D5EF300314322 /* PhotoVCExtensionCollection.swift */; };
+		CE94D601237D5F3100314322 /* PhotoVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D600237D5F3100314322 /* PhotoVCExtension.swift */; };
 		CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */; };
 		CEEC0ACE2377D91C00CFBFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */; };
 		CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0ACF2377D91C00CFBFD4 /* LaunchScreen.storyboard */; };
@@ -59,6 +64,11 @@
 		CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPhotoCollection.xib; sourceTree = "<group>"; };
 		CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPhotoCollection.swift; sourceTree = "<group>"; };
 		CE0D5CA6237BD4BF003C57B4 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		CE94D5F6237D593A00314322 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCCollectionExtension.swift; sourceTree = "<group>"; };
+		CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCPresentCollectionAnimate.swift; sourceTree = "<group>"; };
+		CE94D5FE237D5EF300314322 /* PhotoVCExtensionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVCExtensionCollection.swift; sourceTree = "<group>"; };
+		CE94D600237D5F3100314322 /* PhotoVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVCExtension.swift; sourceTree = "<group>"; };
 		CEEC0AC32377D91A00CFBFD4 /* photoLibs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoLibs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEC0AC62377D91A00CFBFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEC0ACD2377D91C00CFBFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +177,25 @@
 			path = "Collection PhotoCam";
 			sourceTree = "<group>";
 		};
+		CE94D5F8237D5D5300314322 /* CameraVC */ = {
+			isa = PBXGroup;
+			children = (
+				CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */,
+				CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */,
+				CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */,
+			);
+			path = CameraVC;
+			sourceTree = "<group>";
+		};
+		CE94D5FD237D5EBE00314322 /* PhotoCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */,
+				CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */,
+			);
+			path = PhotoCell;
+			sourceTree = "<group>";
+		};
 		CEEC0ABA2377D91A00CFBFD4 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +234,7 @@
 				CEEC0ADD2377DBE700CFBFD4 /* ManagerPhotos.swift */,
 				CEEC0ADE2377DBE700CFBFD4 /* SupportClass.swift */,
 				CEEC0AD92377DBE600CFBFD4 /* SupportNotification.swift */,
+				CE94D5F6237D593A00314322 /* Extension.swift */,
 				CE0D5C95237996BF003C57B4 /* Animate Present Foto */,
 			);
 			path = Support;
@@ -246,7 +276,7 @@
 			children = (
 				CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */,
 				CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */,
-				CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */,
+				CE94D5F8237D5D5300314322 /* CameraVC */,
 				CEEC0AFB2377E23300CFBFD4 /* PhotoCollectionVC */,
 			);
 			path = TwoButton;
@@ -283,8 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				CEEC0AFD2377E23300CFBFD4 /* PhotoViewController.swift */,
-				CE0D5C7B2377F734003C57B4 /* PhotoCollectionCell.swift */,
-				CE0D5C7C2377F734003C57B4 /* PhotoCollectionCell.xib */,
+				CE94D600237D5F3100314322 /* PhotoVCExtension.swift */,
+				CE94D5FE237D5EF300314322 /* PhotoVCExtensionCollection.swift */,
+				CE94D5FD237D5EBE00314322 /* PhotoCell */,
 			);
 			path = PhotoCollectionVC;
 			sourceTree = "<group>";
@@ -416,10 +447,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE94D5F7237D593A00314322 /* Extension.swift in Sources */,
 				CEEC0AE42377DBE700CFBFD4 /* SupportClass.swift in Sources */,
 				CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */,
 				CEEC0AE12377DBE700CFBFD4 /* Utils.swift in Sources */,
+				CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */,
 				CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */,
+				CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
@@ -437,7 +471,9 @@
 				CE0D5CA5237BC3AC003C57B4 /* ViewPhotoCollection.swift in Sources */,
 				CEEC0AC72377D91A00CFBFD4 /* AppDelegate.swift in Sources */,
 				CE0D5CA7237BD4BF003C57B4 /* TestVC.swift in Sources */,
+				CE94D5FF237D5EF300314322 /* PhotoVCExtensionCollection.swift in Sources */,
 				CEEC0B002377E23300CFBFD4 /* PhotoViewController.swift in Sources */,
+				CE94D601237D5F3100314322 /* PhotoVCExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

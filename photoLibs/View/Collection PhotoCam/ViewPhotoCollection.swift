@@ -31,6 +31,10 @@ enum CellHeightEnum: String{
 
 }
 
+protocol DelegateSelectedCell: class {
+    func pressCell(_ index: IndexPath, rect: CGRect)
+}
+
 
 class ViewPhotoCollection: UIView {
 
@@ -41,8 +45,13 @@ class ViewPhotoCollection: UIView {
     private var counterSpecifiedCell = 0
     private let manager = ManagerPhotos.shared
 
-
     @IBOutlet weak var imageFront: UIImageView!
+
+    //нажатие и анимац переход
+    weak var delegate: DelegateSelectedCell? = nil
+    var selectedIndex = IndexPath(row: 0, section: 0)
+
+    var bigUIImage: UIImage? = nil
 
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +69,11 @@ class ViewPhotoCollection: UIView {
         self.contentView.backgroundColor = UIColor.clear
         desingCollectionView()
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(clearIndex),
+                                               name: .clearIndex,
+                                               object: nil)
+
     }
 
     func xibSetup() {
@@ -67,6 +81,19 @@ class ViewPhotoCollection: UIView {
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView)
+    }
+
+    
+    @objc func clearIndex(_ notification: Notification) {
+
+        guard let index = notification.userInfo?["index"] as? IndexPath,
+            let clear = notification.userInfo?["isClear"] as? Bool else {
+                return
+        }
+
+        self.selectedIndex = index
+        self.collectionView.clearImageCell(clear: clear, index: selectedIndex)
+
     }
 
 
@@ -114,6 +141,16 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        ManagerPhotos.shared.getImageOne(indexPath: indexPath, sizeBig: true) { (img) in
+            self.bigUIImage = img
+            self.selectedIndex = indexPath
+            let rect = self.collectionView.frameImageView(indexPath)
+            self.delegate?.pressCell(indexPath, rect: rect)
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CellHeightEnum.midl.size
     }
@@ -152,23 +189,3 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
 }
 
 
-extension UIView {
-    func screenshot() -> UIImage {
-        if #available(iOS 10.0, *) {
-            return UIGraphicsImageRenderer(size: bounds.size).image { _ in
-                drawHierarchy(in: CGRect(origin: .zero, size: bounds.size), afterScreenUpdates: true)
-            }
-        } else {
-            UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
-            drawHierarchy(in: self.bounds, afterScreenUpdates: true)
-            let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
-            UIGraphicsEndImageContext()
-            return image
-        }
-    }
-
-    func addRadius(number: CGFloat) {
-        self.layer.cornerRadius = number
-        self.layer.masksToBounds = true
-    }
-}
