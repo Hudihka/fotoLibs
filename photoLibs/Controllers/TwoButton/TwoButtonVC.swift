@@ -11,6 +11,7 @@ import UIKit
 class TwoButtonVC: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    static var openNevStackNavigation = true //если да, то открываем новый стек навигации, переменная нужна для дисмиса
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class TwoButtonVC: UIViewController {
                 print("открыть фото камеру")
 
                 if let vc = CameraViewController.route() {
+                    TwoButtonVC.openNevStackNavigation = true
                     self.present(controller: vc)
                 }
 
@@ -89,6 +91,7 @@ class TwoButtonVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + time) { //может быть противный баг если открыть в первый раз сразу
                                                                  //поэтому делаем небольшую задержку
             if let vc = PhotoViewController.route() {
+                TwoButtonVC.openNevStackNavigation = false
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

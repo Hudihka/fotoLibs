@@ -78,22 +78,29 @@ class NavigBarView: UIView {
 
     //MARK: - ACTION
 
-    @IBAction func leftButtonAction(_ sender: Any) {
-        if let vc = UIApplication.shared.getWorkVC() as? ImageZoomVC {
+    @IBAction func leftButtonAction(_ sender: Any) { //отмена
+        if let vc = UIApplication.shared.getWorkVC as? ImageZoomVC {
             vc.killVC()
         }
     }
 
-    @IBAction func rightButtonAction(_ sender: Any) {
-        if let vc = UIApplication.shared.getWorkVC() as? ImageZoomVC, let img = vc.imageActive {
-            SupportNotification.notificImage(img)
+    @IBAction func rightButtonAction(_ sender: Any) { //кнопка выбора
 
+        guard let activeVC = UIApplication.shared.getWorkVC as? ImageZoomVC,
+              let img = activeVC.imageActive else {
+            return
+        }
 
-            vc.dismiss(animated: true) {
-                //добавить ситуацию когда презентим навигейшен бар
-                UIApplication.shared.getWorkVC().navigationController?.popViewController(animated: true)
+        SupportNotification.notificImage(img)
+
+        activeVC.dismiss(animated: true) {
+            if let lastPushVC = UIApplication.shared.lastPushVC {
+                if TwoButtonVC.openNevStackNavigation {
+                    lastPushVC.dismiss(animated: true, completion: nil) //камера/выбираем фото из коллекции
+                } else {
+                    UIApplication.shared.getWorkVC.navigationController?.popViewController(animated: true) //фото/выбираем фото
+                }
             }
-
         }
     }
 

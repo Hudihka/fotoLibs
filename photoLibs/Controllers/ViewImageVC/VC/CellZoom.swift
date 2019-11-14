@@ -75,7 +75,7 @@ extension CellZoom: GestureDelegate{
 
 
     private func updateNBar(_ update: Bool?){
-        if let VC = UIApplication.shared.getWorkVC() as? ImageZoomVC, VC.flagNavigBarUpdate{
+        if let VC = UIApplication.shared.getWorkVC as? ImageZoomVC, VC.flagNavigBarUpdate{
 
             guard let update = update else {
                 VC.animateHeder(false)

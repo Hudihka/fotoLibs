@@ -10,8 +10,28 @@ import Foundation
 import UIKit
 
 extension UIApplication {
-    func getWorkVC() -> UIViewController {
+    var getWorkVC: UIViewController {
         return self.keyWindow?.visibleViewController ?? UIViewController()
+    }
+
+    var lastPushVC: UIViewController? { //получаем последний запушенный вью конроллер в стеке
+
+        let workVC = self.getWorkVC
+
+        if let TBVC = workVC.presentingViewController as? UITabBarController {
+            let index = TBVC.selectedIndex
+            if let NVC = TBVC.viewControllers?[index] as? UINavigationController {
+                if let lastVc = NVC.topViewController {
+                    return lastVc
+                }
+            }
+        }
+
+        if let navigStack = workVC.stackVC?.last {
+            return navigStack
+        }
+
+        return nil
     }
 }
 
