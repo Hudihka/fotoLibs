@@ -21,9 +21,6 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
-//        let snapshot = toVC.view.snapshotView(afterScreenUpdates: true) // до, вью контроллер с изображением
-//         let fromVC = transitionContext.viewController(forKey: .from),  // из, вью контроллер с коллекцией
-
         guard let toVC = transitionContext.viewController(forKey: .to) as? ImageZoomVC, // до, вью контроллер с изображением
             let navBar = toVC.navigBarView else {
             return
@@ -38,6 +35,11 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         snaphot.contentMode = .scaleAspectFill
         snaphot.clipsToBounds = true
 
+
+        if transitionContext.viewController(forKey: .from) is UINavigationController {
+            snaphot.addRadius(number: 8)
+        }
+
         toVC.collectionView.isHidden = true
         toVC.view.alpha = 0
         navBar.alpha = 0
@@ -50,6 +52,7 @@ class PresentZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             navBar.alpha = 1
             containerView.backgroundColor = UIColor.black
             snaphot.frame = self.image.positionCentrWindovsScaleAspectFill
+            snaphot.addRadius(number: 0)
         }) { (compl) in
             if compl == true{
 

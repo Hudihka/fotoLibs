@@ -127,8 +127,8 @@
                     </view>
                     <connections>
                         <outlet property="cameraButton" destination="OVe-NX-lY3" id="Ak2-BE-Vov"/>
-                        <outlet property="collectionView" destination="idT-9L-Nss" id="E7N-qJ-NLu"/>
                         <outlet property="imagePan" destination="1fA-lS-rbx" id="woG-mt-LYh"/>
+                        <outlet property="viewPhotoCollection" destination="idT-9L-Nss" id="2Oz-sO-9Tx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hB2-Ex-07j" userLabel="First Responder" sceneMemberID="firstResponder"/>

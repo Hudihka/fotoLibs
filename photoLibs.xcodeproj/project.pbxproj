@@ -162,8 +162,8 @@
 		CE0D5C95237996BF003C57B4 /* Animate Present Foto */ = {
 			isa = PBXGroup;
 			children = (
-				CE0D5C9723799718003C57B4 /* DismissZoomVCAnimation.swift */,
 				CE0D5C9623799718003C57B4 /* PresentZoomVCAnimation.swift */,
+				CE0D5C9723799718003C57B4 /* DismissZoomVCAnimation.swift */,
 			);
 			path = "Animate Present Foto";
 			sourceTree = "<group>";

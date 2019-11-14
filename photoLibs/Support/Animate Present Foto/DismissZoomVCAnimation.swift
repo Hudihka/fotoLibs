@@ -31,7 +31,6 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.backgroundColor = UIColor.clear
 
 
-
         let counterIndex = IndexPath(row: vcImageZoom.counter, section: 0)
 
         var image = UIImage()
@@ -54,6 +53,8 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         snaphot.contentMode = .scaleAspectFill
         snaphot.clipsToBounds = true
 
+        let addRadius = transitionContext.viewController(forKey: .to) is UINavigationController
+
         let startAlpha = ImageZoomVC.alphaContent(value: abs(ImageZoomVC.positionY))
 
         vcImageZoom.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: startAlpha)
@@ -67,6 +68,9 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: animationTimeInterval + 0.02,
                        animations: {
                         snaphot.frame = self.finalFrame
+                        if addRadius {
+                            snaphot.addRadius(number: 8)
+                        }
                         vcImageZoom.view.backgroundColor = UIColor.clear
 
         }) { (comp) in
