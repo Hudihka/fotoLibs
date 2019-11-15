@@ -23,12 +23,30 @@ extension CameraViewController{
                 self.viewPhotoCollection.delegate = self
                 self.positionView(0)
                 self.addGestures()
-                self.imagePan.image = CellHeightEnum.big.image
+
+
                 self.albButton.addRadius(number: 2)
+
+                self.startAnimateCollection()
+
+
             } else {
                 self.removeObject()
             }
         }
+    }
+
+
+    private func startAnimateCollection(){
+        self.imagePan.image = CellHeightEnum.big.image
+        self.imagePan.alpha = 0
+        self.viewPhotoCollection.alpha = 0
+
+        UIView.animate(withDuration: 0.5) {
+            self.imagePan.alpha = 1
+            self.viewPhotoCollection.alpha = 1
+        }
+
     }
 
     private func removeObject(){

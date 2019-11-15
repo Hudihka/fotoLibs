@@ -68,7 +68,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         self.clearNavigationBar()
         self.bbCancel()
 
-        settingsRightBBitem(text: "Фонарик Вкл", alpha: 1)
+        settingsRightBBitem(text: "Вспышка Вкл", alpha: 1)
     }
 
     private func settingsRightBBitem(text: String, alpha: CGFloat){
@@ -85,8 +85,10 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
     private func rightBBItem(isON: Bool) { //если тру то включаем
 
+        flashMode = isON ? .on : .off //это именно включение/отключение вспышки, то что ниже это фонарик
+
+
         let text = isON ? "вспышка Выкл" : "вспышка Вкл"
-        flashMode = isON ? .on : .off
         let alpha: CGFloat = !isON && currentCamera == .front ? 0.5 : 1
 
         settingsRightBBitem(text: text, alpha: alpha)
