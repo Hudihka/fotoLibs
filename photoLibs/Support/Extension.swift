@@ -67,13 +67,24 @@ extension UICollectionView{
 
     func clearImageCell(clear: Bool, index: IndexPath){
 
+        self.scrollPosition(index: index) //скро
+
         if let cell = self.cellForItem(at: index) as? PhotoCollectionCell {
+
             if clear {
                 cell.imageCell.image = nil
             } else {
                 cell.ind = index
             }
         }
+    }
+
+    private func scrollPosition(index: IndexPath){
+
+            let position: UICollectionView.ScrollPosition = self.superview is ViewPhotoCollection ? .centeredVertically : .centeredHorizontally
+
+            self.scrollToItem(at: index, at: position, animated: false)
+
     }
 
 

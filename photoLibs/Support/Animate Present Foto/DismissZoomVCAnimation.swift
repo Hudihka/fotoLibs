@@ -65,6 +65,9 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(snaphot)
 
 
+        UIApplication.shared.updateStatusBar(false)
+        UIApplication.shared.setStatusBarStyle(.default, animated: true)
+
         UIView.animate(withDuration: animationTimeInterval + 0.02,
                        animations: {
                         snaphot.frame = self.finalFrame
@@ -77,9 +80,6 @@ class DismissZoomVCAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             if comp {
                 snaphot.removeFromSuperview()
                 vcImageZoom.view.removeFromSuperview()
-
-                UIApplication.shared.updateStatusBar(false)
-                UIApplication.shared.setStatusBarStyle(.default, animated: true)
 
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }

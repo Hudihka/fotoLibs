@@ -136,13 +136,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CE0D5C8023780267003C57B4 /* ViewImageVC */ = {
+		CE0D5C8023780267003C57B4 /* ImageZoomVC */ = {
 			isa = PBXGroup;
 			children = (
 				CE0D5C8223780267003C57B4 /* ImageStoryboard.storyboard */,
 				CE0D5C8323780267003C57B4 /* VC */,
 			);
-			path = ViewImageVC;
+			path = ImageZoomVC;
 			sourceTree = "<group>";
 		};
 		CE0D5C8323780267003C57B4 /* VC */ = {
@@ -271,7 +271,7 @@
 				CEEC0AED2377DF4600CFBFD4 /* Alert */,
 				CEEC0AEC2377DF2500CFBFD4 /* TwoButton */,
 				CEEC0AE72377DE8D00CFBFD4 /* TabBar */,
-				CE0D5C8023780267003C57B4 /* ViewImageVC */,
+				CE0D5C8023780267003C57B4 /* ImageZoomVC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
