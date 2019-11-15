@@ -22,6 +22,9 @@
 		CE0D5CA3237BC38B003C57B4 /* ViewPhotoCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */; };
 		CE0D5CA5237BC3AC003C57B4 /* ViewPhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */; };
 		CE0D5CA7237BD4BF003C57B4 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D5CA6237BD4BF003C57B4 /* TestVC.swift */; };
+		CE0DCEBB237EB76B00B0EC61 /* IZoomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBA237EB76B00B0EC61 /* IZoomCollection.swift */; };
+		CE0DCEBD237EB79C00B0EC61 /* IZoomScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBC237EB79C00B0EC61 /* IZoomScroll.swift */; };
+		CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */; };
 		CE94D5F7237D593A00314322 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F6237D593A00314322 /* Extension.swift */; };
 		CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */; };
 		CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */; };
@@ -66,6 +69,9 @@
 		CE0D5CA2237BC38B003C57B4 /* ViewPhotoCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPhotoCollection.xib; sourceTree = "<group>"; };
 		CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPhotoCollection.swift; sourceTree = "<group>"; };
 		CE0D5CA6237BD4BF003C57B4 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		CE0DCEBA237EB76B00B0EC61 /* IZoomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomCollection.swift; sourceTree = "<group>"; };
+		CE0DCEBC237EB79C00B0EC61 /* IZoomScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomScroll.swift; sourceTree = "<group>"; };
+		CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomTimer.swift; sourceTree = "<group>"; };
 		CE94D5F6237D593A00314322 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCCollectionExtension.swift; sourceTree = "<group>"; };
 		CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCPresentCollectionAnimate.swift; sourceTree = "<group>"; };
@@ -140,19 +146,21 @@
 			isa = PBXGroup;
 			children = (
 				CE0D5C8223780267003C57B4 /* ImageStoryboard.storyboard */,
-				CE0D5C8323780267003C57B4 /* VC */,
+				CE0D5C8323780267003C57B4 /* VCZoom */,
 			);
 			path = ImageZoomVC;
 			sourceTree = "<group>";
 		};
-		CE0D5C8323780267003C57B4 /* VC */ = {
+		CE0D5C8323780267003C57B4 /* VCZoom */ = {
 			isa = PBXGroup;
 			children = (
 				CE0D5C8523780267003C57B4 /* ImageZoomVC.swift */,
-				CE0D5C8423780267003C57B4 /* CellZoom.swift */,
-				CE0D5C8623780267003C57B4 /* CellZoom.xib */,
+				CE0DCEBA237EB76B00B0EC61 /* IZoomCollection.swift */,
+				CE0DCEBC237EB79C00B0EC61 /* IZoomScroll.swift */,
+				CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */,
+				CE0DCEB9237EB72F00B0EC61 /* CellZoom */,
 			);
-			path = VC;
+			path = VCZoom;
 			sourceTree = "<group>";
 		};
 		CE0D5C91237802FF003C57B4 /* NavigBarView */ = {
@@ -180,6 +188,15 @@
 				CE0D5CA4237BC3AC003C57B4 /* ViewPhotoCollection.swift */,
 			);
 			path = "Collection PhotoCam";
+			sourceTree = "<group>";
+		};
+		CE0DCEB9237EB72F00B0EC61 /* CellZoom */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D5C8423780267003C57B4 /* CellZoom.swift */,
+				CE0D5C8623780267003C57B4 /* CellZoom.xib */,
+			);
+			path = CellZoom;
 			sourceTree = "<group>";
 		};
 		CE94D5F8237D5D5300314322 /* CameraVC */ = {
@@ -463,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE94D5F7237D593A00314322 /* Extension.swift in Sources */,
+				CE0DCEBD237EB79C00B0EC61 /* IZoomScroll.swift in Sources */,
 				CEEC0AE42377DBE700CFBFD4 /* SupportClass.swift in Sources */,
 				CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */,
 				CEEC0AE12377DBE700CFBFD4 /* Utils.swift in Sources */,
@@ -470,6 +488,7 @@
 				CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */,
 				CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
+				CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CE94D60A237D79E000314322 /* AlbumView.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
@@ -477,6 +496,7 @@
 				CE0D5C8C23780267003C57B4 /* CellZoom.swift in Sources */,
 				CE0D5C9023780267003C57B4 /* NavigBarView.swift in Sources */,
 				CE0D5C7D2377F734003C57B4 /* PhotoCollectionCell.swift in Sources */,
+				CE0DCEBB237EB76B00B0EC61 /* IZoomCollection.swift in Sources */,
 				CEEC0AE02377DBE700CFBFD4 /* UIWindovs.swift in Sources */,
 				CE0D5C8F23780267003C57B4 /* ImageScrollView.swift in Sources */,
 				CEEC0AF92377E19F00CFBFD4 /* AlertViewController.swift in Sources */,

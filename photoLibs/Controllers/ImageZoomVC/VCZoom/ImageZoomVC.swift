@@ -26,8 +26,8 @@ class ImageZoomVC: UIViewController {
         return ManagerPhotos.shared.fetchResult.count
     }
 
-    private var finishAnimate = true
-    private var flagAnimateCollection = true
+    var finishAnimate = true
+    var flagAnimateCollection = true
     var flagNavigBarUpdate = true
 
 
@@ -57,7 +57,7 @@ class ImageZoomVC: UIViewController {
         self.collectionView.isUserInteractionEnabled = true
         self.swipeGesture.delegate = self
 
-        self.swipeGesture.cancelsTouchesInView = false
+//        self.swipeGesture.cancelsTouchesInView = false
 
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
@@ -75,7 +75,7 @@ class ImageZoomVC: UIViewController {
         textTitle()
     }
 
-    private func textTitle(){
+    func textTitle(){
         let text = imageCellOne != nil ? "" : "\(counter + 1) из \(countCell)"
         self.navigBarView.labelTitle.text = text
     }
@@ -94,7 +94,6 @@ class ImageZoomVC: UIViewController {
         if ImageScrollView.originalFrame && self.finishAnimate && flagAnimateCollection{
 
             collectionView.isScrollEnabled = false
-//            self.blockCell(false)
 
             let translatedPoint = sender.translation(in: self.view)
 
@@ -195,142 +194,6 @@ class ImageZoomVC: UIViewController {
 
 }
 
-
-extension ImageZoomVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-
-    // MARK: - CollectionView
-
-    func settingsCV() {
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-
-        collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
-
-        self.collectionView.register(UINib(nibName: "CellZoom", bundle: nil),
-                                     forCellWithReuseIdentifier: "CellZoom")
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageCellOne == nil ? countCell : 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: CellZoom = collectionView.dequeueReusableCell(withReuseIdentifier: "CellZoom", for: indexPath) as! CellZoom
-
-        if imageCellOne == nil {
-            cell.ind = indexPath
-        } else {
-            cell.imageCellOne = imageCellOne
-        }
-
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width,
-                      height: UIScreen.main.bounds.size.height)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-
-    var imageActive: UIImage? {
-
-        let index = IndexPath(row: counter, section: 0)
-        if let cell = collectionView.cellForItem(at: index) as? CellZoom, let img = cell.imageScrollView.imageZoomView.image{
-            return img
-        }
-
-        return nil
-    }
-}
-
-extension ImageZoomVC: UIScrollViewDelegate {
-
-    //заканчивает
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        reloadCounter(velocity)
-        targetContentOffset.pointee.x = UIScreen.main.bounds.size.width * CGFloat(counter)
-        textTitle()
-    }
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        flagAnimateCollection = false
-        print("start scroll")
-
-        if activeNB {
-            self.timer.invalidate()
-        }
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
-        flagAnimateCollection = true
-
-        if activeNB {
-            self.startTimer()
-        }
-    }
-
-
-    private func reloadCounter(_ velocity: CGPoint) {
-        
-        SupportNotification.notificClearImage(index: IndexPath(row: counter, section: 0), isClear: false)
-        
-        if velocity.x < 0 {
-            if counter != 0 {
-                counter -= 1
-            }
-        } else if velocity.x > 0 {
-            if counter != countCell - 1 {
-                counter += 1
-            }
-        }
-        SupportNotification.notificClearImage(index: IndexPath(row: counter, section: 0), isClear: true)
-
-    }
-
-    var activeNB: Bool{
-        return self.navigBarView.isUserInteractionEnabled
-    }
-
-}
-
-
-// MARK: timer
-extension ImageZoomVC {
-
-    func startTimer() {
-
-        time = 5
-
-        self.timer = Timer.scheduledTimer(timeInterval: 1,
-                                          target: self,
-                                          selector: #selector(ImageZoomVC.actionTimer),
-                                          userInfo: nil,
-                                          repeats: true)
-    }
-
-    @objc func actionTimer() {
-        self.time -= 1
-
-        print(time)
-
-        if self.time == 0 {
-            if activeNB {
-                self.animateHeder(true)
-            }
-            self.timer.invalidate()
-        }
-    }
-
-
-}
 
 
 
