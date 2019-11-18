@@ -45,14 +45,31 @@
                                     <constraint firstAttribute="height" constant="64" id="eN7-ou-B0T"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue2-vH-pVk">
+                                <rect key="frame" x="134.5" y="599" width="106" height="33"/>
+                                <color key="backgroundColor" red="0.83529411760000005" green="0.35294117650000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="2Vn-RY-qo2"/>
+                                    <constraint firstAttribute="height" constant="33" id="BWc-Pq-bK1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="СОХРАНИТЬ">
+                                    <color key="titleColor" red="1" green="0.94622291160000005" blue="0.039997223300000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButton:" destination="3WJ-HV-RWl" eventType="touchUpInside" id="jsa-oM-YOo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5bq-V0-Lxj" firstAttribute="leading" secondItem="thz-1n-Pis" secondAttribute="leading" id="4xR-ld-nG0"/>
                             <constraint firstItem="ddC-ov-UqH" firstAttribute="top" secondItem="Mfy-JM-UP6" secondAttribute="top" id="IXS-WM-0vL"/>
+                            <constraint firstItem="thz-1n-Pis" firstAttribute="bottom" secondItem="ue2-vH-pVk" secondAttribute="bottom" constant="35" id="N36-Hb-2fV"/>
                             <constraint firstItem="5bq-V0-Lxj" firstAttribute="trailing" secondItem="thz-1n-Pis" secondAttribute="trailing" id="NY6-1v-M5P"/>
                             <constraint firstItem="ddC-ov-UqH" firstAttribute="trailing" secondItem="thz-1n-Pis" secondAttribute="trailing" id="Y6c-BS-nz5"/>
                             <constraint firstItem="5bq-V0-Lxj" firstAttribute="top" secondItem="Mfy-JM-UP6" secondAttribute="top" id="YVg-WA-6YX"/>
+                            <constraint firstItem="ue2-vH-pVk" firstAttribute="centerX" secondItem="thz-1n-Pis" secondAttribute="centerX" id="kcX-mG-OCh"/>
                             <constraint firstItem="ddC-ov-UqH" firstAttribute="leading" secondItem="thz-1n-Pis" secondAttribute="leading" id="uj7-Eo-hJ4"/>
                             <constraint firstItem="5bq-V0-Lxj" firstAttribute="bottom" secondItem="thz-1n-Pis" secondAttribute="bottom" id="zXf-aW-fGV"/>
                         </constraints>
@@ -61,6 +78,7 @@
                     <connections>
                         <outlet property="collectionView" destination="5bq-V0-Lxj" id="YgF-w2-kF8"/>
                         <outlet property="navigBarView" destination="ddC-ov-UqH" id="ka9-l6-ka4"/>
+                        <outlet property="saveImageButton" destination="ue2-vH-pVk" id="s2W-lI-21v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BjP-bc-Qes" userLabel="First Responder" sceneMemberID="firstResponder"/>

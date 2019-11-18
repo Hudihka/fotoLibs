@@ -17,6 +17,8 @@ class ImageZoomVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var navigBarView: NavigBarView!
 
+    @IBOutlet weak var saveImageButton: UIButton!
+
     var counter = 0
     var imageCellOne: UIImage? = nil
 
@@ -62,6 +64,10 @@ class ImageZoomVC: UIViewController {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
         startTimer()
+
+        if imageCellOne == nil {
+            saveImageButton.isHidden = true
+        }
 
     }
 
@@ -190,6 +196,31 @@ class ImageZoomVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+
+    @IBAction func saveButton(_ sender: Any) {
+
+        if let img = self.imageCellOne {
+            UIImageWriteToSavedPhotosAlbum(img, self, #selector(self.finishWriteImage), nil)
+        }
+    }
+
+    @objc private func finishWriteImage(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+
+        alertNoAccess(isOk: error == nil)
+
+    }
+
+
+    private func alertNoAccess(isOk: Bool) {
+        let textTitle = isOk ? "Готово" : "ОШИБКА"
+        let description = isOk ? "Файл сохранен" : "Попробуйте снова"
+
+        let alert = UIAlertController(title: textTitle, message: description, preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.cancel, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
+    }
 
 
 }
