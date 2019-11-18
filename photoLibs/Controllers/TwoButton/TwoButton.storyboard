@@ -270,7 +270,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zj-pO-I8X" customClass="SwiftyCamButton" customModule="SwiftyCam">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zj-pO-I8X">
                                 <rect key="frame" x="157.5" y="576" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -278,7 +278,7 @@
                                     <constraint firstAttribute="width" constant="60" id="jLL-tp-PXl"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="cameraButton_TouchUpInside:" destination="6VH-MH-kFu" eventType="touchUpInside" id="1hd-1Y-U71"/>
+                                    <action selector="cameraButton_TouchUpInside:" destination="6VH-MH-kFu" eventType="touchUpInside" id="xF5-Th-wTQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOs-1F-oWg">
@@ -292,7 +292,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="reloadCamera:" destination="6VH-MH-kFu" eventType="touchUpInside" id="cyZ-A5-Xo8"/>
+                                    <action selector="reloadCamera:" destination="6VH-MH-kFu" eventType="touchUpInside" id="GKe-7D-8fV"/>
                                 </connections>
                             </button>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Q7-9n5" customClass="ViewPhotoCollection" customModule="photoLibs" customModuleProvider="target">
@@ -328,7 +328,7 @@
                     </view>
                     <connections>
                         <outlet property="albButton" destination="IVt-O0-axc" id="NU3-x8-e7S"/>
-                        <outlet property="cameraButton" destination="0Zj-pO-I8X" id="G0j-F0-mIZ"/>
+                        <outlet property="cameraButton" destination="0Zj-pO-I8X" id="D4K-W7-xvN"/>
                         <outlet property="imagePan" destination="g2k-jI-17q" id="7eb-18-C9n"/>
                         <outlet property="viewPhotoCollection" destination="T7q-Q7-9n5" id="mE4-5I-IjS"/>
                     </connections>

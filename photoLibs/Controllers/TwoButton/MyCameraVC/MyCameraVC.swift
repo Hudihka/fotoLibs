@@ -21,16 +21,37 @@ class MyCameraVC: UIViewController {
     var openCollectionView = false
     var animateUpdate = false
 
+    //камера
+
+    var captureSession = AVCaptureSession() //сессия захвата медиа
+
+    //ну собственно все камеры
+    var backCamera: AVCaptureDevice?
+    var frontCamera: AVCaptureDevice?
+    var currentCamrera: AVCaptureDevice?
+
+    var photoOutput: AVCapturePhotoOutput? ///класс захвата изображения
+
+    var cameraPreviewLayer: AVCaptureVideoPreviewLayer?  //слой видео в момент его захвата
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+
+        setupDevice()           //настройки девайса
+        setupInputOutput()      //настроить вход-выход
+        setupPreviewLayer()     //настройка слоя фотокамеры
+        startRunningCaptureSession()
+
+        //настраивает кнопку
+        cameraButton.circle()
+        cameraButton.layer.borderWidth = 5
+        cameraButton.layer.borderColor = UIColor.red.cgColor
+
+
         self.customNavigationBar()
 
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        //        super.viewDidDisappear(animated)
     }
 
 
@@ -56,13 +77,16 @@ class MyCameraVC: UIViewController {
 
     @IBAction func cameraButton_TouchUpInside(_ sender: Any) {
 //        takePhoto()
-    }
 
-
-    @IBAction func reloadCamera(_ sender: Any) {
-//        switchCamera()
-//        rightBBItem(isON: false)
+        let settings = AVCapturePhotoSettings()                 //делаем фото
+        photoOutput?.capturePhoto(with: settings, delegate: self)
     }
+//
+//
+//    @IBAction func reloadCamera(_ sender: Any) {
+////        switchCamera()
+////        rightBBItem(isON: false)
+//    }
 
 
 
@@ -168,7 +192,111 @@ class MyCameraVC: UIViewController {
         super.viewDidDisappear(true)
         ManagerPhotos.shared.imageCache.removeAllObjects()
     }
-    
-
 
 }
+
+extension MyCameraVC: AVCapturePhotoCaptureDelegate {
+
+    func setupDevice() {
+        //Запрос для поиска и мониторинга доступных устройств захвата.
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+        //Массив доступных в настоящее время устройств, соответствующих критериям сеанса.
+        let devices = deviceDiscoverySession.devices
+
+        for device in devices {
+            if device.position == AVCaptureDevice.Position.back {
+                backCamera = device
+            } else if device.position == AVCaptureDevice.Position.front {
+                frontCamera = device
+            }
+        }
+
+        //это какую камеру мы будем использовать в данный момент
+        currentCamrera = backCamera
+    }
+
+    func setupInputOutput() {
+        do {
+            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamrera!) //захват того что есть сейчас
+            captureSession.addInput(captureDeviceInput)//Добавляет заданный вход в сеанс.
+            photoOutput = AVCapturePhotoOutput()       //Выходные данные захвата для неподвижного изображения, Live Photo и других рабочих процессов фотографии.
+            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])], completionHandler: nil) //полученное фото
+            captureSession.addOutput(photoOutput!)
+        } catch {
+            print(error)
+        }
+    }
+
+    func setupPreviewLayer() {
+        cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        //Указывает, как слой отображает видеоконтент в своих границах.
+        cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        cameraPreviewLayer?.frame = self.view.frame
+        self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
+    }
+
+    func startRunningCaptureSession() {
+        captureSession.startRunning() //запускаем сессию
+    }
+
+    //сделали фото
+
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput,
+                     didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
+                     previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
+                     resolvedSettings: AVCaptureResolvedPhotoSettings,
+                     bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?){
+
+
+        if let photoBuffer = photoSampleBuffer {
+            let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoBuffer, previewPhotoSampleBuffer: nil)
+            openVCZoom(data: data)
+        }
+
+        let previewWidth = Int(resolvedSettings.previewDimensions.width)
+        let previewHeight = Int(resolvedSettings.previewDimensions.height)
+
+        if let previewBuffer = previewPhotoSampleBuffer {
+            if let imageBuffer = CMSampleBufferGetImageBuffer(previewBuffer) {
+                let ciImagePreview = CIImage(cvImageBuffer: imageBuffer)
+                let context = CIContext()
+                if let cgImagePreview = context.createCGImage(ciImagePreview, from: CGRect(x: 0, y: 0, width:previewWidth , height:previewHeight )) {
+                    if let vc = ImageZoomVC.route(index: 0, image: UIImage(cgImage: cgImagePreview)){
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+
+    }
+
+    private func openVCZoom(data: Data?){
+        if let data = data, let imgage = UIImage(data: data), let vc = ImageZoomVC.route(index: 0, image: imgage){
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+
+//
+//
+//    func photoOutput(_ output: AVCapturePhotoOutput,
+//                     didCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings){
+//
+///////
+//    }
+
+
+//    func photoOutput(_ output: AVCapturePhotoOutput,
+//                     didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+//        if let imageData = photo.fileDataRepresentation() {
+//            image = UIImage(data: imageData)
+//
+//        }
+//    }
+
+}
+
+
+
+
+

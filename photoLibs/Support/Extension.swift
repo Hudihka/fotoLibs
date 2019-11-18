@@ -126,4 +126,9 @@ extension UIView {
         self.layer.cornerRadius = number
         self.layer.masksToBounds = true
     }
+
+    func circle() {
+        let radius = self.frame.height / 2
+        self.addRadius(number: radius)
+    }
 }
