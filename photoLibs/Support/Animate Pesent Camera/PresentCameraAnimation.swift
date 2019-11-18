@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-
 import UIKit
 
 let animationTimeIntervalCamera: TimeInterval = 5//0.5

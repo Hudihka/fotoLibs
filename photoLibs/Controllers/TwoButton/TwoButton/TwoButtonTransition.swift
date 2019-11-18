@@ -22,21 +22,9 @@ extension TwoButtonVC: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        return nil
+        let point = photoButton.center
+        return DismissCameraAnimation(finalPoint: point)
 
-//        let tupls = getFrameImageView()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + animationTimeInterval - 0.04) {
-//            let image = UIImage(named: "imag_\(tupls.1.row)") ?? UIImage()
-//            self.clearImageCell(index: tupls.1, image: image)
-//        }
-
-//        return DismissStockAnimation(originFrame: tupls.0, index: tupls.1)
-        //        guard let revealVC = dismissed as? TwoViewController else {
-        //            return nil
-        //        }
-        //
-        //        return nil
-        //        return FlipDismissAnimationController(destinationFrame: cardView.frame, interactionController: revealVC.swipeInteractionController)
     }
 
 

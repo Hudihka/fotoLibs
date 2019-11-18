@@ -28,6 +28,7 @@
 		CE25CAEE2382588A001016EE /* MaskCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAED23825889001016EE /* MaskCircleView.swift */; };
 		CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */; };
 		CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF223825B61001016EE /* TwoButtonTransition.swift */; };
+		CE25CAF523826BD6001016EE /* DismissCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */; };
 		CE94D5F7237D593A00314322 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F6237D593A00314322 /* Extension.swift */; };
 		CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */; };
 		CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */; };
@@ -78,6 +79,7 @@
 		CE25CAED23825889001016EE /* MaskCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskCircleView.swift; sourceTree = "<group>"; };
 		CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCameraAnimation.swift; sourceTree = "<group>"; };
 		CE25CAF223825B61001016EE /* TwoButtonTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonTransition.swift; sourceTree = "<group>"; };
+		CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissCameraAnimation.swift; sourceTree = "<group>"; };
 		CE94D5F6237D593A00314322 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCCollectionExtension.swift; sourceTree = "<group>"; };
 		CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCPresentCollectionAnimate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				CE25CAED23825889001016EE /* MaskCircleView.swift */,
 				CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */,
+				CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */,
 			);
 			path = "Animate Pesent Camera";
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				CE0D5C8F23780267003C57B4 /* ImageScrollView.swift in Sources */,
 				CEEC0AF92377E19F00CFBFD4 /* AlertViewController.swift in Sources */,
 				CE0D5C9923799718003C57B4 /* DismissZoomVCAnimation.swift in Sources */,
+				CE25CAF523826BD6001016EE /* DismissCameraAnimation.swift in Sources */,
 				CEEC0AE22377DBE700CFBFD4 /* ApplicationOpportunities.swift in Sources */,
 				CEEC0AEB2377DF1D00CFBFD4 /* TabBarVC.swift in Sources */,
 				CEEC0B032377E77400CFBFD4 /* CameraViewController.swift in Sources */,
