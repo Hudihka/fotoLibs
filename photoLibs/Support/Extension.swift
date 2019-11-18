@@ -67,7 +67,6 @@ extension UICollectionView{
 
     func clearImageCell(clear: Bool, index: IndexPath){
 
-        self.scrollPosition(index: index) //скро
 
         if let cell = self.cellForItem(at: index) as? PhotoCollectionCell {
 
@@ -79,13 +78,7 @@ extension UICollectionView{
         }
     }
 
-    private func scrollPosition(index: IndexPath){
 
-            let position: UICollectionView.ScrollPosition = self.superview is ViewPhotoCollection ? .centeredVertically : .centeredHorizontally
-
-            self.scrollToItem(at: index, at: position, animated: false)
-
-    }
 
 
     func frameImageView(_ selectedIndex: IndexPath) -> CGRect {
