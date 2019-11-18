@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension CameraViewController{
+extension MyCameraVC{
 
     func addCollection(){
 
@@ -180,3 +180,4 @@ extension CameraViewController{
         }
     }
 }
+

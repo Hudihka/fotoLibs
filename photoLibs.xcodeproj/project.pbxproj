@@ -29,6 +29,9 @@
 		CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */; };
 		CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF223825B61001016EE /* TwoButtonTransition.swift */; };
 		CE25CAF523826BD6001016EE /* DismissCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */; };
+		CE25CAF82382A9E7001016EE /* MyCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF72382A9E7001016EE /* MyCameraVC.swift */; };
+		CE25CAFA2382ADF3001016EE /* MyCameraCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF92382ADF3001016EE /* MyCameraCollectionExtension.swift */; };
+		CE25CAFC2382AE17001016EE /* MyCameraCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAFB2382AE17001016EE /* MyCameraCollectionAnimate.swift */; };
 		CE94D5F7237D593A00314322 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F6237D593A00314322 /* Extension.swift */; };
 		CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */; };
 		CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */; };
@@ -80,6 +83,9 @@
 		CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCameraAnimation.swift; sourceTree = "<group>"; };
 		CE25CAF223825B61001016EE /* TwoButtonTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonTransition.swift; sourceTree = "<group>"; };
 		CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissCameraAnimation.swift; sourceTree = "<group>"; };
+		CE25CAF72382A9E7001016EE /* MyCameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCameraVC.swift; sourceTree = "<group>"; };
+		CE25CAF92382ADF3001016EE /* MyCameraCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCameraCollectionExtension.swift; sourceTree = "<group>"; };
+		CE25CAFB2382AE17001016EE /* MyCameraCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCameraCollectionAnimate.swift; sourceTree = "<group>"; };
 		CE94D5F6237D593A00314322 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCCollectionExtension.swift; sourceTree = "<group>"; };
 		CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCPresentCollectionAnimate.swift; sourceTree = "<group>"; };
@@ -226,6 +232,16 @@
 			path = TwoButton;
 			sourceTree = "<group>";
 		};
+		CE25CAF62382A9A8001016EE /* MyCameraVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE25CAF72382A9E7001016EE /* MyCameraVC.swift */,
+				CE25CAF92382ADF3001016EE /* MyCameraCollectionExtension.swift */,
+				CE25CAFB2382AE17001016EE /* MyCameraCollectionAnimate.swift */,
+			);
+			path = MyCameraVC;
+			sourceTree = "<group>";
+		};
 		CE94D5F8237D5D5300314322 /* CameraVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */,
+				CE25CAF62382A9A8001016EE /* MyCameraVC */,
 				CE25CAF123825B37001016EE /* TwoButton */,
 				CE94D5F8237D5D5300314322 /* CameraVC */,
 				CEEC0AFB2377E23300CFBFD4 /* PhotoCollectionVC */,
@@ -512,16 +529,19 @@
 				CEEC0AE42377DBE700CFBFD4 /* SupportClass.swift in Sources */,
 				CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */,
 				CEEC0AE12377DBE700CFBFD4 /* Utils.swift in Sources */,
+				CE25CAFA2382ADF3001016EE /* MyCameraCollectionExtension.swift in Sources */,
 				CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */,
 				CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */,
 				CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */,
 				CE25CAEE2382588A001016EE /* MaskCircleView.swift in Sources */,
+				CE25CAFC2382AE17001016EE /* MyCameraCollectionAnimate.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */,
 				CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */,
 				CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CE94D60A237D79E000314322 /* AlbumView.swift in Sources */,
+				CE25CAF82382A9E7001016EE /* MyCameraVC.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
 				CEEC0AE32377DBE700CFBFD4 /* ManagerPhotos.swift in Sources */,
 				CE0D5C8C23780267003C57B4 /* CellZoom.swift in Sources */,
@@ -681,7 +701,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WJY55Z8FDT;
+				DEVELOPMENT_TEAM = UDKVUYFRKW;
 				INFOPLIST_FILE = "$(SRCROOT)/photoLibs/Resorces/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -701,7 +721,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WJY55Z8FDT;
+				DEVELOPMENT_TEAM = UDKVUYFRKW;
 				INFOPLIST_FILE = "$(SRCROOT)/photoLibs/Resorces/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

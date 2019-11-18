@@ -50,11 +50,20 @@ class TwoButtonVC: UIViewController {
             case .permitted, .pressTrue:
                 print("открыть фото камеру")
 
-                let NVC = UINavigationController()
-                NVC.view.backgroundColor = UIColor.clear
-                NVC.transitioningDelegate = self
+                //если надо только фото
 
-                self.navigationController?.present(NVC, animated: true, completion: nil)
+                if let VC = MyCameraVC.route() {
+                    let NVC = UINavigationController(rootViewController: VC)
+                    NVC.view.backgroundColor = UIColor.clear
+                    self.navigationController?.present(NVC, animated: true, completion: nil)
+                }
+
+                //если надо фото и видео
+//                let NVC = UINavigationController()
+//                NVC.view.backgroundColor = UIColor.clear
+//                NVC.transitioningDelegate = self
+//
+//                self.navigationController?.present(NVC, animated: true, completion: nil)
 
             case .pressBan, .noValue:
                 return

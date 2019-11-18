@@ -145,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hB2-Ex-07j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1928.8" y="-1904.7976011994006"/>
+            <point key="canvasLocation" x="1818" y="-1872"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="jxK-92-7U0">
@@ -260,7 +260,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8X-oO-SCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="o9A-t3-gvJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="865" y="-1905"/>
+            <point key="canvasLocation" x="-202" y="-1872"/>
+        </scene>
+        <!--My CameraVC-->
+        <scene sceneID="UZD-Ae-8Hp">
+            <objects>
+                <viewController storyboardIdentifier="MyCameraVC" modalPresentationStyle="overFullScreen" hidesBottomBarWhenPushed="YES" id="6VH-MH-kFu" customClass="MyCameraVC" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Dp-KZ-GaC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zj-pO-I8X" customClass="SwiftyCamButton" customModule="SwiftyCam">
+                                <rect key="frame" x="157.5" y="576" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="aT5-fu-v0y"/>
+                                    <constraint firstAttribute="width" constant="60" id="jLL-tp-PXl"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="cameraButton_TouchUpInside:" destination="6VH-MH-kFu" eventType="touchUpInside" id="1hd-1Y-U71"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOs-1F-oWg">
+                                <rect key="frame" x="262" y="591" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1An-0j-kbp"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="lgx-Zn-Fxb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Изменить камеру">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadCamera:" destination="6VH-MH-kFu" eventType="touchUpInside" id="cyZ-A5-Xo8"/>
+                                </connections>
+                            </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Q7-9n5" customClass="ViewPhotoCollection" customModule="photoLibs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="458" width="375" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="midl" translatesAutoresizingMaskIntoConstraints="NO" id="g2k-jI-17q">
+                                <rect key="frame" x="160" y="438" width="60" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVt-O0-axc" customClass="AlbumView" customModule="photoLibs" customModuleProvider="target">
+                                <rect key="frame" x="35" y="576" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="P70-wA-yCu"/>
+                                    <constraint firstAttribute="width" constant="60" id="XX4-DL-TlI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IVt-O0-axc" firstAttribute="centerY" secondItem="0Zj-pO-I8X" secondAttribute="centerY" id="Mvh-yo-H57"/>
+                            <constraint firstItem="5fm-kN-HZX" firstAttribute="bottom" secondItem="0Zj-pO-I8X" secondAttribute="bottom" constant="31" id="NAY-a9-CBv"/>
+                            <constraint firstItem="5fm-kN-HZX" firstAttribute="trailing" secondItem="aOs-1F-oWg" secondAttribute="trailing" constant="16" id="c7o-hp-EuJ"/>
+                            <constraint firstItem="5fm-kN-HZX" firstAttribute="bottom" secondItem="aOs-1F-oWg" secondAttribute="bottom" constant="46" id="dXM-i9-8bv"/>
+                            <constraint firstItem="IVt-O0-axc" firstAttribute="leading" secondItem="5fm-kN-HZX" secondAttribute="leading" constant="35" id="eU9-4s-cUw"/>
+                            <constraint firstItem="0Zj-pO-I8X" firstAttribute="centerX" secondItem="5fm-kN-HZX" secondAttribute="centerX" id="lIR-cZ-kRc"/>
+                            <constraint firstItem="aOs-1F-oWg" firstAttribute="centerY" secondItem="0Zj-pO-I8X" secondAttribute="centerY" id="uYw-NE-203"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5fm-kN-HZX"/>
+                    </view>
+                    <connections>
+                        <outlet property="albButton" destination="IVt-O0-axc" id="NU3-x8-e7S"/>
+                        <outlet property="cameraButton" destination="0Zj-pO-I8X" id="G0j-F0-mIZ"/>
+                        <outlet property="imagePan" destination="g2k-jI-17q" id="7eb-18-C9n"/>
+                        <outlet property="viewPhotoCollection" destination="T7q-Q7-9n5" id="mE4-5I-IjS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jz6-hP-LNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="921" y="-1872"/>
         </scene>
     </scenes>
     <resources>
