@@ -64,7 +64,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
     //MARK: - DESING
 
-    private func customNavigationBar() {
+    func customNavigationBar() {
         self.clearNavigationBar()
         self.bbCancel()
 

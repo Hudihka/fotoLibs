@@ -11,6 +11,8 @@ import UIKit
 class TwoButtonVC: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var photoButton: UIButton!
+
     static var openNevStackNavigation = true //если да, то открываем новый стек навигации, переменная нужна для дисмиса
 
     override func viewDidLoad() {
@@ -20,6 +22,12 @@ class TwoButtonVC: UIViewController {
                                                selector: #selector(reloadSelectedImage),
                                                name: .reloadSelectedImage,
                                                object: nil)
+    }
+
+    static func route() -> TwoButtonVC?{
+        let storubord = UIStoryboard(name: "TwoButton", bundle: nil)
+        let VC = storubord.instantiateViewController(withIdentifier: "TwoButtonVC")
+        return VC as? TwoButtonVC
     }
 
 
@@ -42,10 +50,25 @@ class TwoButtonVC: UIViewController {
             case .permitted, .pressTrue:
                 print("открыть фото камеру")
 
-                if let vc = CameraViewController.route() {
-                    TwoButtonVC.openNevStackNavigation = true
-                    self.present(controller: vc)
-                }
+                let NVC = UINavigationController()
+                NVC.view.backgroundColor = UIColor.clear
+                NVC.transitioningDelegate = self
+
+                self.navigationController?.present(NVC, animated: true, completion: nil)
+
+
+//                if let VC = CameraViewController.route(){
+//                    let NVC = UINavigationController(rootViewController: VC)
+//                    NVC.view.backgroundColor = UIColor.clear
+//                    NVC.transitioningDelegate = self
+//
+//                    self.navigationController?.present(NVC, animated: true, completion: nil)
+//                }
+
+//                if let vc = CameraViewController.route() {
+//                    TwoButtonVC.openNevStackNavigation = true
+//                    self.present(controller: vc)
+//                }
 
             case .pressBan, .noValue:
                 return

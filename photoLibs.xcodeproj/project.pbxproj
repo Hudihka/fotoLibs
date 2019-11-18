@@ -25,6 +25,9 @@
 		CE0DCEBB237EB76B00B0EC61 /* IZoomCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBA237EB76B00B0EC61 /* IZoomCollection.swift */; };
 		CE0DCEBD237EB79C00B0EC61 /* IZoomScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBC237EB79C00B0EC61 /* IZoomScroll.swift */; };
 		CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */; };
+		CE25CAEE2382588A001016EE /* MaskCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAED23825889001016EE /* MaskCircleView.swift */; };
+		CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */; };
+		CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF223825B61001016EE /* TwoButtonTransition.swift */; };
 		CE94D5F7237D593A00314322 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F6237D593A00314322 /* Extension.swift */; };
 		CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */; };
 		CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */; };
@@ -72,6 +75,9 @@
 		CE0DCEBA237EB76B00B0EC61 /* IZoomCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomCollection.swift; sourceTree = "<group>"; };
 		CE0DCEBC237EB79C00B0EC61 /* IZoomScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomScroll.swift; sourceTree = "<group>"; };
 		CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomTimer.swift; sourceTree = "<group>"; };
+		CE25CAED23825889001016EE /* MaskCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskCircleView.swift; sourceTree = "<group>"; };
+		CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCameraAnimation.swift; sourceTree = "<group>"; };
+		CE25CAF223825B61001016EE /* TwoButtonTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonTransition.swift; sourceTree = "<group>"; };
 		CE94D5F6237D593A00314322 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE94D5F9237D5D8100314322 /* CameraVCCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCCollectionExtension.swift; sourceTree = "<group>"; };
 		CE94D5FB237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVCPresentCollectionAnimate.swift; sourceTree = "<group>"; };
@@ -199,6 +205,24 @@
 			path = CellZoom;
 			sourceTree = "<group>";
 		};
+		CE25CAEC23825869001016EE /* Animate Pesent Camera */ = {
+			isa = PBXGroup;
+			children = (
+				CE25CAED23825889001016EE /* MaskCircleView.swift */,
+				CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */,
+			);
+			path = "Animate Pesent Camera";
+			sourceTree = "<group>";
+		};
+		CE25CAF123825B37001016EE /* TwoButton */ = {
+			isa = PBXGroup;
+			children = (
+				CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */,
+				CE25CAF223825B61001016EE /* TwoButtonTransition.swift */,
+			);
+			path = TwoButton;
+			sourceTree = "<group>";
+		};
 		CE94D5F8237D5D5300314322 /* CameraVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +290,7 @@
 				CEEC0ADE2377DBE700CFBFD4 /* SupportClass.swift */,
 				CEEC0AD92377DBE600CFBFD4 /* SupportNotification.swift */,
 				CE94D5F6237D593A00314322 /* Extension.swift */,
+				CE25CAEC23825869001016EE /* Animate Pesent Camera */,
 				CE0D5C95237996BF003C57B4 /* Animate Present Foto */,
 			);
 			path = Support;
@@ -306,7 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */,
-				CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */,
+				CE25CAF123825B37001016EE /* TwoButton */,
 				CE94D5F8237D5D5300314322 /* CameraVC */,
 				CEEC0AFB2377E23300CFBFD4 /* PhotoCollectionVC */,
 			);
@@ -487,8 +512,11 @@
 				CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */,
 				CE0D5C9823799718003C57B4 /* PresentZoomVCAnimation.swift in Sources */,
 				CE94D5FA237D5D8100314322 /* CameraVCCollectionExtension.swift in Sources */,
+				CE25CAEE2382588A001016EE /* MaskCircleView.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */,
+				CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */,
+				CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CE94D60A237D79E000314322 /* AlbumView.swift in Sources */,
 				CEEC0ADF2377DBE700CFBFD4 /* SupportNotification.swift in Sources */,
