@@ -13,6 +13,10 @@ extension CameraViewController{
 
     func addCollection(){
 
+        if self.imagePan == nil{
+            return
+        }
+
         if !KeysUDef.openPhotoLibs.getBool() {
             removeObject()
             return
@@ -24,11 +28,7 @@ extension CameraViewController{
                 self.positionView(0)
                 self.addGestures()
 
-
-                self.albButton.addRadius(number: 2)
-
                 self.startAnimateCollection()
-
 
             } else {
                 self.removeObject()
@@ -38,13 +38,17 @@ extension CameraViewController{
 
 
     private func startAnimateCollection(){
+        self.albButton.addRadius(number: 2)
+        self.albButton.alpha = 0
+
         self.imagePan.image = CellHeightEnum.big.image
         self.imagePan.alpha = 0
         self.viewPhotoCollection.alpha = 0
 
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.imagePan.alpha = 1
             self.viewPhotoCollection.alpha = 1
+            self.albButton.alpha = 1
         }
 
     }

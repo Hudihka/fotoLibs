@@ -19,7 +19,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     @IBOutlet weak var imagePan: UIImageView!
     @IBOutlet weak var albButton: AlbumView!
 
-    var openCollectionView = true
+    var openCollectionView = false
     var animateUpdate = false
 
 
@@ -40,7 +40,18 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
         self.customNavigationBar()
         
+//        self.addCollection()
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.addCollection()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateAnimateView(0)
     }
 
     static func route() -> CameraViewController?{
