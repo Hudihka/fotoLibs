@@ -40,6 +40,7 @@ class MyCameraVC: UIViewController {
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
 
         setupDevice()           //настройки девайса
+        currentCamrera = backCamera
         setupInputOutput()      //настроить вход-выход
         setupPreviewLayer()     //настройка слоя фотокамеры
         startRunningCaptureSession()
@@ -74,20 +75,47 @@ class MyCameraVC: UIViewController {
         return VC as? MyCameraVC
     }
 
+    //MARK: - ACTION
 
     @IBAction func cameraButton_TouchUpInside(_ sender: Any) {
-//        takePhoto()
 
         let settings = AVCapturePhotoSettings()                 //делаем фото
         photoOutput?.capturePhoto(with: settings, delegate: self)
     }
 //
 //
-//    @IBAction func reloadCamera(_ sender: Any) {
-////        switchCamera()
-////        rightBBItem(isON: false)
-//    }
+    @IBAction func reloadCamera(_ sender: Any) {
+//        switchCamera()
 
+        self.captureSession.stopRunning()
+
+        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                self.captureSession.removeInput(input)
+            }
+        }
+
+//        captureSession.stopRunning()
+
+        currentCamrera = currentCamrera == frontCamera ? backCamera : frontCamera
+//        setupInputOutput()      //настроить вход-выход
+
+        do {
+            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamrera!) //захват того что есть сейчас
+            captureSession.addInput(captureDeviceInput)//Добавляет заданный вход в сеанс.
+            photoOutput = AVCapturePhotoOutput()       //Выходные данные захвата для неподвижного изображения, Live Photo и других рабочих процессов фотографии.
+            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])], completionHandler: nil) //полученное фото
+            captureSession.addOutput(photoOutput!)
+        } catch {
+            print(error)
+        }
+
+        setupPreviewLayer()     //настройка слоя фотокамеры
+        startRunningCaptureSession()
+
+
+        rightBBItem(isON: false)
+    }
 
 
     //MARK: - DESING
@@ -134,10 +162,10 @@ class MyCameraVC: UIViewController {
 
     @objc func flashDevise(){
 
-        //TODO настроить потом
-//        if currentCamera == .front{
-//            return
-//        }
+
+        if currentCamrera == frontCamera {
+            return
+        }
 
         let device = AVCaptureDevice.default(for: AVMediaType.video)
 
@@ -174,22 +202,9 @@ class MyCameraVC: UIViewController {
         }
     }
 
-//Сделать Фото
-//TODO настроить потом
-
-//    func  swiftyCam ( _  swiftyCam : SwiftyCamViewController, didTake  photo : UIImage) {
-//        presentPhoto(image: photo)
-//    }
-//
-//    private func presentPhoto(image: UIImage){
-//
-//        if let vc = ImageZoomVC.route(index: 0, image: image){
-//            self.present(vc, animated: true, completion: nil)
-//        }
-//    }
 
     deinit {
-        super.viewDidDisappear(true)
+        captureSession.stopRunning()
         ManagerPhotos.shared.imageCache.removeAllObjects()
     }
 
@@ -210,9 +225,6 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
                 frontCamera = device
             }
         }
-
-        //это какую камеру мы будем использовать в данный момент
-        currentCamrera = backCamera
     }
 
     func setupInputOutput() {
@@ -240,7 +252,7 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
         captureSession.startRunning() //запускаем сессию
     }
 
-    //сделали фото
+    //MARK: - сделали фото
 
     func photoOutput(_ captureOutput: AVCapturePhotoOutput,
                      didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
@@ -276,23 +288,6 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
             self.present(vc, animated: true, completion: nil)
         }
     }
-
-//
-//
-//    func photoOutput(_ output: AVCapturePhotoOutput,
-//                     didCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings){
-//
-///////
-//    }
-
-
-//    func photoOutput(_ output: AVCapturePhotoOutput,
-//                     didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-//        if let imageData = photo.fileDataRepresentation() {
-//            image = UIImage(data: imageData)
-//
-//        }
-//    }
 
 }
 

@@ -51,6 +51,10 @@ class AlbumView: UIView {
         if let VC = UIApplication.shared.getWorkVC as? CameraViewController {
             VC.openAlbum()
         }
+
+        if let VC = UIApplication.shared.getWorkVC as? MyCameraVC {
+            VC.openAlbum()
+        }
     }
 
 
@@ -81,6 +85,29 @@ extension CameraViewController: UIImagePickerControllerDelegate & UINavigationCo
         }
     }
 
+}
+
+extension MyCameraVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+
+    func openAlbum(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+
+        self.present(picker, animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            SupportNotification.notificImage(image)
+
+            picker.dismiss(animated: true) {//камера вк
+                UIApplication.shared.lastPushVC?.navigationController?.dismiss(animated: true, completion: nil)
+            }
+
+        }
+    }
 
 }
 
