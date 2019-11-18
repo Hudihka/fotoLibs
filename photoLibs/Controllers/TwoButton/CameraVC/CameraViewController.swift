@@ -39,14 +39,18 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 
 
         self.customNavigationBar()
-        
-//        self.addCollection()
+
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addCollection()
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -59,6 +63,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         let VC = storubord.instantiateViewController(withIdentifier: "CameraViewController")
         return VC as? CameraViewController
     }
+
 
 
     @IBAction func cameraButton_TouchUpInside(_ sender: Any) {
@@ -162,6 +167,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     deinit {
+        super.viewDidDisappear(true)
         ManagerPhotos.shared.imageCache.removeAllObjects()
     }
 
