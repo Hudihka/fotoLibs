@@ -41,6 +41,7 @@ class ApplicationOpportunities: NSObject {
     }
 
     static func checkPhotoLibraryPermission(completion: @escaping (PhotoStatus) -> Void) {
+        print("999955555555555")
         let status = PHPhotoLibrary.authorizationStatus()
         switch status {
         case .authorized:

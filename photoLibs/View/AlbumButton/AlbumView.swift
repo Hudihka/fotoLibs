@@ -30,6 +30,10 @@ class AlbumView: UIView {
     private func settingsView() {
         self.contentView.backgroundColor = UIColor.clear
 
+        if !KeysUDef.openPhotoLibs.getBool() {
+            return
+        }
+
         ManagerPhotos.shared.getImageOne(indexPath: IndexPath(row: 0, section: 0)) { (img) in
             self.imageFront.image = img
         }

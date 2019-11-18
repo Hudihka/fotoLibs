@@ -22,8 +22,10 @@ extension CameraViewController{
             return
         }
 
+
+        print("9999999999999")
         ApplicationOpportunities.checkPhotoLibraryPermission { (status) in
-            if status == .permitted{
+            if status == .permitted {
                 self.viewPhotoCollection.delegate = self
                 self.positionView(0)
                 self.addGestures()

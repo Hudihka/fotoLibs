@@ -56,20 +56,6 @@ class TwoButtonVC: UIViewController {
 
                 self.navigationController?.present(NVC, animated: true, completion: nil)
 
-
-//                if let VC = CameraViewController.route(){
-//                    let NVC = UINavigationController(rootViewController: VC)
-//                    NVC.view.backgroundColor = UIColor.clear
-//                    NVC.transitioningDelegate = self
-//
-//                    self.navigationController?.present(NVC, animated: true, completion: nil)
-//                }
-
-//                if let vc = CameraViewController.route() {
-//                    TwoButtonVC.openNevStackNavigation = true
-//                    self.present(controller: vc)
-//                }
-
             case .pressBan, .noValue:
                 return
             }

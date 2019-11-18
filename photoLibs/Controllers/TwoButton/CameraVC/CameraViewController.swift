@@ -50,12 +50,13 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addCollection()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateAnimateView(0)
+        if imagePan != nil {
+            updateAnimateView(0)
+        }
     }
 
     static func route() -> CameraViewController?{
