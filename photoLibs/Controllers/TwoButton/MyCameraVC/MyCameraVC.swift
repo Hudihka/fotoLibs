@@ -86,44 +86,12 @@ class MyCameraVC: UIViewController {
 //
     @IBAction func reloadCamera(_ sender: Any) {
 
-//        self.captureSession.stopRunning()
-//
-//        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
-//            for input in inputs {
-//                self.captureSession.removeInput(input)
-//            }
-//        }
-//
-////        captureSession.stopRunning()
-//
-//        currentCamrera = currentCamrera == frontCamera ? backCamera : frontCamera
-////        setupInputOutput()      //настроить вход-выход
-//
-//        do {
-//            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamrera!) //захват того что есть сейчас
-//            captureSession.addInput(captureDeviceInput)//Добавляет заданный вход в сеанс.
-//            photoOutput = AVCapturePhotoOutput()       //Выходные данные захвата для неподвижного изображения, Live Photo и других рабочих процессов фотографии.
-//            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])], completionHandler: nil) //полученное фото
-//            captureSession.addOutput(photoOutput!)
-//        } catch {
-//            print(error)
-//        }
-//
-//        setupPreviewLayer()     //настройка слоя фотокамеры
-//        startRunningCaptureSession()
 
-
-//        usingFrontCamera = !usingFrontCamera
-
-        var usingFrontCamera = true
         do{
             captureSession.removeInput(captureSession.inputs.first!)
 
-            if(usingFrontCamera){
-                currentCamrera = getFrontCamera()
-            }else{
-                currentCamrera = getBackCamera()
-            }
+            currentCamrera = currentCamrera == frontCamera ? backCamera : frontCamera
+
             let captureDeviceInput1 = try AVCaptureDeviceInput(device: currentCamrera!)
             captureSession.addInput(captureDeviceInput1)
         }catch{
@@ -134,15 +102,6 @@ class MyCameraVC: UIViewController {
         rightBBItem(isON: false)
     }
 
-    func getFrontCamera() -> AVCaptureDevice?{
-        return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .front).devices.first
-        return nil
-    }
-
-    func getBackCamera() -> AVCaptureDevice?{
-        return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first
-        return nil
-    }
 
 
     //MARK: - DESING
