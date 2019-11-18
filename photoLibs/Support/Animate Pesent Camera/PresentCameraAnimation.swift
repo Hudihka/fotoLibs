@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let animationTimeIntervalCamera: TimeInterval = 5//0.5
+let animationTimeIntervalCamera: TimeInterval = 0.3
 
 class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
@@ -53,11 +53,12 @@ class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         maskView.startPoint = startPoint
         maskView.​configure()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.3) {
-            snaphotTwoButton.removeFromSuperview()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 4.3) {
+//            snaphotTwoButton.removeFromSuperview()
+//        }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            snaphotTwoButton.removeFromSuperview()
             snapshot.removeFromSuperview()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }

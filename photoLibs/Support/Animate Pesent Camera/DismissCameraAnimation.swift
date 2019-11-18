@@ -24,10 +24,7 @@ class DismissCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
-        guard let twoButtonVC = transitionContext.viewController(forKey: .to),     // до, вью контроллер с изображением
-//            let cameraVC = CameraViewController.route(),
-//            let snapshot = cameraVC.view.snapshotView(afterScreenUpdates: true),
-            //////
+        guard let twoButtonVC = transitionContext.viewController(forKey: .to),
             let cameraVC = transitionContext.viewController(forKey: .from),
             let snaphotCamera = cameraVC.view.snapshotView(afterScreenUpdates: true)
 
@@ -35,15 +32,6 @@ class DismissCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                 return
         }
 
-
-//        if let vcImageTest = transitionContext.viewController(forKey: .from) as? UINavigationController {
-//            if let stockVCTest = transitionContext.viewController(forKey: .to) as? UINavigationController{
-//                ////
-//            }
-//        }
-
-//        toVCN.setViewControllers([cameraVC], animated: false)
-//        cameraVC.customNavigationBar()
 
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.clear
@@ -62,7 +50,7 @@ class DismissCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 //            snaphotTwoButton.removeFromSuperview()
 //        }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             snaphotCamera.removeFromSuperview()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }

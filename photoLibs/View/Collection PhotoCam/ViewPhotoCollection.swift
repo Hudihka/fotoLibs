@@ -124,9 +124,7 @@ extension ViewPhotoCollection: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotoCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionCell", for: indexPath) as! PhotoCollectionCell
 
-        cell.contentView.addRadius(number: 8)
-
-
+        
         if indexPath.row > counterSpecifiedCell {
             counterSpecifiedCell = indexPath.row
             cell.alpha = 0

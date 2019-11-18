@@ -62,7 +62,7 @@ class MaskCircleView: UIView {
         pathAnimation.delegate = self
         pathAnimation.fromValue = myClippingPath
         pathAnimation.toValue = toPath
-        pathAnimation.duration = 5
+        pathAnimation.duration = 0.3
         mask.add(pathAnimation, forKey: pathAnimation.keyPath)
 
 
@@ -75,7 +75,7 @@ class MaskCircleView: UIView {
 extension MaskCircleView: CAAnimationDelegate {
 
     func animationDidStart(_ anim: CAAnimation) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             if self.startPoint != nil {
                 self.superview?.layer.mask = nil
             } else {
