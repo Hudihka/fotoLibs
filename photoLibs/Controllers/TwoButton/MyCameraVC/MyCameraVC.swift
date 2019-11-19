@@ -27,7 +27,6 @@ enum EnumSettingsBBItem{
         case .noEnable:
             return (text: "Включить вспышку", alpha: 0.5)
         }
-
     }
 
 
@@ -60,6 +59,12 @@ class MyCameraVC: UIViewController {
     var photoOutput: AVCapturePhotoOutput? ///класс захвата изображения
 
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?  //слой видео в момент его захвата
+
+    //зумм
+
+    var lastZoomFactor: CGFloat = 1
+
+    @IBOutlet weak var labelZoom: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +125,8 @@ class MyCameraVC: UIViewController {
 
             settingsRightBBitem(currentCamrera == frontCamera ? .noEnable : .onButton)
 
+            lastZoomFactor = 1
+
             let captureDeviceInput1 = try AVCaptureDeviceInput(device: currentCamrera!)
             captureSession.addInput(captureDeviceInput1)
         }catch{
@@ -156,16 +163,6 @@ class MyCameraVC: UIViewController {
     }
 
         //если надо только вспышку
-
-//    private func getSettings(camera: AVCaptureDevice, flashMode: AVCaptureDevice.FlashMode) -> AVCapturePhotoSettings {
-//        var settings = AVCapturePhotoSettings()
-//
-//        if camera.hasFlash {
-//            settings.flashMode = flashMode
-//        }
-//
-//        return settings
-//    }
 
 
     @objc func flashDevise(){
@@ -248,13 +245,17 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
         }
     }
 
-    func setupPreviewLayer() {
+    private func setupPreviewLayer() {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         //Указывает, как слой отображает видеоконтент в своих границах.
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         cameraPreviewLayer?.frame = self.view.frame
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
+
+        //жест
+        let pinchRecognizer = UIPinchGestureRecognizer(target: self, action:#selector(pinch))
+        self.view.addGestureRecognizer(pinchRecognizer)
     }
 
     func startRunningCaptureSession() {
@@ -296,6 +297,68 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
         if let data = data, let imgage = UIImage(data: data), let vc = ImageZoomVC.route(index: 0, image: imgage){
             self.present(vc, animated: true, completion: nil)
         }
+    }
+
+    //MARK - жест
+
+
+    @objc func pinch(sender: UIPinchGestureRecognizer) {
+
+        let newScaleFactor = minMaxZoom(sender.scale * lastZoomFactor)
+
+        switch sender.state {
+        case .began: fallthrough
+        case .changed:
+            update(scale: newScaleFactor)
+            updateLabel(isClear: false, scale: newScaleFactor)
+        case .ended:
+            lastZoomFactor = minMaxZoom(newScaleFactor)
+            update(scale: lastZoomFactor)
+            updateLabel(isClear: true, scale: lastZoomFactor)
+        default: break
+        }
+    }
+
+    func update(scale factor: CGFloat) {
+
+        //        let device = currentCamrera.device
+
+        if let camera = currentCamrera {
+
+            do {
+                try camera.lockForConfiguration()
+                defer { camera.unlockForConfiguration() }
+                camera.videoZoomFactor = factor
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func minMaxZoom(_ factor: CGFloat) -> CGFloat {
+
+        let minimumZoom: CGFloat = 1
+        let maximumZoom: CGFloat = 3
+
+        if let currentCamrera = currentCamrera {
+
+            let value1 = max(factor, minimumZoom) //больше текущее значение миним
+            let value2 = min(value1, maximumZoom) //меньше максимального
+
+            return min(value2, currentCamrera.activeFormat.videoMaxZoomFactor)
+        }
+
+        return 1
+    }
+
+
+    func updateLabel(isClear: Bool, scale: CGFloat){
+
+        let color = isClear ? UIColor.clear : UIColor.white
+
+        self.labelZoom.text = String(format: "%.2f", scale)
+        self.labelZoom.textColor = color
+
     }
 
 }
