@@ -10,6 +10,29 @@ import UIKit
 import AVFoundation
 import Foundation
 
+
+enum EnumSettingsBBItem{
+
+    case onButton
+    case offButton
+    case noEnable
+
+    func valueButton() -> (text: String, alpha: CGFloat){
+
+        switch self {
+        case .onButton:
+            return (text: "Включить вспышку", alpha: 1)
+        case .offButton:
+            return (text: "Отключить вспышку", alpha: 1)
+        case .noEnable:
+            return (text: "Включить вспышку", alpha: 0.5)
+        }
+
+    }
+
+
+}
+
 class MyCameraVC: UIViewController {
 
     @IBOutlet weak var cameraButton: UIButton!
@@ -20,6 +43,10 @@ class MyCameraVC: UIViewController {
 
     var openCollectionView = false
     var animateUpdate = false
+
+    //вспышка
+
+    var settings = AVCapturePhotoSettings()
 
     //камера
 
@@ -79,18 +106,19 @@ class MyCameraVC: UIViewController {
 
     @IBAction func cameraButton_TouchUpInside(_ sender: Any) {
 
-        let settings = AVCapturePhotoSettings()                 //делаем фото
-        photoOutput?.capturePhoto(with: settings, delegate: self)
+        photoOutput?.capturePhoto(with: self.settings, delegate: self)
     }
 //
 //
     @IBAction func reloadCamera(_ sender: Any) {
 
-
         do{
             captureSession.removeInput(captureSession.inputs.first!)
+            let value = currentCamrera == frontCamera
 
-            currentCamrera = currentCamrera == frontCamera ? backCamera : frontCamera
+            currentCamrera = value ? backCamera : frontCamera
+
+            settingsRightBBitem(currentCamrera == frontCamera ? .noEnable : .onButton)
 
             let captureDeviceInput1 = try AVCaptureDeviceInput(device: currentCamrera!)
             captureSession.addInput(captureDeviceInput1)
@@ -98,8 +126,6 @@ class MyCameraVC: UIViewController {
             print(error.localizedDescription)
         }
 
-
-        rightBBItem(isON: false)
     }
 
 
@@ -110,12 +136,16 @@ class MyCameraVC: UIViewController {
         self.clearNavigationBar()
         self.bbCancel()
 
-        settingsRightBBitem(text: "Вспышка Вкл", alpha: 1)
+        settingsRightBBitem(EnumSettingsBBItem.onButton)
+
     }
 
-    private func settingsRightBBitem(text: String, alpha: CGFloat){
 
-        let buttonRight = UIBarButtonItem(title: text, style: .plain, target: self, action: #selector(flashDevise))
+    private func settingsRightBBitem(_ value: EnumSettingsBBItem){
+
+        let buttonRight = UIBarButtonItem(title: value.valueButton().text, style: .plain, target: self, action: #selector(flashDevise))
+
+        let alpha = value.valueButton().alpha
 
         buttonRight.isEnabled = alpha == 1
 
@@ -125,68 +155,61 @@ class MyCameraVC: UIViewController {
 
     }
 
-    private func rightBBItem(isON: Bool) { //если тру то включаем
+        //если надо только вспышку
 
-
-        //TODO настроить потом
-//        flashMode = isON ? .on : .off //это именно включение/отключение вспышки, то что ниже это фонарик
+//    private func getSettings(camera: AVCaptureDevice, flashMode: AVCaptureDevice.FlashMode) -> AVCapturePhotoSettings {
+//        var settings = AVCapturePhotoSettings()
 //
+//        if camera.hasFlash {
+//            settings.flashMode = flashMode
+//        }
 //
-//        let text = isON ? "вспышка Выкл" : "вспышка Вкл"
-//        let alpha: CGFloat = !isON && currentCamera == .front ? 0.5 : 1
+//        return settings
+//    }
 
-
-        let text = "вспышка Выкл"
-        let alpha: CGFloat = 0.5
-
-
-        settingsRightBBitem(text: text, alpha: alpha)
-    }
-
-
-    //flash
 
     @objc func flashDevise(){
 
+        if let camera = currentCamrera {
 
-        if currentCamrera == frontCamera {
-            return
-        }
+            let value = camera.flashMode == AVCaptureDevice.FlashMode.on
 
-        let device = AVCaptureDevice.default(for: AVMediaType.video)
+            let flashMode: AVCaptureDevice.FlashMode = value ? .off : .on
 
-        if (device != nil) {
-            if (device!.hasTorch) {
-                do {
-                    try device!.lockForConfiguration()
-                    if (device!.torchMode == AVCaptureDevice.TorchMode.on) {
-                        device!.torchMode = AVCaptureDevice.TorchMode.off
-                        rightBBItem(isON: false)
-                    } else {
-                        rightBBItem(isON: true)
-                        do {
-                            try device!.setTorchModeOn(level: 1.0)
-                        } catch {
-                            print(error)
-                        }
-                    }
+            settingsRightBBitem(value ? .onButton : .offButton)
 
-                    device!.unlockForConfiguration()
-                } catch {
-                    print(error)
-                }
-            }
+            self.settings.flashMode = flashMode
         }
 
     }
 
 
-    private func offFlash(){
-        if let device = AVCaptureDevice.default(for: AVMediaType.video),
-            device.torchMode == AVCaptureDevice.TorchMode.on {
-            device.torchMode = AVCaptureDevice.TorchMode.off
-        }
-    }
+    //если нада фонарик
+
+//        @objc func flashDevise(){
+//
+//            if let avDevice = AVCaptureDevice.default(for: AVMediaType.video) {
+//                if (avDevice.hasTorch) {
+//                    do {
+//                        try avDevice.lockForConfiguration()
+//                    } catch {
+//                        print("aaaa")
+//                    }
+//
+//
+//                    let isActiveCamera = avDevice.isTorchActive
+//
+//                    settingsRightBBitem(isActiveCamera ? .onButton : .offButton)
+//
+//                    avDevice.torchMode = isActiveCamera ? AVCaptureDevice.TorchMode.off : AVCaptureDevice.TorchMode.on
+//
+//
+//                }
+//                // unlock your device
+//                avDevice.unlockForConfiguration()
+//            }
+//
+//        }
 
 
     deinit {
