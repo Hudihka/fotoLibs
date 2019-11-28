@@ -95,7 +95,7 @@ class NavigBarView: UIView {
 
         activeVC.dismiss(animated: true) {
             if let lastPushVC = UIApplication.shared.lastPushVC {
-                if TwoButtonVC.openNevStackNavigation {
+                if FrieButtonVC.openNevStackNavigation {
                     lastPushVC.dismiss(animated: true, completion: nil) //камера/выбираем фото из коллекции
                 } else {
                     UIApplication.shared.getWorkVC.navigationController?.popViewController(animated: true) //фото/выбираем фото

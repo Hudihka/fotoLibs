@@ -13,7 +13,7 @@
         <!--Item 1-->
         <scene sceneID="gkT-pe-Lnl">
             <objects>
-                <viewController storyboardIdentifier="TwoButtonVC" id="nDc-fx-qPx" customClass="TwoButtonVC" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FrieButtonVC" id="nDc-fx-qPx" customClass="FrieButtonVC" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4uP-gK-9dk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31b-Ps-oUR">
-                                <rect key="frame" x="67.5" y="372" width="240" height="53"/>
+                                <rect key="frame" x="67.5" y="415" width="240" height="53"/>
                                 <color key="backgroundColor" red="1" green="0.94622291160000005" blue="0.039997223300000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="tzk-VE-fEA"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10m-v3-0lz">
-                                <rect key="frame" x="67.5" y="457" width="240" height="53"/>
+                                <rect key="frame" x="67.5" y="488" width="240" height="53"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="WzY-xL-xaQ"/>
@@ -46,18 +46,31 @@
                                     <action selector="galeruButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="rKx-Hm-vV1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzw-42-jTn">
+                                <rect key="frame" x="67.5" y="342" width="240" height="53"/>
+                                <color key="backgroundColor" red="1" green="0.94622291160000005" blue="0.039997223300000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Фото и видео"/>
+                                <connections>
+                                    <action selector="photoAndVideoButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="0bg-U5-khK"/>
+                                    <action selector="photoButton:" destination="nDc-fx-qPx" eventType="touchUpInside" id="IVW-7q-hFE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="10m-v3-0lz" firstAttribute="centerX" secondItem="H42-4w-KHs" secondAttribute="centerX" id="4im-bf-3f0"/>
                             <constraint firstItem="Jkd-ZU-IXJ" firstAttribute="leading" secondItem="H42-4w-KHs" secondAttribute="leading" constant="67" id="5Y8-pe-Tqu"/>
                             <constraint firstItem="10m-v3-0lz" firstAttribute="width" secondItem="Jkd-ZU-IXJ" secondAttribute="width" id="Cts-X2-PLH"/>
-                            <constraint firstItem="10m-v3-0lz" firstAttribute="top" secondItem="31b-Ps-oUR" secondAttribute="bottom" constant="32" id="IcC-Yk-CeU"/>
+                            <constraint firstItem="lzw-42-jTn" firstAttribute="centerX" secondItem="H42-4w-KHs" secondAttribute="centerX" id="E4H-TU-glu"/>
+                            <constraint firstItem="10m-v3-0lz" firstAttribute="top" secondItem="31b-Ps-oUR" secondAttribute="bottom" constant="20" id="IcC-Yk-CeU"/>
                             <constraint firstItem="31b-Ps-oUR" firstAttribute="width" secondItem="Jkd-ZU-IXJ" secondAttribute="width" id="K76-Dn-VmN"/>
-                            <constraint firstItem="31b-Ps-oUR" firstAttribute="top" secondItem="Jkd-ZU-IXJ" secondAttribute="bottom" constant="70" id="Q3N-bA-Zg3"/>
+                            <constraint firstItem="lzw-42-jTn" firstAttribute="width" secondItem="31b-Ps-oUR" secondAttribute="width" id="Qm7-z5-sGK"/>
                             <constraint firstItem="H42-4w-KHs" firstAttribute="trailing" secondItem="Jkd-ZU-IXJ" secondAttribute="trailing" constant="68" id="T0e-GT-Uwl"/>
                             <constraint firstItem="Jkd-ZU-IXJ" firstAttribute="top" secondItem="H42-4w-KHs" secondAttribute="top" constant="34" id="U6N-QI-HZ4"/>
+                            <constraint firstItem="lzw-42-jTn" firstAttribute="height" secondItem="31b-Ps-oUR" secondAttribute="height" id="UVY-Zp-wPt"/>
                             <constraint firstItem="31b-Ps-oUR" firstAttribute="centerX" secondItem="H42-4w-KHs" secondAttribute="centerX" id="dsy-Yc-Snc"/>
+                            <constraint firstItem="lzw-42-jTn" firstAttribute="top" secondItem="Jkd-ZU-IXJ" secondAttribute="bottom" constant="40" id="iUX-gH-hom"/>
+                            <constraint firstItem="31b-Ps-oUR" firstAttribute="top" secondItem="lzw-42-jTn" secondAttribute="bottom" constant="20" id="wYV-Hg-Mtr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H42-4w-KHs"/>
                     </view>
@@ -65,6 +78,7 @@
                     <navigationItem key="navigationItem" id="4Ns-cP-k02"/>
                     <connections>
                         <outlet property="imageView" destination="Jkd-ZU-IXJ" id="Zqt-bf-UwO"/>
+                        <outlet property="photoAndVideoButton" destination="lzw-42-jTn" id="7cE-fk-KiI"/>
                         <outlet property="photoButton" destination="31b-Ps-oUR" id="e8D-Wz-Msp"/>
                     </connections>
                 </viewController>

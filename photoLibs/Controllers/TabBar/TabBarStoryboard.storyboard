@@ -12,7 +12,7 @@
         <!--Tab BarVC-->
         <scene sceneID="Pk1-qQ-f7H">
             <objects>
-                <tabBarController id="zyn-QL-Zb5" customClass="TabBarVC" customModule="tabBarFotoCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="zyn-QL-Zb5" customClass="TabBarVC" customModule="photoLibs" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4jF-3e-Awj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="76" y="-699"/>
         </scene>
-        <!--TwoButton-->
+        <!--FrieButton-->
         <scene sceneID="f0K-3s-Q7e">
             <objects>
-                <viewControllerPlaceholder storyboardName="TwoButton" id="Hau-WT-l9E" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FrieButton" id="Hau-WT-l9E" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="zVy-7q-l2j"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kU8-RW-a5E" userLabel="First Responder" sceneMemberID="firstResponder"/>

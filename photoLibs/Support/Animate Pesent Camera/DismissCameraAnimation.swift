@@ -24,7 +24,7 @@ class DismissCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
-        guard let twoButtonVC = transitionContext.viewController(forKey: .to),
+        guard let frieButtonVCVC = transitionContext.viewController(forKey: .to),
             let cameraVC = transitionContext.viewController(forKey: .from),
             let snaphotCamera = cameraVC.view.snapshotView(afterScreenUpdates: true)
 
@@ -39,16 +39,13 @@ class DismissCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         let maskView = MaskCircleView(frame: snaphotCamera.frame)
         snaphotCamera.addSubview(maskView)
 
-        containerView.addSubview(twoButtonVC.view)     
+        containerView.addSubview(frieButtonVCVC.view)     
         containerView.addSubview(snaphotCamera)
 
 
         maskView.finishPoint = finalPoint
         maskView.​configure()
 
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 4.3) {
-//            snaphotTwoButton.removeFromSuperview()
-//        }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             snaphotCamera.removeFromSuperview()

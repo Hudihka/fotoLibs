@@ -14,9 +14,11 @@ let animationTimeIntervalCamera: TimeInterval = 0.3
 class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     private let startPoint: CGPoint
+    private let isMyCameraVC: Bool
 
-    init(startPoint: CGPoint) {
+    init(startPoint: CGPoint, isMyCameraVC: Bool) {
         self.startPoint = startPoint
+        self.isMyCameraVC = isMyCameraVC
     }
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -26,18 +28,19 @@ class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
         guard let toVCN = transitionContext.viewController(forKey: .to) as? UINavigationController,     // до, вью контроллер с изображением
-              let cameraVC = CameraViewController.route(),
+              let cameraVC = self.finishVC,
               let snapshot = cameraVC.view.snapshotView(afterScreenUpdates: true),
             //////
-              let twoButtonVC = transitionContext.viewController(forKey: .from),
-              let snaphotTwoButton = twoButtonVC.view.snapshotView(afterScreenUpdates: true)
+              let frieButtonVC = transitionContext.viewController(forKey: .from),
+              let snaphotFrieButtonVC = frieButtonVC.view.snapshotView(afterScreenUpdates: true)
 
             else {
                 return
         }
 
         toVCN.setViewControllers([cameraVC], animated: false)
-        cameraVC.customNavigationBar()
+
+//        cameraVC.customNavigationBar()
 
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.clear
@@ -46,21 +49,33 @@ class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         snapshot.addSubview(maskView)
 
         containerView.addSubview(toVCN.view)     //в начале в контейнер добавляем конечный
-        containerView.addSubview(snaphotTwoButton)
+        containerView.addSubview(snaphotFrieButtonVC)
         containerView.addSubview(snapshot)
 
 
         maskView.startPoint = startPoint
         maskView.​configure()
 
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 4.3) {
-//            snaphotTwoButton.removeFromSuperview()
-//        }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            snaphotTwoButton.removeFromSuperview()
+            snaphotFrieButtonVC.removeFromSuperview()
             snapshot.removeFromSuperview()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }
+
+    }
+
+
+    private var finishVC: UIViewController? {
+
+        if isMyCameraVC {
+            let vc = MyCameraVC.route()
+            vc?.customNavigationBar()
+            return vc
+        } else {
+            let vc = CameraViewController.route()
+            vc?.customNavigationBar()
+            return vc
         }
 
     }

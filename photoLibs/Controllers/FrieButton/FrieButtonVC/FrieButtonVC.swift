@@ -1,5 +1,5 @@
 //
-//  TwoButtonVCViewController.swift
+//  FrieButtonVCVCViewController.swift
 //  tabBarFotoCamera
 //
 //  Created by Username on 05.11.2019.
@@ -8,10 +8,17 @@
 
 import UIKit
 
-class TwoButtonVC: UIViewController {
+class FrieButtonVC: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var photoAndVideoButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
+
+    var myPhotoTransition = true
+
+    var pointTransition: CGPoint {
+        return myPhotoTransition ? photoButton.center : photoAndVideoButton.center
+    }
 
     static var openNevStackNavigation = true //если да, то открываем новый стек навигации, переменная нужна для дисмиса
 
@@ -24,10 +31,10 @@ class TwoButtonVC: UIViewController {
                                                object: nil)
     }
 
-    static func route() -> TwoButtonVC?{
-        let storubord = UIStoryboard(name: "TwoButton", bundle: nil)
-        let VC = storubord.instantiateViewController(withIdentifier: "TwoButtonVC")
-        return VC as? TwoButtonVC
+    static func route() -> FrieButtonVC?{
+        let storubord = UIStoryboard(name: "FrieButton", bundle: nil)
+        let VC = storubord.instantiateViewController(withIdentifier: "FrieButtonVC")
+        return VC as? FrieButtonVC
     }
 
 
@@ -42,6 +49,21 @@ class TwoButtonVC: UIViewController {
 
     @IBAction func photoButton(_ sender: UIButton) {
 
+        myPhotoTransition = true
+        openCamera()
+
+    }
+
+    @IBAction func photoAndVideoButton(_ sender: UIButton) {
+
+        myPhotoTransition = false
+        openCamera()
+
+    }
+
+
+    private func openCamera(){
+
         ApplicationOpportunities.dismisCameraVC(completion: { (status) in
             switch status {
             case .ban:
@@ -50,26 +72,18 @@ class TwoButtonVC: UIViewController {
             case .permitted, .pressTrue:
                 print("открыть фото камеру")
 
-                //если надо только фото
+                let NVC = UINavigationController()
+                NVC.view.backgroundColor = UIColor.clear
+                NVC.transitioningDelegate = self
 
-                if let VC = MyCameraVC.route() {
-                    let NVC = UINavigationController(rootViewController: VC)
-                    NVC.view.backgroundColor = UIColor.clear
-                    self.navigationController?.present(NVC, animated: true, completion: nil)
-                }
-
-                //если надо фото и видео
-//                let NVC = UINavigationController()
-//                NVC.view.backgroundColor = UIColor.clear
-//                NVC.transitioningDelegate = self
-//
-//                self.navigationController?.present(NVC, animated: true, completion: nil)
+                self.navigationController?.present(NVC, animated: true, completion: nil)
 
             case .pressBan, .noValue:
                 return
             }
         })
     }
+
 
     private func present(controller: UIViewController){
 
@@ -109,7 +123,7 @@ class TwoButtonVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + time) { //может быть противный баг если открыть в первый раз сразу
                                                                  //поэтому делаем небольшую задержку
             if let vc = PhotoViewController.route() {
-                TwoButtonVC.openNevStackNavigation = false
+                FrieButtonVC.openNevStackNavigation = false
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

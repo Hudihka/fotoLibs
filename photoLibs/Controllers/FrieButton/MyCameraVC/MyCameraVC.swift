@@ -102,7 +102,7 @@ class MyCameraVC: UIViewController {
 
 
     static func route() -> MyCameraVC?{
-        let storubord = UIStoryboard(name: "TwoButton", bundle: nil)
+        let storubord = UIStoryboard(name: "FrieButton", bundle: nil)
         let VC = storubord.instantiateViewController(withIdentifier: "MyCameraVC")
         return VC as? MyCameraVC
     }

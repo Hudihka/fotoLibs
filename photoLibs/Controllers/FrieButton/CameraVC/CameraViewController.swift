@@ -60,7 +60,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     static func route() -> CameraViewController?{
-        let storubord = UIStoryboard(name: "TwoButton", bundle: nil)
+        let storubord = UIStoryboard(name: "FrieButton", bundle: nil)
         let VC = storubord.instantiateViewController(withIdentifier: "CameraViewController")
         return VC as? CameraViewController
     }

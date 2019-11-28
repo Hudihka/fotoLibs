@@ -35,7 +35,7 @@ class PhotoViewController: UIViewController {
 
 
     static func route() -> PhotoViewController? {
-        let storyboard = UIStoryboard(name: "TwoButton", bundle: nil)
+        let storyboard = UIStoryboard(name: "FrieButton", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController")
 
         return viewController as? PhotoViewController

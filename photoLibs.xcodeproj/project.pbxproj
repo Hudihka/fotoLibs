@@ -27,7 +27,7 @@
 		CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */; };
 		CE25CAEE2382588A001016EE /* MaskCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAED23825889001016EE /* MaskCircleView.swift */; };
 		CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */; };
-		CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF223825B61001016EE /* TwoButtonTransition.swift */; };
+		CE25CAF323825B61001016EE /* FrieButtonVCTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF223825B61001016EE /* FrieButtonVCTransition.swift */; };
 		CE25CAF523826BD6001016EE /* DismissCameraAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */; };
 		CE25CAF82382A9E7001016EE /* MyCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF72382A9E7001016EE /* MyCameraVC.swift */; };
 		CE25CAFA2382ADF3001016EE /* MyCameraCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25CAF92382ADF3001016EE /* MyCameraCollectionExtension.swift */; };
@@ -51,9 +51,9 @@
 		CEEC0AE92377DEE400CFBFD4 /* TabBarStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0AE82377DEE400CFBFD4 /* TabBarStoryboard.storyboard */; };
 		CEEC0AEB2377DF1D00CFBFD4 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AEA2377DF1D00CFBFD4 /* TabBarVC.swift */; };
 		CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AEF2377DF9800CFBFD4 /* UIViewController.swift */; };
-		CEEC0AF32377E0B600CFBFD4 /* TwoButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */; };
+		CEEC0AF32377E0B600CFBFD4 /* FrieButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0AF22377E0B600CFBFD4 /* FrieButton.storyboard */; };
 		CEEC0AF52377E0D000CFBFD4 /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEC0AF42377E0D000CFBFD4 /* Alert.storyboard */; };
-		CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */; };
+		CEEC0AF72377E14500CFBFD4 /* FrieButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AF62377E14500CFBFD4 /* FrieButtonVC.swift */; };
 		CEEC0AF92377E19F00CFBFD4 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AF82377E19F00CFBFD4 /* AlertViewController.swift */; };
 		CEEC0B002377E23300CFBFD4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0AFD2377E23300CFBFD4 /* PhotoViewController.swift */; };
 		CEEC0B032377E77400CFBFD4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */; };
@@ -81,7 +81,7 @@
 		CE0DCEBE237EB7E300B0EC61 /* IZoomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZoomTimer.swift; sourceTree = "<group>"; };
 		CE25CAED23825889001016EE /* MaskCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskCircleView.swift; sourceTree = "<group>"; };
 		CE25CAEF2382595D001016EE /* PresentCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCameraAnimation.swift; sourceTree = "<group>"; };
-		CE25CAF223825B61001016EE /* TwoButtonTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonTransition.swift; sourceTree = "<group>"; };
+		CE25CAF223825B61001016EE /* FrieButtonVCTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrieButtonVCTransition.swift; sourceTree = "<group>"; };
 		CE25CAF423826BD6001016EE /* DismissCameraAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissCameraAnimation.swift; sourceTree = "<group>"; };
 		CE25CAF72382A9E7001016EE /* MyCameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCameraVC.swift; sourceTree = "<group>"; };
 		CE25CAF92382ADF3001016EE /* MyCameraCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCameraCollectionExtension.swift; sourceTree = "<group>"; };
@@ -107,9 +107,9 @@
 		CEEC0AE82377DEE400CFBFD4 /* TabBarStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarStoryboard.storyboard; sourceTree = "<group>"; };
 		CEEC0AEA2377DF1D00CFBFD4 /* TabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		CEEC0AEF2377DF9800CFBFD4 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TwoButton.storyboard; sourceTree = "<group>"; };
+		CEEC0AF22377E0B600CFBFD4 /* FrieButton.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FrieButton.storyboard; sourceTree = "<group>"; };
 		CEEC0AF42377E0D000CFBFD4 /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
-		CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonVC.swift; sourceTree = "<group>"; };
+		CEEC0AF62377E14500CFBFD4 /* FrieButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrieButtonVC.swift; sourceTree = "<group>"; };
 		CEEC0AF82377E19F00CFBFD4 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		CEEC0AFD2377E23300CFBFD4 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		CEEC0B022377E77400CFBFD4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -223,13 +223,13 @@
 			path = "Animate Pesent Camera";
 			sourceTree = "<group>";
 		};
-		CE25CAF123825B37001016EE /* TwoButton */ = {
+		CE25CAF123825B37001016EE /* FrieButtonVC */ = {
 			isa = PBXGroup;
 			children = (
-				CEEC0AF62377E14500CFBFD4 /* TwoButtonVC.swift */,
-				CE25CAF223825B61001016EE /* TwoButtonTransition.swift */,
+				CEEC0AF62377E14500CFBFD4 /* FrieButtonVC.swift */,
+				CE25CAF223825B61001016EE /* FrieButtonVCTransition.swift */,
 			);
-			path = TwoButton;
+			path = FrieButtonVC;
 			sourceTree = "<group>";
 		};
 		CE25CAF62382A9A8001016EE /* MyCameraVC */ = {
@@ -330,7 +330,7 @@
 			children = (
 				CE0D5CA6237BD4BF003C57B4 /* TestVC.swift */,
 				CEEC0AED2377DF4600CFBFD4 /* Alert */,
-				CEEC0AEC2377DF2500CFBFD4 /* TwoButton */,
+				CEEC0AEC2377DF2500CFBFD4 /* FrieButton */,
 				CEEC0AE72377DE8D00CFBFD4 /* TabBar */,
 				CE0D5C8023780267003C57B4 /* ImageZoomVC */,
 			);
@@ -346,16 +346,16 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		CEEC0AEC2377DF2500CFBFD4 /* TwoButton */ = {
+		CEEC0AEC2377DF2500CFBFD4 /* FrieButton */ = {
 			isa = PBXGroup;
 			children = (
-				CEEC0AF22377E0B600CFBFD4 /* TwoButton.storyboard */,
+				CEEC0AF22377E0B600CFBFD4 /* FrieButton.storyboard */,
+				CE25CAF123825B37001016EE /* FrieButtonVC */,
 				CE25CAF62382A9A8001016EE /* MyCameraVC */,
-				CE25CAF123825B37001016EE /* TwoButton */,
 				CE94D5F8237D5D5300314322 /* CameraVC */,
 				CEEC0AFB2377E23300CFBFD4 /* PhotoCollectionVC */,
 			);
-			path = TwoButton;
+			path = FrieButton;
 			sourceTree = "<group>";
 		};
 		CEEC0AED2377DF4600CFBFD4 /* Alert */ = {
@@ -460,7 +460,7 @@
 				CE94D608237D79BC00314322 /* AlbumView.xib in Resources */,
 				CEEC0AD12377D91C00CFBFD4 /* LaunchScreen.storyboard in Resources */,
 				CEEC0AF52377E0D000CFBFD4 /* Alert.storyboard in Resources */,
-				CEEC0AF32377E0B600CFBFD4 /* TwoButton.storyboard in Resources */,
+				CEEC0AF32377E0B600CFBFD4 /* FrieButton.storyboard in Resources */,
 				CE0D5C8A23780267003C57B4 /* NavigBarView.xib in Resources */,
 				CE0D5C8B23780267003C57B4 /* ImageStoryboard.storyboard in Resources */,
 				CE0D5C8E23780267003C57B4 /* CellZoom.xib in Resources */,
@@ -527,7 +527,7 @@
 				CE94D5F7237D593A00314322 /* Extension.swift in Sources */,
 				CE0DCEBD237EB79C00B0EC61 /* IZoomScroll.swift in Sources */,
 				CEEC0AE42377DBE700CFBFD4 /* SupportClass.swift in Sources */,
-				CEEC0AF72377E14500CFBFD4 /* TwoButtonVC.swift in Sources */,
+				CEEC0AF72377E14500CFBFD4 /* FrieButtonVC.swift in Sources */,
 				CEEC0AE12377DBE700CFBFD4 /* Utils.swift in Sources */,
 				CE25CAFA2382ADF3001016EE /* MyCameraCollectionExtension.swift in Sources */,
 				CE94D5FC237D5DD200314322 /* CameraVCPresentCollectionAnimate.swift in Sources */,
@@ -537,7 +537,7 @@
 				CE25CAFC2382AE17001016EE /* MyCameraCollectionAnimate.swift in Sources */,
 				CEEC0AF02377DF9800CFBFD4 /* UIViewController.swift in Sources */,
 				CE0DCEBF237EB7E300B0EC61 /* IZoomTimer.swift in Sources */,
-				CE25CAF323825B61001016EE /* TwoButtonTransition.swift in Sources */,
+				CE25CAF323825B61001016EE /* FrieButtonVCTransition.swift in Sources */,
 				CE25CAF02382595D001016EE /* PresentCameraAnimation.swift in Sources */,
 				CE0D5C8D23780267003C57B4 /* ImageZoomVC.swift in Sources */,
 				CE94D60A237D79E000314322 /* AlbumView.swift in Sources */,

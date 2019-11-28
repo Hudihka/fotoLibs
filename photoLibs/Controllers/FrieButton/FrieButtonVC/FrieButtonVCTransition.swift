@@ -1,5 +1,5 @@
 //
-//  TwoButtonTransition.swift
+//  FrieButtonVCTransition.swift
 //  photoLibs
 //
 //  Created by Username on 18.11.2019.
@@ -10,20 +10,18 @@ import Foundation
 import UIKit
 
 
-extension TwoButtonVC: UIViewControllerTransitioningDelegate {
+extension FrieButtonVC: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let point = photoButton.center
-        return PresentCameraAnimation(startPoint: point)
+        return PresentCameraAnimation(startPoint: pointTransition, isMyCameraVC: myPhotoTransition)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let point = photoButton.center
-        return DismissCameraAnimation(finalPoint: point)
+        return DismissCameraAnimation(finalPoint: pointTransition)
 
     }
 
