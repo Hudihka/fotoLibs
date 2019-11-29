@@ -28,7 +28,7 @@ class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
         guard let toVCN = transitionContext.viewController(forKey: .to) as? UINavigationController,     // до, вью контроллер с изображением
-              let cameraVC = self.finishVC,
+              let cameraVC = isMyCameraVC ? MyCameraVC.route() : CameraViewController.route(),//MyCameraVC.route(),//self.finishVC,
               let snapshot = cameraVC.view.snapshotView(afterScreenUpdates: true),
             //////
               let frieButtonVC = transitionContext.viewController(forKey: .from),
@@ -41,6 +41,8 @@ class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         toVCN.setViewControllers([cameraVC], animated: false)
 
 //        cameraVC.customNavigationBar()
+
+        cameraVC.clearNavigationBar()
 
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.clear
@@ -65,18 +67,4 @@ class PresentCameraAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     }
 
-
-    private var finishVC: UIViewController? {
-
-        if isMyCameraVC {
-            let vc = MyCameraVC.route()
-            vc?.customNavigationBar()
-            return vc
-        } else {
-            let vc = CameraViewController.route()
-            vc?.customNavigationBar()
-            return vc
-        }
-
-    }
 }

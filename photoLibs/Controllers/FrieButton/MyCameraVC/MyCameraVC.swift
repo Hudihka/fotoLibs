@@ -111,6 +111,12 @@ class MyCameraVC: UIViewController {
 
     @IBAction func cameraButton_TouchUpInside(_ sender: Any) {
 
+//        captureSession.canAddInput(self.settings)
+
+//        if (captureSession?.canAddOutput(stillImageOutput))!{
+//            captureSession?.addOutput(stillImageOutput)
+//        }
+
         photoOutput?.capturePhoto(with: self.settings, delegate: self)
     }
 //
@@ -285,7 +291,13 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
                 let context = CIContext()
                 if let cgImagePreview = context.createCGImage(ciImagePreview, from: CGRect(x: 0, y: 0, width:previewWidth , height:previewHeight )) {
                     if let vc = ImageZoomVC.route(index: 0, image: UIImage(cgImage: cgImagePreview)){
-                        self.present(vc, animated: true, completion: nil)
+
+
+//                        self.present(vc, animated: true, completion: nil)
+
+                        self.present(vc, animated: true) {
+                            self.setupInputOutput()
+                        }
                     }
                 }
             }
