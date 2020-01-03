@@ -111,13 +111,29 @@ class MyCameraVC: UIViewController {
 
     @IBAction func cameraButton_TouchUpInside(_ sender: Any) {
 
-//        captureSession.canAddInput(self.settings)
-
-//        if (captureSession?.canAddOutput(stillImageOutput))!{
-//            captureSession?.addOutput(stillImageOutput)
-//        }
-
+        
         photoOutput?.capturePhoto(with: self.settings, delegate: self)
+        
+        
+        print("--------------")
+        
+//        captureSession.beginConfiguration()
+//        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+//            for input in inputs {
+//                captureSession.removeInput(input)
+//            }
+//        }
+//
+//        let outputs = captureSession.outputs
+//        if !outputs.isEmpty{
+//            for output in outputs {
+//                captureSession.removeOutput(output)
+//            }
+//        }
+        
+        
+//        photoOutput = nil
+//        setupInputOutput()
     }
 //
 //
@@ -242,10 +258,18 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
     func setupInputOutput() {
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamrera!) //захват того что есть сейчас
-            captureSession.addInput(captureDeviceInput)//Добавляет заданный вход в сеанс.
+            if captureSession.canAddInput(captureDeviceInput) {
+                captureSession.addInput(captureDeviceInput) //Добавляет заданный вход в сеанс.
+            }
+            
+//            captureSession.addInput(captureDeviceInput)//Добавляет заданный вход в сеанс.
             photoOutput = AVCapturePhotoOutput()       //Выходные данные захвата для неподвижного изображения, Live Photo и других рабочих процессов фотографии.
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])], completionHandler: nil) //полученное фото
-            captureSession.addOutput(photoOutput!)
+            //            captureSession.addOutput(photoOutput!)
+            
+            if captureSession.canAddOutput(photoOutput!) {
+                captureSession.addOutput(photoOutput!)
+            }
         } catch {
             print(error)
         }
@@ -275,40 +299,58 @@ extension MyCameraVC: AVCapturePhotoCaptureDelegate {
                      previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
                      resolvedSettings: AVCaptureResolvedPhotoSettings,
                      bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?){
-
-
+        
+        
         if let photoBuffer = photoSampleBuffer {
             let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoBuffer, previewPhotoSampleBuffer: nil)
-            openVCZoom(data: data)
+            openVCZoom(data: data, cgImage: nil)
         }
-
+        
         let previewWidth = Int(resolvedSettings.previewDimensions.width)
         let previewHeight = Int(resolvedSettings.previewDimensions.height)
-
+        
         if let previewBuffer = previewPhotoSampleBuffer {
             if let imageBuffer = CMSampleBufferGetImageBuffer(previewBuffer) {
                 let ciImagePreview = CIImage(cvImageBuffer: imageBuffer)
-                let context = CIContext()
-                if let cgImagePreview = context.createCGImage(ciImagePreview, from: CGRect(x: 0, y: 0, width:previewWidth , height:previewHeight )) {
-                    if let vc = ImageZoomVC.route(index: 0, image: UIImage(cgImage: cgImagePreview)){
-
-
-//                        self.present(vc, animated: true, completion: nil)
-
-                        self.present(vc, animated: true) {
-                            self.setupInputOutput()
-                        }
-                    }
-                }
+                let cgImagePreview = CIContext().createCGImage(ciImagePreview,
+                                                               from: CGRect(x: 0, y: 0, width:previewWidth , height:previewHeight ))
+                openVCZoom(data: nil, cgImage: cgImagePreview)
             }
         }
-
     }
 
-    private func openVCZoom(data: Data?){
-        if let data = data, let imgage = UIImage(data: data), let vc = ImageZoomVC.route(index: 0, image: imgage){
-            self.present(vc, animated: true, completion: nil)
+    private func openVCZoom(data: Data?, cgImage: CGImage?){
+        if let data = data, let imgage = UIImage(data: data){
+            presenZoomVC(image: imgage)
+        } else if let cgImage = cgImage {
+            presenZoomVC(image: UIImage(cgImage: cgImage))
         }
+    }
+    
+    private func presenZoomVC(image: UIImage){
+        if let vc = ImageZoomVC.route(index: 0, image: image){
+            self.present(vc, animated: true){
+                self.clearSettingsCammera()
+            }
+        }
+    }
+    
+    private func clearSettingsCammera(){
+        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                captureSession.removeInput(input)
+            }
+        }
+        
+        let outputs = captureSession.outputs
+        if !outputs.isEmpty{
+            for output in outputs {
+                captureSession.removeOutput(output)
+            }
+        }
+        
+        photoOutput = nil
+        setupInputOutput()
     }
 
     //MARK - жест

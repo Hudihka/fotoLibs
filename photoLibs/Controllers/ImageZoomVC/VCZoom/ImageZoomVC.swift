@@ -12,6 +12,7 @@ import UIKit
 //    func reloadCell(index: IndexPath, isSclear: Bool)
 //}
 
+
 class ImageZoomVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
